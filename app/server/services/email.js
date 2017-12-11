@@ -77,6 +77,58 @@ function sendOne(templateName, options, data, callback){
   });
 }
 
+controller.sendLaggerEmails = function(users, callback) {
+  for (var i = 0; i < users.length; i++) {
+    var user = users[i];
+    var options = {
+      to: user.email,
+      subject: "[McHacks 2018] - We are still waiting for your application!"
+    };
+
+    var locals = {
+      name: user.name,
+      dashUrl: ROOT_URL
+    };
+
+    console.log('Sending lagger email to address ' + user.email);
+    sendOne('email-lagger', options, locals, function(err, info){
+      if (err){
+        console.log(err);
+      }
+      if (info){
+        console.log(info.message);
+      }
+      if (callback){
+        callback(err, info);
+      }
+    });
+  }
+}
+
+controller.sendApplicationEmail = function(user, callback) {
+  var options = {
+    to: user.email,
+    subject: "[McHacks 2018] - We have received your application!"
+  };
+
+  var locals = {
+    nickname: user.nickname,
+    dashUrl: ROOT_URL
+  };
+
+  sendOne('email-application', options, locals, function(err, info){
+    if (err){
+      console.log(err);
+    }
+    if (info){
+      console.log(info.message);
+    }
+    if (callback){
+      callback(err, info);
+    }
+  });
+}
+
 /**
  * Send a verification email to a user, with a verification token to enter.
  * @param  {[type]}   email    [description]

@@ -194,6 +194,50 @@ angular.module('reg')
           .modal('show');
       }
 
+      $scope.exportCSV = function() {
+        UserService
+        .getAll()
+        .success(function(data){
+
+          var output = "";
+          var titles = generateSections(data[0]);
+          for(var i = 0; i < titles.length; i++){
+            for(var j = 0; j < titles[i].fields.length; j++){
+              output += titles[i].fields[j].name + ";";
+            }
+          }
+          output += "\n";
+
+          for (var rows = 0; rows < data.length; rows++){
+            row = generateSections(data[rows]);
+            for (var i = 0; i < row.length; i++){
+              for(var j = 0; j < row[i].fields.length;j++){
+                if(!row[i].fields[j].value){
+                  output += ";";
+                  continue;
+                }
+                var field = row[i].fields[j].value;
+                try {
+                  output += field.replace(/(\r\n|\n|\r)/gm," ") + ";";
+                } catch (err){
+                  output += field + ";";
+                }
+              }
+            }
+            output += "\n";
+          }
+
+          var element = document.createElement('a');
+          element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(output));
+          element.setAttribute('download', "base " + new Date().toDateString() + ".csv");
+          element.style.display = 'none';
+          document.body.appendChild(element);
+          element.click();
+          document.body.removeChild(element);
+
+          });
+      }
+
       function generateSections(user){
         return [
           {
@@ -279,31 +323,6 @@ angular.module('reg')
               }
             ]
           },
-          // {
-          //   name: 'Hosting',
-          //   fields: [
-          //     {
-          //       name: 'Needs Hosting Saturday',
-          //       value: user.confirmation.hostNeededSat,
-          //       type: 'boolean'
-          //     },{
-          //       name: 'Gender Neutral',
-          //       value: user.confirmation.genderNeutral,
-          //       type: 'boolean'
-          //     },{
-          //       name: 'Cat Friendly',
-          //       value: user.confirmation.catFriendly,
-          //       type: 'boolean'
-          //     },{
-          //       name: 'Smoking Friendly',
-          //       value: user.confirmation.smokingFriendly,
-          //       type: 'boolean'
-          //     },{
-          //       name: 'Hosting Notes',
-          //       value: user.confirmation.hostNotes
-          //     }
-          //   ]
-          // },
           {
             name: 'Travel',
             fields: [
@@ -338,46 +357,3 @@ angular.module('reg')
       $scope.selectUser = selectUser;
 
     }]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

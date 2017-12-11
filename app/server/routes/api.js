@@ -287,6 +287,13 @@ module.exports = function (router) {
   });
 
   /**
+   * Send emails to unsubmitted applicants
+   */
+  router.post('/users/sendlagemails', isAdmin, function(req, res){
+    UserController.sendEmailsToNonCompleteProfiles(defaultResponse(req, res));
+  });
+
+  /**
    * Make user an admin
    */
   router.post('/users/:id/makeadmin', isAdmin, function(req, res){

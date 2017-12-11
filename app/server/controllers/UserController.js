@@ -585,6 +585,16 @@ UserController.leaveTeam = function(id, callback){
   callback);
 };
 
+UserController.sendEmailsToNonCompleteProfiles = function(callback) {
+  User.find({"status.completedProfile": false}, 'email nickname', function (err, users) {
+    if (err) {
+      return callback(err);
+    }
+    Mailer.sendLaggerEmails(users);
+    return callback(err);
+  });
+}
+
 /**
  * Resend an email verification email given a user id.
  */
