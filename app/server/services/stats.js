@@ -19,10 +19,12 @@ function calculateStats(){
       },
       schools: {},
       year: {
-        '2016': 0,
-        '2017': 0,
         '2018': 0,
         '2019': 0,
+        '2020': 0,
+        '2021': 0,
+        '2022': 0,
+        'other': 0
       }
     },
 
@@ -31,7 +33,7 @@ function calculateStats(){
     submitted: 0,
     admitted: 0,
     confirmed: 0,
-    confirmedMit: 0,
+    confirmedMcGill: 0,
     declined: 0,
 
     confirmedFemale: 0,
@@ -45,29 +47,18 @@ function calculateStats(){
       'M': 0,
       'L': 0,
       'XL': 0,
-      'XXL': 0,
-      'WXS': 0,
-      'WS': 0,
-      'WM': 0,
-      'WL': 0,
-      'WXL': 0,
-      'WXXL': 0,
-      'None': 0
+      'XXL': 0
     },
 
-    dietaryRestrictions: {},
-
-    hostNeededFri: 0,
-    hostNeededSat: 0,
-    hostNeededUnique: 0,
-
-    hostNeededFemale: 0,
-    hostNeededMale: 0,
-    hostNeededOther: 0,
-    hostNeededNone: 0,
-
-    reimbursementTotal: 0,
-    reimbursementMissing: 0,
+    dietaryRestrictions: {
+      'Vegan': 0,
+      'Vegetarian': 0,
+      'Halal': 0,
+      'Kosher': 0,
+      'Nut-Allergy': 0,
+      'Other': 0,
+      'None': 0
+    },
 
     wantsHardware: 0,
 
@@ -88,6 +79,11 @@ function calculateStats(){
         // Grab the email extension
         var email = user.email.split('@')[1];
 
+        // Add school Name
+        if(user.profile.school != "undefined"){
+          var schoolName = user.profile.school;
+        }
+
         // Add to the gender
         newStats.demo.gender[user.profile.gender] += 1;
 
@@ -104,7 +100,7 @@ function calculateStats(){
         newStats.confirmed += user.status.confirmed ? 1 : 0;
 
         // Count confirmed that are mit
-        newStats.confirmedMit += user.status.confirmed && email === "mit.edu" ? 1 : 0;
+        newStats.confirmedMcGill += user.status.confirmed && email === "mail.mcgill.ca" ? 1 : 0;
 
         newStats.confirmedFemale += user.status.confirmed && user.profile.gender == "F" ? 1 : 0;
         newStats.confirmedMale += user.status.confirmed && user.profile.gender == "M" ? 1 : 0;
@@ -114,29 +110,22 @@ function calculateStats(){
         // Count declined
         newStats.declined += user.status.declined ? 1 : 0;
 
-        // Count the number of people who need reimbursements
-        newStats.reimbursementTotal += user.confirmation.needsReimbursement ? 1 : 0;
-
-        // Count the number of people who still need to be reimbursed
-        newStats.reimbursementMissing += user.confirmation.needsReimbursement &&
-          !user.status.reimbursementGiven ? 1 : 0;
-
         // Count the number of people who want hardware
         newStats.wantsHardware += user.confirmation.wantsHardware ? 1 : 0;
 
         // Count schools
-        if (!newStats.demo.schools[email]){
-          newStats.demo.schools[email] = {
+        if (!newStats.demo.schools[schoolName]){
+          newStats.demo.schools[schoolName] = {
             submitted: 0,
             admitted: 0,
             confirmed: 0,
             declined: 0,
           };
         }
-        newStats.demo.schools[email].submitted += user.status.completedProfile ? 1 : 0;
-        newStats.demo.schools[email].admitted += user.status.admitted ? 1 : 0;
-        newStats.demo.schools[email].confirmed += user.status.confirmed ? 1 : 0;
-        newStats.demo.schools[email].declined += user.status.declined ? 1 : 0;
+        newStats.demo.schools[schoolName].submitted += user.status.completedProfile ? 1 : 0;
+        newStats.demo.schools[schoolName].admitted += user.status.admitted ? 1 : 0;
+        newStats.demo.schools[schoolName].confirmed += user.status.confirmed ? 1 : 0;
+        newStats.demo.schools[schoolName].declined += user.status.declined ? 1 : 0;
 
         // Count graduation years
         if (user.profile.graduationYear){
@@ -152,33 +141,22 @@ function calculateStats(){
         // }
 
         // Count shirt sizes
-        if (user.confirmation.shirtSize in newStats.shirtSizes){
-          newStats.shirtSizes[user.confirmation.shirtSize] += 1;
+        if (user.profile.shirtSize in newStats.shirtSizes) {
+          newStats.shirtSizes[user.profile.shirtSize] += 1;
         }
-
-        // Host needed counts
-        newStats.hostNeededFri += user.confirmation.hostNeededFri ? 1 : 0;
-        newStats.hostNeededSat += user.confirmation.hostNeededSat ? 1 : 0;
-        newStats.hostNeededUnique += user.confirmation.hostNeededFri || user.confirmation.hostNeededSat ? 1 : 0;
-
-        newStats.hostNeededFemale
-          += (user.confirmation.hostNeededFri || user.confirmation.hostNeededSat) && user.profile.gender == "F" ? 1 : 0;
-        newStats.hostNeededMale
-          += (user.confirmation.hostNeededFri || user.confirmation.hostNeededSat) && user.profile.gender == "M" ? 1 : 0;
-        newStats.hostNeededOther
-          += (user.confirmation.hostNeededFri || user.confirmation.hostNeededSat) && user.profile.gender == "O" ? 1 : 0;
-        newStats.hostNeededNone
-          += (user.confirmation.hostNeededFri || user.confirmation.hostNeededSat) && user.profile.gender == "N" ? 1 : 0;
 
         // Dietary restrictions
-        if (user.confirmation.dietaryRestrictions){
-          user.confirmation.dietaryRestrictions.forEach(function(restriction){
-            if (!newStats.dietaryRestrictions[restriction]){
-              newStats.dietaryRestrictions[restriction] = 0;
-            }
-            newStats.dietaryRestrictions[restriction] += 1;
-          });
+        if (user.profile.dietaryRestrictions in newStats.dietaryRestrictions) {
+          newStats.dietaryRestrictions[user.profile.dietaryRestrictions] += 1;
         }
+        // if (user.confirmation.dietaryRestrictions){
+        //   user.confirmation.dietaryRestrictions.forEach(function(restriction){
+        //     if (!newStats.dietaryRestrictions[restriction]){
+        //       newStats.dietaryRestrictions[restriction] = 0;
+        //     }
+        //     newStats.dietaryRestrictions[restriction] += 1;
+        //   });
+        // }
 
         // Count checked in
         newStats.checkedIn += user.status.checkedIn ? 1 : 0;

@@ -54,7 +54,7 @@
           <p>
             {{ DASHBOARD.UNVERIFIED }}
           </p>
-          <div class="ui purple button" ng-click="resendEmail()">
+          <div class="ui teal button" ng-click="resendEmail()">
             Resend verification email
           </div>
         </div>
@@ -66,6 +66,8 @@
             Registration Deadline:
           </strong>
           {{ timeClose }}
+          <br>
+          <br>
         </div>
 
         <div
@@ -75,6 +77,8 @@
             Confirmation Deadline:
           </strong>
           {{ timeConfirm }}
+          <br>
+          <br>
         </div>
 
         <div
@@ -89,7 +93,7 @@
             {{ DASHBOARD.INCOMPLETE }}
           </p>
 
-          <div class="ui purple button"
+          <div class="ui button"
                ui-sref="app.application">
             Complete your application
           </div>
@@ -107,20 +111,20 @@
           <p>
             {{ DASHBOARD.SUBMITTED }}
           </p>
-          <div class="ui purple button"
+          <div class="ui button"
                ui-sref="app.application">
             Edit your application
           </div>
 
           <div
-            class="ui pink button"
+            class="ui teal button"
             ng-show="!user.teamCode"
             ui-sref="app.team">
             Create or join a team
           </div>
 
           <div
-            class="ui pink button"
+            class="ui teal button"
             ng-show="user.teamCode"
             ui-sref="app.team">
             View your Team
@@ -149,13 +153,13 @@
             ng-bind-html="waitlistText">
           </div>
 
-          <div class="ui purple button"
+          <div class="ui teal button"
                ui-sref="app.application">
             View your application
           </div>
 
           <div
-            class="ui pink button"
+            class="ui teal button"
             ng-show="user.teamCode"
             ui-sref="app.team">
             View your Team
@@ -183,7 +187,7 @@
             </h4>
           </div>
 
-          <div class="ui purple button"
+          <div class="ui teal button"
                ui-sref="app.confirmation">
             Confirm your spot
           </div>
@@ -228,7 +232,7 @@
             ng-bind-html="confirmationText">
           </div>
 
-          <div class="ui purple button"
+          <div class="ui teal button"
                ui-sref="app.confirmation">
             {{pastConfirmation ? 'View' : 'Edit'}} your confirmation information
           </div>

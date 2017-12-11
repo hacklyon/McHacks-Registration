@@ -33,23 +33,31 @@ angular.module('reg')
       }
 
       UserService
-        .getPage($stateParams.page, $stateParams.size, $stateParams.query)
+        .getPage($stateParams.page, $stateParams.size, $stateParams.query, $scope.statusFilters)
         .success(function(data){
           updatePage(data);
         });
 
       $scope.$watch('queryText', function(queryText){
         UserService
-          .getPage($stateParams.page, $stateParams.size, queryText)
+          .getPage($stateParams.page, $stateParams.size, queryText, $scope.statusFilters)
           .success(function(data){
             updatePage(data);
           });
       });
+      $scope.applyStatusFilter = function () {
+        UserService
+          .getPage($stateParams.page, $stateParams.size, $scope.queryText, $scope.statusFilters)
+          .success(function (data) {
+            updatePage(data);
+          });
+      };
+
 
       $scope.goToPage = function(page){
         $state.go('app.admin.users', {
           page: page,
-          size: $stateParams.size || 50
+          size: $stateParams.size || 100
         });
       };
 
@@ -129,6 +137,37 @@ angular.module('reg')
           });
 
       };
+      $scope.toggleAdmin = function($event, user, index) {
+        $event.stopPropagation();
+
+        if (!user.admin){
+          swal({
+            title: "Whoa, wait a minute!",
+            text: "You are about make " + user.profile.name + " and admin!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, make them an admin.",
+            closeOnConfirm: false
+            },
+            function(){
+              UserService
+                .makeAdmin(user._id)
+                .success(function(user){
+                  $scope.users[index] = user;
+                  swal("Made", user.profile.name + ' an admin.', "success");
+                });
+            }
+          );
+        } else {
+          UserService
+            .removeAdmin(user._id)
+            .success(function(user){
+              $scope.users[index] = user;
+              swal("Removed", user.profile.name + ' as admin', "success");
+            });
+        }
+      };
 
       function formatTime(time){
         if (time) {
@@ -193,14 +232,29 @@ angular.module('reg')
                 name: 'School',
                 value: user.profile.school
               },{
+                name: 'Degree',
+                value: user.profile.degree
+              },{
+                name: 'Major',
+                value: user.profile.discipline
+              },{
                 name: 'Graduation Year',
                 value: user.profile.graduationYear
               },{
-                name: 'Description',
-                value: user.profile.description
+                name: 'Travel Origin',
+                value: user.profile.travel
               },{
-                name: 'Essay',
-                value: user.profile.essay
+                name: 'Resume Link',
+                value: user.profile.resume
+              },{
+                name: 'Github',
+                value: user.profile.github
+              },{
+                name: 'Website',
+                value: user.profile.website
+              },{
+                name: 'Why McHacks?',
+                value: user.profile.description
               }
             ]
           },{
@@ -216,15 +270,6 @@ angular.module('reg')
                 name: 'Shirt Size',
                 value: user.confirmation.shirtSize
               },{
-                name: 'Major',
-                value: user.confirmation.major
-              },{
-                name: 'Github',
-                value: user.confirmation.github
-              },{
-                name: 'Website',
-                value: user.confirmation.website
-              },{
                 name: 'Needs Hardware',
                 value: user.confirmation.wantsHardware,
                 type: 'boolean'
@@ -233,35 +278,33 @@ angular.module('reg')
                 value: user.confirmation.hardware
               }
             ]
-          },{
-            name: 'Hosting',
-            fields: [
-              {
-                name: 'Needs Hosting Friday',
-                value: user.confirmation.hostNeededFri,
-                type: 'boolean'
-              },{
-                name: 'Needs Hosting Saturday',
-                value: user.confirmation.hostNeededSat,
-                type: 'boolean'
-              },{
-                name: 'Gender Neutral',
-                value: user.confirmation.genderNeutral,
-                type: 'boolean'
-              },{
-                name: 'Cat Friendly',
-                value: user.confirmation.catFriendly,
-                type: 'boolean'
-              },{
-                name: 'Smoking Friendly',
-                value: user.confirmation.smokingFriendly,
-                type: 'boolean'
-              },{
-                name: 'Hosting Notes',
-                value: user.confirmation.hostNotes
-              }
-            ]
-          },{
+          },
+          // {
+          //   name: 'Hosting',
+          //   fields: [
+          //     {
+          //       name: 'Needs Hosting Saturday',
+          //       value: user.confirmation.hostNeededSat,
+          //       type: 'boolean'
+          //     },{
+          //       name: 'Gender Neutral',
+          //       value: user.confirmation.genderNeutral,
+          //       type: 'boolean'
+          //     },{
+          //       name: 'Cat Friendly',
+          //       value: user.confirmation.catFriendly,
+          //       type: 'boolean'
+          //     },{
+          //       name: 'Smoking Friendly',
+          //       value: user.confirmation.smokingFriendly,
+          //       type: 'boolean'
+          //     },{
+          //       name: 'Hosting Notes',
+          //       value: user.confirmation.hostNotes
+          //     }
+          //   ]
+          // },
+          {
             name: 'Travel',
             fields: [
               {

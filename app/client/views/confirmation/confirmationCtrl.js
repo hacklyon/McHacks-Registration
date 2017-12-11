@@ -45,15 +45,6 @@ angular.module('reg')
 
       function _updateUser(e){
         var confirmation = $scope.user.confirmation;
-        // Get the dietary restrictions as an array
-        var drs = [];
-        Object.keys($scope.dietaryRestrictions).forEach(function(key){
-          if ($scope.dietaryRestrictions[key]){
-            drs.push(key);
-          }
-        });
-        confirmation.dietaryRestrictions = drs;
-
         UserService
           .updateConfirmation(user._id, confirmation)
           .success(function(data){
@@ -75,15 +66,6 @@ angular.module('reg')
         // Semantic-UI form validation
         $('.ui.form').form({
           fields: {
-            shirt: {
-              identifier: 'shirt',
-              rules: [
-                {
-                  type: 'empty',
-                  prompt: 'Please give us a shirt size!'
-                }
-              ]
-            },
             phone: {
               identifier: 'phone',
               rules: [
@@ -117,6 +99,24 @@ angular.module('reg')
                 {
                   type: 'empty',
                   prompt: 'Please type your digital signature.'
+                }
+              ]
+            },
+            emergencyName: {
+              identifier: 'emergencyName',
+              rules: [
+                {
+                  type: 'empty',
+                  prompt: 'Please enter a contact name.'
+                }
+              ]
+            },
+            emergencyPhoneNumber: {
+              identifier: 'emergencyPhoneNumber',
+              rules: [
+                {
+                  type: 'empty',
+                  prompt: 'Please enter a contact phone number.'
                 }
               ]
             },

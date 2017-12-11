@@ -1,5 +1,5 @@
 {
-  "name": "JAFRS",
+  "name": "jafrs",
   "version": "0.0.0",
   "homepage": "https://github.com/techx/hackmit-registration",
   "authors": [
@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
+    "aws-sdk-js": "~2.100.0",
     "semantic-ui": "~2.0.0",
     "jquery": "~2.1.4",
     "animate.css": "~3.3.0",

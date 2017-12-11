@@ -1,3 +1,28 @@
 // Branding overrides
 //
 // Copy variables from `_branding.scss` to this file to override default values.
+
+$primary: #F07C74; // Dark red
+$secondary: #636363; //Grey4
+$tertiary: #ABABAB; // Grey3
+$quaternary: #E1E1E1; // Grey2
+$quinary: #F9F9F9; //Grey1
+$senary: #F9B3AD; // Light red
+
+/** ASSET URLS
+ * login-bg: image for login splash page 
+ */
+
+
+
+#base>.content{
+	background: $quinary !important;
+}
+
+/**
+* Semantic-UI Overrides for squareishness
+*/
+.ui.segment {
+  border-radius: 20px !important;
+  box-shadow: 5px 5px 5px 2px #888888 !important;
+}

@@ -59,9 +59,12 @@ function canRegister(email, password, callback){
           return callback(null, true);
         }
       }
-      return callback({
-        message: "Not a valid educational email."
-      }, false);
+      // return callback({
+      //   message: "Not a valid educational email."
+      // }, false);
+
+      // Opt out the educational email check function
+      return callback(null,true);
     });
 
   });
@@ -137,7 +140,7 @@ UserController.createUser = function(email, password, callback) {
 
   if (typeof email !== "string"){
     return callback({
-      message: "Email must be a string."
+      message: "Not a valid email."
     });
   }
 
@@ -170,7 +173,9 @@ UserController.createUser = function(email, password, callback) {
           u.password = User.generateHash(password);
           u.save(function(err){
             if (err){
-              return callback(err);
+              return callback({
+                message: "Not a valid email."
+              });
             } else {
               // yay! success.
               var token = u.generateAuthToken();
@@ -210,6 +215,76 @@ UserController.getAll = function (callback) {
 };
 
 /**
+ * Builds search text queries.
+ * 
+ * @param   {String} searchText the text to search
+ * @returns {Object} queries    text queries
+ */
+function buildTextQueries(searchText) {
+  const queries = [];
+  if (searchText.length > 0) {
+    const re = new RegExp(searchText, 'i');
+    queries.push({ 'email': re });
+    queries.push({ 'profile.name': re });
+    queries.push({ 'teamCode': re });
+    queries.push({ 'profile.school': re});
+  }
+  return queries;
+}
+
+/**
+ * Builds status queries.
+ * Each key on 'statusFilters' is a status, and the value is a bool.
+ * 
+ * @param   {[type]} statusFilters object with status keys
+ * @returns {Object} queries  status queries
+ */
+function buildStatusQueries(statusFilters) {
+  const queries = [];
+  for (var key in statusFilters) {
+    if (statusFilters.hasOwnProperty(key)) {
+      // Convert to boolean
+      const hasStatus = (statusFilters[key] === 'true');
+      if (hasStatus) {
+        var q = {};
+        // Verified is a prop on user object
+        var queryKey = (key === 'verified' ? key : 'status.' + key);
+        q[queryKey] = true;
+        queries.push(q);
+      }
+    }
+  }
+  return queries;
+}
+
+/**
+ * Builds a find query.
+ * The root changes according to the following:
+ * $and { $or, $and } for text and status queries respectively
+ * $or for text queries
+ * $and for status queries
+ * 
+ * @param   {[type]} textQueries   text query objects
+ * @param   {[type]} statusQueries size of the page
+ * @returns {Object} findQuery     query object
+ */
+function buildFindQuery(textQueries, statusQueries) {
+  const findQuery = {};
+  if (textQueries.length > 0 && statusQueries.length > 0) {
+    var queryRoot = [];
+    queryRoot.push({ '$or': textQueries });
+    queryRoot.push({ '$and': statusQueries });
+    findQuery.$and = queryRoot;
+  } else if (textQueries.length > 0) {
+    findQuery.$or = textQueries;
+  } else if (statusQueries.length > 0) {
+    findQuery.$and = statusQueries;
+  }
+  return findQuery;
+}
+
+
+/**
  * Get a page of users.
  * @param  {[type]}   page     page number
  * @param  {[type]}   size     size of the page
@@ -219,17 +294,15 @@ UserController.getPage = function(query, callback){
   var page = query.page;
   var size = parseInt(query.size);
   var searchText = query.text;
+  var statusFilters = query.statusFilters;
 
-  var findQuery = {};
-  if (searchText.length > 0){
-    var queries = [];
-    var re = new RegExp(searchText, 'i');
-    queries.push({ email: re });
-    queries.push({ 'profile.name': re });
-    queries.push({ 'teamCode': re });
+  // Build a query for the search text
+  var textQueries = buildTextQueries(searchText);
+  // Build a query for each status
+  var statusQueries = buildStatusQueries(statusFilters);
 
-    findQuery.$or = queries;
-  }
+  // Build find query
+  var findQuery = buildFindQuery(textQueries, statusQueries);
 
   User
     .find(findQuery)
@@ -699,6 +772,50 @@ UserController.checkOutById = function(id, user, callback){
   },{
     $set: {
       'status.checkedIn': false
+    }
+  }, {
+    new: true
+  },
+  callback);
+};
+
+/**
+ * [ADMIN ONLY]
+ *
+ * Make user an admin
+ * @param  {String}   userId   User id of the user being made admin
+ * @param  {String}   user     User making this person admin
+ * @param  {Function} callback args(err, user)
+ */
+UserController.makeAdminById = function(id, user, callback){
+  User.findOneAndUpdate({
+    _id: id,
+    verified: true
+  },{
+    $set: {
+      'admin': true
+    }
+  }, {
+    new: true
+  },
+  callback);
+};
+
+/**
+ * [ADMIN ONLY]
+ *
+ * Remove user as admin
+ * @param  {String}   userId   User id of the user being made admin
+ * @param  {String}   user     User making this person admin
+ * @param  {Function} callback args(err, user)
+ */
+UserController.removeAdminById = function(id, user, callback){
+  User.findOneAndUpdate({
+    _id: id,
+    verified: true
+  },{
+    $set: {
+      'admin': false
     }
   }, {
     new: true

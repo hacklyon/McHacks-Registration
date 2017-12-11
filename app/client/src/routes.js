@@ -63,6 +63,9 @@ angular.module('reg')
         url: "/application",
         templateUrl: "views/application/application.html",
         controller: 'ApplicationCtrl',
+        data:{
+            requireVerified: true
+        },
         resolve: {
           currentUser: function(UserService){
             return UserService.getCurrentUser();
@@ -71,13 +74,14 @@ angular.module('reg')
             return SettingsService.getPublicSettings();
           }
         }
+
       })
       .state('app.confirmation', {
         url: "/confirmation",
         templateUrl: "views/confirmation/confirmation.html",
         controller: 'ConfirmationCtrl',
         data: {
-          requireCompletedProfile: true
+          requireAdmitted: true
         },
         resolve: {
           currentUser: function(UserService){
@@ -90,7 +94,8 @@ angular.module('reg')
         templateUrl: "views/team/team.html",
         controller: 'TeamCtrl',
         data: {
-          requireVerified: true
+          requireVerified: true,
+          requireCompletedProfile: true
         },
         resolve: {
           currentUser: function(UserService){
@@ -186,7 +191,9 @@ angular.module('reg')
         var requireLogin = toState.data.requireLogin;
         var requireAdmin = toState.data.requireAdmin;
         var requireVerified = toState.data.requireVerified;
+        var requireAdmitted = toState.data.requireAdmitted;
         var requireCompletedProfile = toState.data.requireCompletedProfile;
+
 
         if (requireLogin && !Session.getToken()) {
           event.preventDefault();
@@ -203,9 +210,14 @@ angular.module('reg')
           $state.go('app.dashboard');
         }
 
-        if (requireCompletedProfile && !Session.getUser().completedProfile) {
+        if (requireAdmitted && !Session.getUser().status.admitted) {
           event.preventDefault();
           $state.go('app.dashboard');
+        }
+
+        if (requireCompletedProfile && !Session.getUser().admin && !Session.getUser().status.completedProfile) {
+          event.preventDefault();
+          $state.go('app.application');
         }
 
       });

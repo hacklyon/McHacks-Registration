@@ -4,25 +4,88 @@ angular.module('reg')
     '$rootScope',
     '$state',
     '$http',
+    '$window',
     'currentUser',
     'settings',
     'Session',
     'UserService',
-    function($scope, $rootScope, $state, $http, currentUser, Settings, Session, UserService){
+    function ($scope, $rootScope, $state, $http, $window, currentUser, Settings, Session, UserService) {
 
       // Set up the user
       $scope.user = currentUser.data;
 
-      // Is the student from MIT?
-      $scope.isMitStudent = $scope.user.email.split('@')[1] == 'mit.edu';
+      $scope.submitButtonDisabled = true;
+
+      var dropzoneConfig = {
+        url: '/api/resume/upload',
+        previewTemplate: document.querySelector('#resume-dropzone-preview').innerHTML,
+        maxFiles: 1,
+        maxFilesize: 1, // MB
+        uploadMultiple: false,
+        acceptedFiles: 'application/pdf',
+        autoProcessQueue: false,
+        clickable: ['.resume-dropzone', '.resume-dropzone>span'],
+        headers: {
+          'x-access-token': Session.getToken()
+        }
+      };
+
+      $scope.showResumeDropzoneIcon = true;
+      $scope.resumeDropzoneErrorMessage = '';
+      $scope.showResumeDropzone = false;
+
+      $scope.resumeDropzone = new Dropzone('div#resume-upload', dropzoneConfig);
+
+      $scope.resumeDropzone.on("error", function (file, errorMessage) {
+        $scope.resumeDropzoneHasError = true;
+        $scope.resumeDropzoneErrorMessage = errorMessage;
+        $scope.$apply();
+      });
+
+      $scope.resumeDropzone.on("addedfile", function () {
+        if ($scope.resumeDropzone.files.length > 1) {
+          $scope.resumeDropzone.removeFile($scope.resumeDropzone.files[0]);
+        }
+
+        $scope.resumeDropzoneHasError = false;
+        $scope.resumeDropzoneErrorMessage = '';
+        $scope.showResumeDropzoneIcon = !!!$scope.resumeDropzone.files.length;
+        $scope.submitButtonDisabled = false;
+        $scope.$apply();
+      })
+
+      $scope.resumeDropzone.on("removedfile", function () {
+        $scope.resumeDropzoneHasError = false;
+        $scope.resumeDropzoneErrorMessage = '';
+        $scope.showResumeDropzoneIcon = !!!$scope.resumeDropzone.files.length;
+        $scope.$apply();
+      })
+
+      $scope.resumeDropzone.on("processing", function () {
+        $scope.resumeDropzoneIsUploading = true;
+      })
+
+      $scope.toggleResumeDropzone = function () {
+        $scope.showResumeDropzone = !$scope.showResumeDropzone;
+      }
+
+      // Is the student from McGill?
+      $scope.isUciStudent = $scope.user.email.split('@')[1] == 'mail.mcgill.edu';
 
       // If so, default them to adult: true
-      if ($scope.isMitStudent){
+      if ($scope.isMcGillStudent) {
         $scope.user.profile.adult = true;
       }
 
+      $scope.$watch('user', function (newValue, oldValue) {
+        if (newValue !== oldValue) {
+          $scope.submitButtonDisabled = false;
+        }
+      }, true);
+
       // Populate the school dropdown
       populateSchools();
+      populateDisciplines();
       _setupForm();
 
       $scope.regIsClosed = Date.now() > Settings.data.timeClose;
@@ -30,14 +93,14 @@ angular.module('reg')
       /**
        * TODO: JANK WARNING
        */
-      function populateSchools(){
+      function populateSchools() {
         $http
           .get('/assets/schools.json')
-          .then(function(res){
+          .then(function (res) {
             var schools = res.data;
             var email = $scope.user.email.split('@')[1];
 
-            if (schools[email]){
+            if (schools[email]) {
               $scope.user.profile.school = schools[email].school;
               $scope.autoFilledSchool = true;
             }
@@ -45,43 +108,79 @@ angular.module('reg')
 
         $http
           .get('/assets/schools.csv')
-          .then(function(res){ 
+          .then(function (res) {
             $scope.schools = res.data.split('\n');
             $scope.schools.push('Other');
 
             var content = [];
 
-            for(i = 0; i < $scope.schools.length; i++) {                                          
-              $scope.schools[i] = $scope.schools[i].trim(); 
-              content.push({title: $scope.schools[i]})
+            for (i = 0; i < $scope.schools.length; i++) {
+              $scope.schools[i] = $scope.schools[i].trim();
+              content.push({ title: $scope.schools[i] })
             }
 
             $('#school.ui.search')
               .search({
                 source: content,
+                cache: true,
+                onSelect: function (result, response) {
+                  $scope.user.profile.school = result.title.trim();
+                }
+              })
+          });
+      }
+      function populateDisciplines(){
+        $http
+          .get('/assets/disciplines.csv')
+          .then(function(res){ 
+            $scope.disciplines = res.data.split('\n');
+            $scope.disciplines.push('Other');
+
+            var content = [];
+
+            for(i = 0; i < $scope.disciplines.length; i++) {                                          
+              $scope.disciplines[i] = $scope.disciplines[i].trim(); 
+              content.push({title: $scope.disciplines[i]})
+            }
+
+            $('#discipline.ui.search')
+              .search({
+                source: content,
                 cache: true,     
                 onSelect: function(result, response) {                                    
-                  $scope.user.profile.school = result.title.trim();
+                  $scope.user.profile.discipline = result.title.trim();
                 }        
               })             
           });          
       }
 
-      function _updateUser(e){
+      function _successModal() {
+        sweetAlert({
+          title: "Done!",
+          text: "Your application has been saved.",
+          type: "success",
+          showConfirmButton: false,
+          timer: 1500
+        }, function () {
+          swal.close();
+          $state.go('app.dashboard');
+        });
+      }
+
+      function _updateUser(e) {
         UserService
           .updateProfile(Session.getUserId(), $scope.user.profile)
-          .success(function(data){
-            sweetAlert({
-              title: "Awesome!",
-              text: "Your application has been saved.",
-              type: "success",
-              confirmButtonColor: "#e76482"
-            }, function(){
-              $state.go('app.dashboard');
-            });
+          .success(function (data) {
+            if ($scope.resumeDropzone.files.length) {
+              $scope.resumeDropzone.processQueue();
+              $scope.resumeDropzone.on('queuecomplete', _successModal);
+            } else {
+              _successModal();
+            }
           })
-          .error(function(res){
+          .error(function (res) {
             sweetAlert("Uh oh!", "Something went wrong.", "error");
+            $scope.submitButtonDisabled = false;
           });
       }
 
@@ -128,12 +227,21 @@ angular.module('reg')
                 }
               ]
             },
-            year: {
-              identifier: 'year',
+            graduationYear: {
+              identifier: 'graduationYear',
               rules: [
                 {
                   type: 'empty',
                   prompt: 'Please select your graduation year.'
+                }
+              ]
+            },
+            dietaryRestrictions:{
+              identifier: 'dietaryRestrictions',
+              rules: [
+                {
+                  type: 'empty',
+                  prompt: 'Please select your option.'
                 }
               ]
             },
@@ -146,25 +254,95 @@ angular.module('reg')
                 }
               ]
             },
-            adult: {
-              identifier: 'adult',
+            resume: {
+              identifier: 'resume',
               rules: [
                 {
-                  type: 'allowMinors',
-                  prompt: 'You must be an adult, or an MIT student.'
+                  type: 'empty',
+                  prompt: 'Please enter link to your resume.'
+                }
+              ]
+            },
+            degree: {
+              identifier: 'degree',
+              rules: [
+                {
+                  type: 'empty',
+                  prompt: 'Please select your degree pursuing.'
+                }
+              ]
+            },
+            discipline: {
+              identifier: 'discipline',
+              rules: [
+                {
+                  type: 'empty',
+                  prompt: 'Please enter your major.'
+                }
+              ]
+            },
+            essay: {
+              identifier: 'essay',
+              rules: [
+                {
+                  type: 'empty',
+                  prompt: 'Please fill this section.'
+                }
+              ]
+            },
+            shirtSize: {
+              identifier: 'shirtSize',
+              rules: [
+                {
+                  type: 'empty',
+                  prompt: 'Please give us a shirt size!'
+                }
+              ]
+            },
+            travel: {
+              identifier: 'travel',
+              rules: [
+                {
+                  type: 'empty',
+                  prompt: 'Please give your travel origin.'
+                }
+              ]
+            },
+            job: {
+              identifier: 'job',
+              rules: [
+                {
+                  type: 'empty',
+                  prompt: 'Please select one option.'
+                }
+              ]
+            },
+            mlhcodeconduct: {
+              identifier: 'mlhcodeconduct',
+              rules: [
+                {
+                  type: 'checked',
+                  prompt: 'You must accept the code of conduct.'
                 }
               ]
             }
-          }
+          },
         });
       }
 
-
-
+      $scope.openResume = function () {
+        var id = Session.getUserId();
+        var resumeWindow = $window.open('', '_blank');
+        $http
+          .get('/api/resume/' + id)
+          .then(function (response) {
+            resumeWindow.location.href = '/api/resume/view/' + response.data.token;
+          })
+      }
+      
       $scope.submitForm = function(){
         if ($('.ui.form').form('is valid')){
           _updateUser();
         }
       };
-
     }]);
