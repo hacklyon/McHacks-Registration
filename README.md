@@ -1,4 +1,4 @@
-# Quill
+# McHacks Registration (a fork of techX/Quill)
 Registration, for hackers!
 
 Quill is a registration system designed especially for hackathons. For hackers, it’s a clean and streamlined interface to submit registration and confirmation information. For hackathon organizers, it’s an easy way to manage applications, view registration stats, and more!
@@ -27,7 +27,7 @@ Statuses:
 ### Application
 ![Application](./docs/images/screenshots/application.png)
 
-The Application tab takes users to their registration or confirmation form. 
+The Application tab takes users to their registration or confirmation form. It has the addition of a resume uploading feature that backends into an AWS S3 Bucket. 
 
 ### Team Registration
 Hackathons commonly allow participants to register and be admitted as a team. The Team tab allows users to create or join a team with other users.
@@ -106,8 +106,8 @@ To customize the verification and confirmation emails for your event, put your n
 # Contributing
 Contributions to Quill are welcome and appreciated! Please take a look at [`CONTRIBUTING.md`][contribute] first.
 
-# Feedback / Questions
-If you have any questions about this software, please contact [quill@hackmit.org][email].
+# McHacks
+For McHacks specific questions and changes, contact Kyle Rubenok [kyle@mchacks.ca][email].
 
 # License
 Copyright (c) 2015-2016 Edwin Zhang (https://github.com/ehzhang). Released under AGPLv3. See [`LICENSE.txt`][license] for details.
