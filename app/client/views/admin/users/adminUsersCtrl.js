@@ -229,7 +229,7 @@ angular.module('reg')
 
           var element = document.createElement('a');
           element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(output));
-          element.setAttribute('download', "base " + new Date().toDateString() + ".csv");
+          element.setAttribute('download', "McHacks Export " + new Date().toDateString() + ".csv");
           element.style.display = 'none';
           document.body.appendChild(element);
           element.click();
@@ -241,113 +241,35 @@ angular.module('reg')
       function generateSections(user){
         return [
           {
-            name: 'Basic Info',
-            fields: [
-              {
-                name: 'Created On',
-                value: formatTime(user.timestamp)
-              },{
-                name: 'Last Updated',
-                value: formatTime(user.lastUpdated)
-              },{
-                name: 'Confirm By',
-                value: formatTime(user.status.confirmBy) || 'N/A'
-              },{
-                name: 'Checked In',
-                value: formatTime(user.status.checkInTime) || 'N/A'
-              },{
-                name: 'Email',
-                value: user.email
-              },{
-                name: 'Team',
-                value: user.teamCode || 'None'
-              }
-            ]
-          },{
-            name: 'Profile',
+              name: 'Info',
             fields: [
               {
                 name: 'Name',
                 value: user.profile.name
               },{
-                name: 'Gender',
-                value: user.profile.gender
+                name: 'Email',
+                value: user.email
               },{
                 name: 'School',
-                value: user.profile.school
+                value: user.school
+              },{
+                name: 'Graduation Year',
+                value: user.profile.graduationYear
               },{
                 name: 'Degree',
                 value: user.profile.degree
               },{
                 name: 'Major',
-                value: user.profile.discipline
+                value: user.profile.dicipline
               },{
-                name: 'Graduation Year',
-                value: user.profile.graduationYear
-              },{
-                name: 'Travel Origin',
+                name: 'Origin',
                 value: user.profile.travel
               },{
-                name: 'Resume Link',
-                value: user.profile.resume
+                name: 'Status',
+                value: user.status.name
               },{
-                name: 'Github',
-                value: user.profile.github
-              },{
-                name: 'Website',
-                value: user.profile.website
-              },{
-                name: 'Why McHacks?',
-                value: user.profile.description
-              }
-            ]
-          },{
-            name: 'Confirmation',
-            fields: [
-              {
-                name: 'Phone Number',
-                value: user.confirmation.phoneNumber
-              },{
-                name: 'Dietary Restrictions',
-                value: user.confirmation.dietaryRestrictions.join(', ')
-              },{
-                name: 'Shirt Size',
-                value: user.confirmation.shirtSize
-              },{
-                name: 'Needs Hardware',
-                value: user.confirmation.wantsHardware,
-                type: 'boolean'
-              },{
-                name: 'Hardware Requested',
-                value: user.confirmation.hardware
-              }
-            ]
-          },
-          {
-            name: 'Travel',
-            fields: [
-              {
-                name: 'Needs Reimbursement',
-                value: user.confirmation.needsReimbursement,
-                type: 'boolean'
-              },{
-                name: 'Received Reimbursement',
-                value: user.confirmation.needsReimbursement && user.status.reimbursementGiven
-              },{
-                name: 'Address',
-                value: user.confirmation.address ? [
-                  user.confirmation.address.line1,
-                  user.confirmation.address.line2,
-                  user.confirmation.address.city,
-                  ',',
-                  user.confirmation.address.state,
-                  user.confirmation.address.zip,
-                  ',',
-                  user.confirmation.address.country,
-                ].join(' ') : ''
-              },{
-                name: 'Additional Notes',
-                value: user.confirmation.notes
+                name: 'Over 18',
+                value: user.profile.adult
               }
             ]
           }
