@@ -28,7 +28,7 @@ var profile = {
   degree: {
     type: String,
     enum: {
-      values: 'Bachelor Master Phd Other'.split(' '),
+      values: 'HighSchool Bachelor Master Phd Other'.split(' '),
     }
   },
 
