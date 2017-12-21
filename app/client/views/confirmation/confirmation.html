@@ -143,42 +143,20 @@
             <label> Liability Waiver </label>
             <p>
               <a
-                target=""
-                href="#">
-                Liability Waiver
-              </a>
-            </p>
-            <p>
-              For legal reasons, our university asks that you read and accept the terms of our liability waiver. Again, as we mentioned in the original application - you <strong> must </strong> be 18 years or older by the day of the event, or <strong> we will need your parents or your legal guardian to sign. We will be checking ID. </strong>
-            </p>
-            <p>
-              By writing my name below, I affirm that I have read and accepted the terms of the liability waiver above, and will be either at least 18 years or older at the time of the event.
-            </p>
-            <input type="text"
-                   name="signatureLiabilityWaiver"
-                   placeholder="Your Full Legal Name"
-                   ng-model="user.confirmation.signatureLiability">
-          </div>
-
-          <div class="field">
-            <label> Photo Release </label>
-            <p>
-              <a
                 target="_blank"
-                href="#">
-                Photo Release
-              </a>
+                href="https://mchacks.ca/waiver.pdf">
+                Liability Waiver & Photo Release
             </p>
             <p>
-              Signing this photo release means if we take photos or photos of you, we can share it with the world.
+              For legal reasons, our university asks that you read and accept the terms of our liability waiver. If you are under the age of 18, please have your parent or guardian complete the following section. </strong>
             </p>
             <p>
-              By writing my name below, I affirm that I have read and accepted the terms of the photo release above.
+              By writing my name below, I affirm that I have read and accepted the terms of the liability waiver above, and will be either at least 18 years or older at the time of the event or am agreeing on behalf of a minor under the age of 18. 
             </p>
             <input type="text"
-                   name="signaturePhotoRelease"
-                   placeholder="Your Full Legal Name"
-                   ng-model="user.confirmation.signaturePhotoRelease">
+                  name="signatureLiabilityWaiver"
+                  placeholder="Your Full Legal Name or guardians legal name if under 18"
+                  ng-model="user.confirmation.signatureLiability">
           </div>
 
           <br>
