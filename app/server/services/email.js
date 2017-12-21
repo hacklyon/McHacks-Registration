@@ -82,7 +82,7 @@ controller.sendLaggerEmails = function(users, callback) {
     var user = users[i];
     var options = {
       to: user.email,
-      subject: "[McHacks 2018] - We are still waiting for your application!"
+      subject: "[McHacks 2018] - First round applications close soon!"
     };
 
     var locals = {
