@@ -133,7 +133,7 @@ var confirmation = {
   wantsHardware: Boolean,
   hardware: String,
 
-  needsReimbursement: Boolean,
+  wantsBusFrom: String,
   address: {
     name: String,
     line1: String,

@@ -18,35 +18,73 @@
               We need this in case we need to get ahold of you!
             </p>
             <input type="tel"
-                   name="phone"
-                   ng-model="user.confirmation.phoneNumber"
-                   placeholder="(514) - 555 - 1234"
-                   required>
+                  name="phone"
+                  ng-model="user.confirmation.phoneNumber"
+                  placeholder="(514) - 555 - 1234"
+                  required>
           </div>
 
-         <!--  <div class="field">
-            <label> Dietary Restrictions </label>
-
-            <p>
-              If your restriction is not included here, please let us know in the additional notes at the bottom.
-            </p>
-            <p>
-              We'll make sure you get fed well!
-            </p>
-
+          <div class="ui header">
+            Mailing Address
           </div>
 
-          <div class="inline fields">
-            <div class="field"
-              ng-repeat="(key, value) in dietaryRestrictions">
+          <p>
+            Travel reimbursement is processed and sent by check after the event. To expedite the reimbursement process and ensure that you receive your reimbursement as quickly as possible, make sure that your mailing address is accurate and you upload your receipts.
+          </p>
 
-              <div class="ui checkbox">
-                <input type="checkbox" ng-model="dietaryRestrictions[key]" />
-                <label>{{key}}</label>
-              </div>
+          <div class="field">
+            <label>Full Name</label>
+            <input type="text"
+                  name="name"
+                  ng-model="user.confirmation.address.name">
+          </div>
 
+          <div class="field">
+            <label> Address Line 1 - Street address, P.O. box, company name, c/o </label>
+            <input
+              type="text"
+              name="addressLine1"
+              ng-model="user.confirmation.address.line1">
+          </div>
+
+          <div class="field">
+            <label> Address Line 2 - Apartment, suite, unit, building, floor, etc. </label>
+            <input
+              type="text"
+              name="addressLine2"
+              ng-model="user.confirmation.address.line2">
+          </div>
+
+          <div class="four fields">
+            <div class="field">
+              <label> City </label>
+              <input
+                type="text"
+                name="city"
+                ng-model="user.confirmation.address.city">
             </div>
-          </div> -->
+            <div class="field">
+              <label> State/Province/Region </label>
+              <input
+                type="text"
+                name="state"
+                ng-model="user.confirmation.address.state">
+            </div>
+            <div class="field">
+              <label> Postal Code / ZIP </label>
+              <input
+                type="text"
+                name="zip"
+                ng-model="user.confirmation.address.zip">
+            </div>
+            <div class="field">
+              <label> Country </label>
+              <input
+                type="text"
+                name="country"
+                ng-model="user.confirmation.address.country">
+            </div>
+          </div>
 
           <div class="field">
             <label>
@@ -58,14 +96,18 @@
             </div>
           </div>
 
+          <br>
+          <br>
+
           <div
             class="field"
             ng-show="user.confirmation.wantsHardware">
+
             <label>
               What kind of hardware would be useful for you?
             </label>
             <p>
-              We will have a hardware checkout, and we'll try our best to provide things that would be useful to you - however, we can't guarantee everything. We will publish a list of available hardware closer to the day of the event.
+              We will have a hardware lab, and we'll try our best to provide things that would be useful to you - however, we can't guarantee everything. We will publish a list of available hardware closer to the day of the event.
             </p>
             <input type="text" ng-model="user.confirmation.hardware">
           </div>
@@ -73,126 +115,23 @@
           <br>
           <br>
 
-       <!--    <div class="divided title"> Skills & Accomplishments </div>
-
-          <div class="field">
-            <label> What are you studying? </label>
-            <input type="text"
-                   name="study"
-                   placeholder="Computer Science, Product Design, Basket Weaving, etc."
-                   ng-model="user.confirmation.major">
-          </div>
-
-          <div class="field">
-            <label> Twitter </label>
-            <input type="text"
-                   name="twitter"
-                   placeholder="https://twitter.com/foobar"
-                   ng-model="user.confirmation.twitter">
-         </div> -->
-
-          <div class="divided title">Travel</div>
+          <div class="divided title">Bus Travel</div>
 
           <div class="field">
             <p>
-              As a reminder, our reimbursement policy is as follows:
+              McHacks will be sending free buses to Waterloo, Toronto and Boston. Selecting that you'd like a spot on a bus does not guaranty a spot on the bus. We will contact you with details regarding the bus soon! 
             </p>
-            <ul>
-              <li> Up to $ from within City A </li>
-              <li> Up to $$ from anywhere else in North America </li>
-              <li> Up to $$$ from outside North America </li>
-            </ul>
-            <p>
-              We’ll also be sending buses free of charge to Waterloo and Boston. Again, we only reimburse the minimum-cost travel path. Head back to the dashboard to read our full travel policy.
-            </p>
+
           </div>
 
           <div class="field">
-            <label> Will you be needing travel reimbursement? </label>
-            <div class="ui checkbox">
-              <input type="checkbox" ng-model="user.confirmation.needsReimbursement">
-              <label> I will be needing travel reimbursement. </label>
-            </div>
-          </div>
-
-          <div
-            ng-show="user.confirmation.needsReimbursement">
-
-            <div class="ui header">
-              Mailing Address
-            </div>
-
-            <p>
-              Travel reimbursement is processed and sent by check after the event. To expedite the reimbursement process and ensure that you receive your reimbursement as quickly as possible, make sure that your mailing address is accurate and you upload your receipts.
-            </p>
-
-            <div class="field">
-              <label>Full Name</label>
-              <input type="text"
-                     name="name"
-                     ng-model="user.confirmation.address.name">
-            </div>
-
-            <div class="field">
-              <label> Address Line 1 - Street address, P.O. box, company name, c/o </label>
-              <input
-                type="text"
-                name="addressLine1"
-                ng-model="user.confirmation.address.line1">
-            </div>
-
-            <div class="field">
-              <label> Address Line 2 - Apartment, suite, unit, building, floor, etc. </label>
-              <input
-                type="text"
-                name="addressLine2"
-                ng-model="user.confirmation.address.line2">
-            </div>
-
-            <div class="four fields">
-              <div class="field">
-                <label> City </label>
-                <input
-                  type="text"
-                  name="city"
-                  ng-model="user.confirmation.address.city">
-              </div>
-              <div class="field">
-                <label> State/Province/Region </label>
-                <input
-                  type="text"
-                  name="state"
-                  ng-model="user.confirmation.address.state">
-              </div>
-              <div class="field">
-                <label> ZIP </label>
-                <input
-                  type="text"
-                  name="zip"
-                  ng-model="user.confirmation.address.zip">
-              </div>
-              <div class="field">
-                <label> Country </label>
-                <input
-                  type="text"
-                  name="country"
-                  ng-model="user.confirmation.address.country">
-              </div>
-            </div>
-
-            <div class="field">
-              <label> Travel Receipt </label>
-              <p>
-                So that we can process your reimbursement faster, please name your receipt: <strong>{{fileName}}</strong>
-              </p>
-              <a
-                target="_blank"
-                href="https://go.hackmit.org/travel-receipts"
-                class="ui pink button">
-                Upload Receipt
-              </a>
-            </div>
-
+            <label> Would you like a spot on a bus to McHacks V? </label>
+            <select name="wantsBus" ng-model="user.confirmation.wantsBusFrom" required>
+              <option value=""></option>
+              <option value="Waterloo">Waterloo</option>
+              <option value="Toronto">Toronto</option>
+              <option value="Boston">Boston</option>
+            </select>
           </div>
 
           <br>
@@ -204,7 +143,7 @@
             <label> Liability Waiver </label>
             <p>
               <a
-                target="_blank"
+                target=""
                 href="#">
                 Liability Waiver
               </a>
@@ -240,27 +179,6 @@
                    name="signaturePhotoRelease"
                    placeholder="Your Full Legal Name"
                    ng-model="user.confirmation.signaturePhotoRelease">
-          </div>
-
-          <div class="field">
-            <label> Code of Conduct </label>
-            <p>
-              <a
-                target="_blank"
-                href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">
-                Hacker Code of Conduct
-              </a>
-            </p>
-            <p>
-              It is extremely important to us that attendees follow a set of guidelines to make the event fun for everyone involved. Please read through and make sure you understand what we will be expecting of you.
-            </p>
-            <p>
-              By writing my name below, I affirm that I have read and will abide by the code of conduct detailed above.
-            </p>
-            <input type="text"
-                   name="signatureCodeOfConduct"
-                   placeholder="Your Full Legal Name"
-                   ng-model="user.confirmation.signatureCodeOfConduct">
           </div>
 
           <br>
