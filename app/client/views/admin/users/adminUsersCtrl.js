@@ -244,6 +244,9 @@ angular.module('reg')
               name: 'Info',
             fields: [
               {
+                name: 'ID',
+                value: user.id
+              },{
                 name: 'Name',
                 value: user.profile.name
               },{
