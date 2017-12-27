@@ -254,7 +254,7 @@ angular.module('reg')
                 value: user.email
               },{
                 name: 'School',
-                value: user.school
+                value: user.profile.school
               },{
                 name: 'Graduation Year',
                 value: user.profile.graduationYear
@@ -263,7 +263,7 @@ angular.module('reg')
                 value: user.profile.degree
               },{
                 name: 'Major',
-                value: user.profile.dicipline
+                value: user.profile.discipline
               },{
                 name: 'Origin',
                 value: user.profile.travel
@@ -273,6 +273,12 @@ angular.module('reg')
               },{
                 name: 'Over 18',
                 value: user.profile.adult
+              },{
+                name: 'Shirt',
+                value: user.profile.shirtSize
+              },{
+                name: 'Essay',
+                value: user.profile.essay
               }
             ]
           }
