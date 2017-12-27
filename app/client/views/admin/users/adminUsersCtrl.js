@@ -253,6 +253,9 @@ angular.module('reg')
                 name: 'Email',
                 value: user.email
               },{
+                name: 'Time',
+                value: user.timestamp
+              },{
                 name: 'School',
                 value: user.profile.school
               },{
