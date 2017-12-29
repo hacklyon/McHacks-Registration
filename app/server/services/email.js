@@ -110,7 +110,7 @@ controller.sendAcceptEmails = function(users, callback) {
     var user = users[i];
     var options = {
       to: user.email,
-      subject: "[McHacks 2018] - You've been accepted! Confirm your attendance "
+      subject: "[McHacks 2018] -  Email Error"
     };
 
     var locals = {
