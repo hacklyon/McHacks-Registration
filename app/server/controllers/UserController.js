@@ -600,7 +600,7 @@ UserController.sendEmailsToAdmitted = function(callback) {
     if (err) {
       return callback(err);
     }
-    Mailer.sendAcceptedEmails(users);
+    Mailer.sendAcceptEmails(users);
     return callback(err);
   });
 };
