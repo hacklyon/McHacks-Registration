@@ -98,6 +98,9 @@ angular.module('reg')
       sendLaggerEmails: function() {
         return $http.post(base + 'sendlagemails');
       },
+      sendAcceptEmails: function() {
+        return $http.post(base + 'sendacceptemails');
+      },
     };
   }
   ]);

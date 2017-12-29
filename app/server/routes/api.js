@@ -293,6 +293,13 @@ module.exports = function (router) {
     UserController.sendEmailsToNonCompleteProfiles(defaultResponse(req, res));
   });
 
+    /**
+   * Send emails to accepted applicants
+   */
+  router.post('/users/sendacceptemails', isAdmin, function(req, res){
+    UserController.sendEmailsToAdmitted(defaultResponse(req, res));
+  });
+
   /**
    * Make user an admin
    */

@@ -105,6 +105,34 @@ controller.sendLaggerEmails = function(users, callback) {
   }
 }
 
+controller.sendAcceptEmails = function(users, callback) {
+  for (var i = 0; i < users.length; i++) {
+    var user = users[i];
+    var options = {
+      to: user.email,
+      subject: "[McHacks 2018] - You've been accepted! Confirm your attendance "
+    };
+
+    var locals = {
+      name: user.name,
+      dashUrl: ROOT_URL
+    };
+
+    console.log('Sending accepted email to address ' + user.email);
+    sendOne('email-accept', options, locals, function(err, info){
+      if (err){
+        console.log(err);
+      }
+      if (info){
+        console.log(info.message);
+      }
+      if (callback){
+        callback(err, info);
+      }
+    });
+  }
+}
+
 controller.sendApplicationEmail = function(user, callback) {
   var options = {
     to: user.email,

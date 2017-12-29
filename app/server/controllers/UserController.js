@@ -593,7 +593,17 @@ UserController.sendEmailsToNonCompleteProfiles = function(callback) {
     Mailer.sendLaggerEmails(users);
     return callback(err);
   });
-}
+};
+
+UserController.sendEmailsToAdmitted = function(callback) {
+  User.find({"status.admitted": false}, 'email nickname', function (err, users) {
+    if (err) {
+      return callback(err);
+    }
+    Mailer.sendAcceptedEmails(users);
+    return callback(err);
+  });
+};
 
 /**
  * Resend an email verification email given a user id.
