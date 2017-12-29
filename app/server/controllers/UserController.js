@@ -596,7 +596,7 @@ UserController.sendEmailsToNonCompleteProfiles = function(callback) {
 };
 
 UserController.sendEmailsToAdmitted = function(callback) {
-  User.find({"status.admitted": false}, 'email nickname', function (err, users) {
+  User.find({"status.admitted": true}, 'email nickname', function (err, users) {
     if (err) {
       return callback(err);
     }

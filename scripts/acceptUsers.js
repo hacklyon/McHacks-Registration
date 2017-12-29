@@ -8,7 +8,7 @@ var UserController = require('../app/server/controllers/UserController');
 
 var user = { email: process.env.ADMIN_EMAIL };
 
-var userArray = require('fs').readFileSync('accepted.txt').toString().split('\n');
+var userArray = require('fs').readFileSync('scripts/accepted.txt').toString().split('\n');
 var count = 0;
 userArray.forEach(function (id) {
   UserController.admitUser( id, user, function() {
