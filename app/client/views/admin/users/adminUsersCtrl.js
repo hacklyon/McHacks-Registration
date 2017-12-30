@@ -206,7 +206,7 @@ angular.module('reg')
               output += titles[i].fields[j].name + ";";
             }
           }
-          output += "\n";
+          output += '"sep=;"\n""';
 
           for (var rows = 0; rows < data.length; rows++){
             row = generateSections(data[rows]);
