@@ -199,14 +199,14 @@ angular.module('reg')
         .getAll()
         .success(function(data){
 
-          var output = "";
+          var output = '"sep=;"\n"';
           var titles = generateSections(data[0]);
           for(var i = 0; i < titles.length; i++){
             for(var j = 0; j < titles[i].fields.length; j++){
-              output += titles[i].fields[j].name + ";";
+              output += titles[i].fields[j].name + '"; "';
             }
           }
-          output += '"sep=;"\n""';
+          output += '\n"';
 
           for (var rows = 0; rows < data.length; rows++){
             row = generateSections(data[rows]);
