@@ -213,7 +213,7 @@ angular.module('reg')
             for (var i = 0; i < row.length; i++){
               for(var j = 0; j < row[i].fields.length;j++){
                 if(!row[i].fields[j].value){
-                  output += ";";
+                  output += '"; "';
                   continue;
                 }
                 var field = row[i].fields[j].value;
