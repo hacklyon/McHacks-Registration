@@ -203,24 +203,29 @@ angular.module('reg')
           var titles = generateSections(data[0]);
           for(var i = 0; i < titles.length; i++){
             for(var j = 0; j < titles[i].fields.length; j++){
-              output += titles[i].fields[j].name + '"; "';
+              if (j == titles[i].fields.length) {
+                output += titles[i].fields[j].name + '";';
+              }
+              else {
+                output += titles[i].fields[j].name + '"; "';
+              }
             }
           }
-          output += '\n"';
+          output += '\n';
 
           for (var rows = 0; rows < data.length; rows++){
             row = generateSections(data[rows]);
             for (var i = 0; i < row.length; i++){
               for(var j = 0; j < row[i].fields.length;j++){
                 if(!row[i].fields[j].value){
-                  output += '"; "';
+                  output += ";";
                   continue;
                 }
                 var field = row[i].fields[j].value;
                 try {
-                  output += field.replace(/(\r\n|\n|\r)/gm," ") + ";";
+                  output += ' "' + field.replace(/(\r\n|\n|\r)/gm," ") + '";';
                 } catch (err){
-                  output += field + ";";
+                  output += ' "' + field + '";';
                 }
               }
             }
