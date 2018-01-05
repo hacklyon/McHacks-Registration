@@ -33,7 +33,7 @@ function calculateStats(){
     submitted: 0,
     admitted: 0,
     confirmed: 0,
-    confirmedMcGill: 0,
+    confirmedINSA: 0,
     declined: 0,
 
     confirmedFemale: 0,
@@ -80,7 +80,7 @@ function calculateStats(){
         var email = user.email.split('@')[1];
 
         // Add school Name
-        if(user.profile.school != "undefined"){
+        if(user.profile.school !== "undefined"){
           var schoolName = user.profile.school;
         }
 
@@ -100,12 +100,12 @@ function calculateStats(){
         newStats.confirmed += user.status.confirmed ? 1 : 0;
 
         // Count confirmed that are mit
-        newStats.confirmedMcGill += user.status.confirmed && email === "mail.mcgill.ca" ? 1 : 0;
+        newStats.confirmedINSA += user.status.confirmed && email === "insa-lyon.fr" ? 1 : 0;
 
-        newStats.confirmedFemale += user.status.confirmed && user.profile.gender == "F" ? 1 : 0;
-        newStats.confirmedMale += user.status.confirmed && user.profile.gender == "M" ? 1 : 0;
-        newStats.confirmedOther += user.status.confirmed && user.profile.gender == "O" ? 1 : 0;
-        newStats.confirmedNone += user.status.confirmed && user.profile.gender == "N" ? 1 : 0;
+        newStats.confirmedFemale += user.status.confirmed && user.profile.gender === "F" ? 1 : 0;
+        newStats.confirmedMale += user.status.confirmed && user.profile.gender === "M" ? 1 : 0;
+        newStats.confirmedOther += user.status.confirmed && user.profile.gender === "O" ? 1 : 0;
+        newStats.confirmedNone += user.status.confirmed && user.profile.gender === "N" ? 1 : 0;
 
         // Count declined
         newStats.declined += user.status.declined ? 1 : 0;
@@ -119,7 +119,7 @@ function calculateStats(){
             submitted: 0,
             admitted: 0,
             confirmed: 0,
-            declined: 0,
+            declined: 0
           };
         }
         newStats.demo.schools[schoolName].submitted += user.status.completedProfile ? 1 : 0;
@@ -169,7 +169,7 @@ function calculateStats(){
           .forEach(function(key){
             restrictions.push({
               name: key,
-              count: newStats.dietaryRestrictions[key],
+              count: newStats.dietaryRestrictions[key]
             });
           });
         newStats.dietaryRestrictions = restrictions;

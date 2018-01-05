@@ -439,7 +439,7 @@ module.exports = function (router) {
         });
       },
       limits: {
-        fileSize: 512 * 1024, // max upload size is 512kb
+        fileSize: 5*1024 * 1024, // max upload size is 512kb
       }
     })
   });

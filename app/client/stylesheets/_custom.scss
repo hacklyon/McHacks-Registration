@@ -18,11 +18,3 @@ $senary: #F9B3AD; // Light red
 #base>.content{
 	background: $quinary !important;
 }
-
-/**
-* Semantic-UI Overrides for squareishness
-*/
-.ui.segment {
-  border-radius: 20px !important;
-  box-shadow: 5px 5px 5px 2px #888888 !important;
-}

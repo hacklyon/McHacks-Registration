@@ -82,7 +82,7 @@ controller.sendLaggerEmails = function(users, callback) {
     var user = users[i];
     var options = {
       to: user.email,
-      subject: "[McHacks 2018] - First round applications close soon!"
+      subject: "["+HACKATHON_NAME+"] - First round applications close soon!"
     };
 
     var locals = {
@@ -110,7 +110,7 @@ controller.sendAcceptEmails = function(users, callback) {
     var user = users[i];
     var options = {
       to: user.email,
-      subject: "[McHacks 2018] -  You've been accepted! (For Real!)"
+      subject: "["+HACKATHON_NAME+"] -  You've been accepted! (For Real!)"
     };
 
     var locals = {
@@ -136,7 +136,7 @@ controller.sendAcceptEmails = function(users, callback) {
 controller.sendApplicationEmail = function(user, callback) {
   var options = {
     to: user.email,
-    subject: "[McHacks 2018] - We have received your application!"
+    subject: "["+HACKATHON_NAME+"] - We have received your application!"
   };
 
   var locals = {
