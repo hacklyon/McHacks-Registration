@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var validator = require('validator');
 
+mongoose.Promise = global.Promise;
+
 /**
  * Settings Schema!
  *
@@ -26,7 +28,7 @@ var schema = new mongoose.Schema({
   whitelistedEmails: {
     type: [String],
     select: false,
-    default: ['.edu', '.ca', '.com', '.net'],
+    default: ['.edu', '.ca', '.com', '.net', '.fr', '.es', '.cat'],
   },
   waitlistText: {
     type: String

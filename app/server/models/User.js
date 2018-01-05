@@ -4,6 +4,8 @@ var mongoose   = require('mongoose'),
     jwt        = require('jsonwebtoken');
     JWT_SECRET = process.env.JWT_SECRET;
 
+    mongoose.Promise = global.Promise;
+
 var profile = {
 
   // Basic info

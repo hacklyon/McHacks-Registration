@@ -18,7 +18,11 @@ var adminConfig     = require('./config/admin');
 var app             = express();
 
 // Connect to mongodb
-mongoose.connect(database);
+mongoose.Promise = global.Promise;
+mongoose.connect(database, {
+    useMongoClient: true,
+    /* other options */
+});
 
 app.use(morgan('dev'));
 
