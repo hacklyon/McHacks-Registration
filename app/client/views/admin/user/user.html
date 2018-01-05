@@ -207,7 +207,7 @@
 
       <div class="field">
         <label>
-            Why McHacks? (Max 300 chars)
+            Why HackLyon? (Max 300 chars)
         </label>
         <textarea ng-model="selectedUser.profile.essay">
         </textarea>
@@ -297,6 +297,25 @@
         Hardware
         </label>
         <input type="text" ng-model="selectedUser.confirmation.hardware">
+      </div>
+
+      <div class="ui divider"></div>
+
+      <div class="two fields">
+        <div class="field">
+          <label> Emergency name </label>
+          <input
+                  type="text"
+                  name="city"
+                  ng-model="selectedUser.confirmation.emergencyName">
+        </div>
+        <div class="field">
+          <label> Emergency number </label>
+          <input
+                  type="text"
+                  name="state"
+                  ng-model="selectedUser.confirmation.emergencyPhoneNumber">
+        </div>
       </div>
 
       <div class="ui divider"></div>
