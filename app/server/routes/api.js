@@ -7,7 +7,7 @@ JWT_SECRET = process.env.JWT_SECRET;
 
 var aws = require('aws-sdk');
 aws.config.update({
-  region: 'us-west-1',
+  region: process.env.AWS_REGION,
   accessKeyId: process.env.AWS_ACCESS,
   secretAccessKey: process.env.AWS_SECRET
 });
