@@ -2,7 +2,7 @@
      ng-class="{open: showSidebar}">
   <div ui-sref="app.dashboard"
        class="logo item">
-    <img src="assets/images/logo.svg">
+    <img src="https://cdn.hacklyon.com/images/logo/logo-squared-v1.png" style="width: 169px;">
   </div>
 
   <div ui-sref-active="active"
@@ -47,7 +47,7 @@
 
   </div>
 
-  <a href="mailto:hello@hacklyon.com" style="text-decoration:none; color:#fff">
+  <a href="mailto:hello@hacklyon.com" style="text-decoration:none; color:#0f0f10">
     <div class="item">
       Contact Us
     </div>
@@ -59,14 +59,14 @@
   </div>
 
   <div class="note">
-    <a href="https://mchacks.ca" target="_blank" style="text-decoration:none; color:#fff">{{ EVENT_INFO.NAME }}</a>
+    <a href="https://alpha.hacklyon.com" target="_blank" style="text-decoration:none; color:#0f0f10">{{ EVENT_INFO.NAME }}</a>
   </div>
 
 </div>
 
 <div class="tab"
   ng-click="toggleSidebar()">
-  <img ng-show="!showSidebar" src="assets/images/logo.svg" />
+  <img ng-show="!showSidebar" src="https://cdn.hacklyon.com/images/logo/logo-squared-v1.png" style="width: 31px" />
   <span class="close" ng-show="showSidebar">&#x2715</span>
 </div>
 
