@@ -232,6 +232,12 @@
             ng-bind-html="confirmationText">
           </div>
 
+          <div>
+            Show this QR code when you arrive at the event.
+            <br />
+            <img src='https://chart.googleapis.com/chart?cht=qr&chl=hacklyon%3A%2F%2F{{ user._id }}&chs=180x180&choe=UTF-8&chld=L|2' alt=''>
+          </div>
+
           <div class="ui teal button"
                ui-sref="app.confirmation">
             {{pastConfirmation ? 'View' : 'Edit'}} your confirmation information
