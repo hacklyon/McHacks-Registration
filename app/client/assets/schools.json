@@ -4,6 +4,42 @@
         "school": "The University of Texas at Dallas",
         "state": "Texas"
     },
+    "insa-lyon.fr": {
+        "school": "INSA Lyon",
+        "state": "France"
+    },
+    "insa-centrevaldeloire.fr": {
+        "school": "INSA Centre Val de Loire",
+        "state": "France"
+    },
+    "insa-rennes.fr": {
+        "school": "INSA Rennes",
+        "state": "France"
+    },
+    "insa-rouen.fr": {
+        "school": "INSA Rouen Normandie",
+        "state": "France"
+    },
+    "insa-strasbourg.fr": {
+        "school": "INSA Strasbourg",
+        "state": "France"
+    },
+    "insa-toulouse.fr": {
+        "school": "INSA Toulouse",
+        "state": "France"
+    },
+    "estudiant.upc.edu": {
+        "school": "Universitat Politècnica de Catalunya",
+        "state": "Catalunya"
+    },
+    "upc.edu": {
+        "school": "Universitat Politècnica de Catalunya",
+        "state": "Catalunya"
+    },
+    "epitech.eu": {
+        "school": "Epitech",
+        "state": "France"
+    },
     "emory.edu": {
         "school": "Emory University",
         "state": "Georgia"
