@@ -12,17 +12,22 @@
 
 <div class="ui botom attached segment">
 
-  <div>
-    <p>
-      <strong> Status: </strong>
-      <span
-        class="ui label">
-        {{selectedUser.status.name.toUpperCase()}}
-      </span>
-    </p>
-    <p>
-      <strong> Admitted by: </strong> {{selectedUser.status.admittedBy ? selectedUser.status.admittedBy : 'N/A'}}
-    </p>
+  <div class="ui grid">
+    <div class="ten wide column">
+      <p>
+        <strong> Status: </strong>
+        <span
+          class="ui label">
+          {{selectedUser.status.name.toUpperCase()}}
+        </span>
+      </p>
+      <p>
+        <strong> Admitted by: </strong> {{selectedUser.status.admittedBy ? selectedUser.status.admittedBy : 'N/A'}}
+      </p>
+    </div>
+    <div class="six wide column">
+        <img src="https://chart.googleapis.com/chart?cht=qr&chl=hacklyon%3A%2F%2F{{ selectedUser._id }}&chs=180x180&choe=UTF-8&chld=L|2">
+    </div>
   </div>
 
   <div class="ui divider"></div>
