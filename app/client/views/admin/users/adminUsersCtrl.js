@@ -234,7 +234,7 @@ angular.module('reg')
 
           var element = document.createElement('a');
           element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(output));
-          element.setAttribute('download', "McHacks Export " + new Date().toDateString() + ".csv");
+          element.setAttribute('download', "HackLyon Export " + new Date().toDateString() + ".csv");
           element.style.display = 'none';
           document.body.appendChild(element);
           element.click();
