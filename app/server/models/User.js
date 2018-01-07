@@ -47,6 +47,12 @@ var profile = {
     }
   },
 
+  eduroam: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+
   travel: {
     type: String,
     min: 0,

@@ -142,6 +142,17 @@
               </select>
             </div>
           </div>
+
+          <div class="field">
+            <div class="ui toggle checkbox">
+              <input
+                      type="checkbox"
+                      name="eduroam"
+                      ng-class="{true: 'checked', false: ''}[user.profile.eduroam]"
+                      ng-model="user.profile.eduroam">
+              <label>I have access to Eduroam network</label>
+            </div>
+          </div>
         
 
           <br>
