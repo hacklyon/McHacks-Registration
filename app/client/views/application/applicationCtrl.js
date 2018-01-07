@@ -281,15 +281,6 @@ angular.module('reg')
                 }
               ]
             },
-            essay: {
-              identifier: 'essay',
-              rules: [
-                {
-                  type: 'empty',
-                  prompt: 'Please fill this section.'
-                }
-              ]
-            },
             shirtSize: {
               identifier: 'shirtSize',
               rules: [
