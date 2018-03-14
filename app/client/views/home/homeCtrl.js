@@ -6,11 +6,11 @@ angular.module('reg')
         'settings',
         'Utils',
         function($scope, $stateParams, AuthService, settings, Utils){
-            var token = $stateParams.token;
+            let token = $stateParams.token;
 
             $scope.loading = true;
             // Is registration open?
-            var Settings = settings.data;
+            let Settings = settings.data;
             $scope.regIsOpen = Utils.isRegOpen(Settings);
 
             $scope.sponsors = [
@@ -69,7 +69,6 @@ angular.module('reg')
                         $scope.loading = false;
                     },
                     function(err){
-
                         $scope.loading = false;
                     });
             }

@@ -453,7 +453,7 @@ module.exports = function (router) {
                 });
             },
             limits: {
-                fileSize: 5 * 1024 * 1024, // max upload size is 512kb
+                fileSize: 5 * 1024 * 1024 // max upload size is 512kb
             }
         })
     });
@@ -493,7 +493,7 @@ module.exports = function (router) {
         // get a token returned by the above object
         // extract the filename then return the file
 
-        var token = req.params.token
+        var token = req.params.token;
         jwt.verify(token, JWT_SECRET, (err, data) => {
 
             if (err) {
