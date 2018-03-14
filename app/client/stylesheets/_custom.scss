@@ -2,18 +2,16 @@
 //
 // Copy variables from `_branding.scss` to this file to override default values.
 
-$primary: #fffc99; // Dark red
-$secondary: #a0c4e2; //Grey4
-$tertiary: #b1f8f2; // Grey3
-$quaternary: #bcd39c; // Grey2
-$quinary: #85c7de; //Grey1
+$primary: #42DCA3; // Green 
+$secondary: #2290A9; // Light Blue
+$tertiary: #537076; // Dark Ocean Blue
+$quaternary: #B8255E; // Rose
+$quinary: #85c7de; // Grey1
 $senary: #923BD9; // Light red
 
 /** ASSET URLS
  * login-bg: image for login splash page 
  */
-
-
 
 #base>.content{
 	background: $quinary !important;
