@@ -1,13 +1,15 @@
 <div id="login">
   <div class="container">
     <div class="content">
-      <div class="ui segment">
+      <div id="form" class="ui segment">
 
+        <!--
         <div class="logo">
           <img src="https://cdn.hacklyon.com/images/logo/logo-squared-v2.svg">
         </div>
 
         <div class="ui divider"></div>
+      -->
 
         <div class="ui small error message"
              ng-show="error">
@@ -17,14 +19,14 @@
         <div ng-show="loginState === 'login'">
           <div class="ui login-password form">
             <form ng-submit="login()">
-              <div class="field">
+              <div class="field input-login">
                 <label> Email</label>
                 <input type="email"
                        id='email'
                        placeholder="hacker@bar.edu"
                        ng-model="email">
               </div>
-              <div class="field">
+              <div class="field input-login">
                 <label> Password</label>
                 <input type="password"
                        id='password'

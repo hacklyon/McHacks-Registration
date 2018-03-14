@@ -41,4 +41,24 @@
     }
   }
 
+  #form {
+    background: none;
+    border: none;
+    * {
+      color: white;
+    }
+    > .logo {
+      display: none;
+    }
+    .input-login input {
+      background-color: transparent;
+      border: 3px solid $primary;
+      &::placeholder {
+        color: $primary;
+      }
+    }
+    #login-password {
+      background-color: $primary;
+    }
+  }
 }

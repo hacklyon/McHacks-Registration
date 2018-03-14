@@ -267,21 +267,21 @@
 
   /* Map */
   #map-section {
+  	margin-top: -130px;
     #map {
       width: 100%;
       height: 300px;
     }
     #address {
-      padding-top: 10px;
-      color: white;
-      position: absolute;
-      right: 0;
+      padding-right: 5%;
+      color: #FFF;
       text-align: right;
+      position: relative;
+      right: 0;
+      top: 130px;
+      z-index: 50;
       a {
         color: white;
-      }
-      #address-content {
-        margin-right: 10%;
       }
     }
   }
