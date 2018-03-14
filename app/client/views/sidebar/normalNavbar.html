@@ -19,12 +19,12 @@
         class="menu-item"
         ng-if="!isLoggedIn"
         ng-click="onMenuClick()">
-    LOGIN
+    LOGIN / REGISTER
 </a>
 <a
         ui-sref-active="menu-item-active"
-        ui-sref="app.login"
-        ng-if="!isLoggedIn && regIsOpen"
+        ui-sref="app.register"
+        ng-if="false && !isLoggedIn && regIsOpen"
         class="menu-item"
         ng-click="onMenuClick()">
     APPLY

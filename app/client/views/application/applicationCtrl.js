@@ -83,10 +83,10 @@ angular.module('reg')
             }
 
             // Is the student from McGill?
-            $scope.isUciStudent = $scope.user.email.split('@')[1] == 'mail.mcgill.edu';
+            $scope.isINSAStudent = $scope.user.email.split('@')[1] === 'insa-lyon.fr';
 
             // If so, default them to adult: true
-            if ($scope.isMcGillStudent) {
+            if ($scope.isINSAStudent) {
                 $scope.user.profile.adult = true;
             }
 
@@ -110,8 +110,8 @@ angular.module('reg')
                 $http
                     .get('/assets/schools.json')
                     .then(function (res) {
-                        var schools = res.data;
-                        var email = $scope.user.email.split('@')[1];
+                        const schools = res.data;
+                        const email = $scope.user.email.split('@')[1];
 
                         if (schools[email]) {
                             $scope.user.profile.school = schools[email].school;
@@ -125,7 +125,7 @@ angular.module('reg')
                         $scope.schools = res.data.split('\n');
                         $scope.schools.push('Other');
 
-                        var content = [];
+                        let content = [];
 
                         for (i = 0; i < $scope.schools.length; i++) {
                             $scope.schools[i] = $scope.schools[i].trim();
@@ -150,7 +150,7 @@ angular.module('reg')
                         $scope.disciplines = res.data.split('\n');
                         $scope.disciplines.push('Other');
 
-                        var content = [];
+                        let content = [];
 
                         for (i = 0; i < $scope.disciplines.length; i++) {
                             $scope.disciplines[i] = $scope.disciplines[i].trim();
@@ -208,10 +208,8 @@ angular.module('reg')
 
             function minorsValidation() {
                 // Are minors allowed to register?
-                if (isMinor() && !minorsAreAllowed()) {
-                    return false;
-                }
-                return true;
+                return !(isMinor() && !minorsAreAllowed());
+
             }
 
             function _setupForm() {
@@ -336,14 +334,14 @@ angular.module('reg')
             }
 
             $scope.openResume = function () {
-                var id = Session.getUserId();
-                var resumeWindow = $window.open('', '_blank');
+                const id = Session.getUserId();
+                let resumeWindow = $window.open('', '_blank');
                 $http
                     .get('/api/resume/' + id)
                     .then(function (response) {
                         resumeWindow.location.href = '/api/resume/view/' + response.data.token;
                     })
-            }
+            };
 
             $scope.submitForm = function () {
                 if ($('.ui.form').form('is valid')) {
