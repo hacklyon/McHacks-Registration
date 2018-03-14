@@ -89,6 +89,10 @@
     padding: 8px;
     border: 5px solid $primary;
   }
+  .hero-title:hover {
+  	background-color: $primary;
+  	color: $tertiary;
+  }
 
   .hero-description-container {
     text-align: center;
@@ -255,6 +259,10 @@
         padding: 0 7%;
       }
     }
+  }
+
+  #callforsponsors > * {
+  	vertical-align: top;
   }
 
   /* Map */
