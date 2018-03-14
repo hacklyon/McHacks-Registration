@@ -23,8 +23,8 @@ angular.module('reg')
 
             $scope.faqs = [
                 {
-                    q: "What is HackLyon?",
-                    a: "HackLyon is a student run hackathon held at The Web Tour, Lyon."
+                    q: "What is Alpha?",
+                    a: "Alpha is a student run hackathon held at The Web Tour, Lyon."
                 },{
                     q: "Will there be any travel reimbursements?",
                     a: "We are unable to provide this information at the moment."
