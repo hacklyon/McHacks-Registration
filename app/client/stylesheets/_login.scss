@@ -44,21 +44,31 @@
   #form {
     background: none;
     border: none;
-    * {
+    label {
       color: white;
     }
-    > .logo {
-      display: none;
-    }
-    .input-login input {
+    #email, #password {
       background-color: transparent;
-      border: 3px solid $primary;
+      border: 3px solid white;
+      color: white;
       &::placeholder {
-        color: $primary;
+        color: white;
+        opacity: .8;
+      }
+      &:focus {
+        border-color: $primary;
       }
     }
     #login-password {
+      background-color: $quaternary;
+
+    }
+    #register {
       background-color: $primary;
+    }
+    #register, #login-password {
+      margin-top: 30px;
+      margin-bottom: 15px;
     }
   }
 }
