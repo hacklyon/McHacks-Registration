@@ -53,8 +53,8 @@
                 FAQs
             </div>
             <div class="faq-list ui stackable two column grid">
-                <div class="column" ng-repeat="f in faqs" ng-if="$even">
-                    <div class="faq-card">
+                <div class="column">
+                    <div class="faq-card" ng-repeat="f in faqs" ng-if="$even">
                         <div class="faq-card-title">
                             {{f.q}}
                         </div>
@@ -63,8 +63,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="column" ng-repeat="f in faqs" ng-if="$odd">
-                    <div class="faq-card">
+                <div class="column">
+                    <div class="faq-card" ng-repeat="f in faqs" ng-if="$odd">
                         <div class="faq-card-title">
                             {{f.q}}
                         </div>
@@ -90,7 +90,7 @@
                 </a>
             </div>
             <br>
-            <div class="center" style="padding-top: 36px">
+            <div class="center" style="padding-top: 76px">
                 <span class="headline">
                     Do you want to see <span class="bold">your logo here</span>?&nbsp;
                 </span>
