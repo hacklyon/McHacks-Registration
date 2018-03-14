@@ -34,7 +34,6 @@
   #hero {
     background-size: cover;
     background-position: center center;
-    height: calc(100% + 49px);
   }
 
   #hero::before {
@@ -45,12 +44,29 @@
     position: absolute;
   }
 
+  .hero-title {
+      font-size: 5em;
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.1em;
+      font-weight: 700;
+      text-align: center;
+      display: block;
+      animation: fadein .5s both;
+      animation-delay: .3s;
+      padding: 8px;
+      border: 5px solid $primary;
+    }
+    .hero-title:hover {
+      color: rgba(0, 0, 0, 0);
+      background-image: url('/assets/images/alpha.svg');
+    }
+
+
   .hero-content {
     height: 100%;
     position: relative;
     color: white;
     z-index: 3;
-
     > div {
       margin-top: -50px;
     }
@@ -76,22 +92,6 @@
 
   .logo-header > img {
     height: 100%;
-  }
-
-  .hero-title {
-    font-size: 5em;
-    line-height: 1.1em;
-    font-weight: 700;
-    text-align: center;
-    display: block;
-    animation: fadein .5s both;
-    animation-delay: .3s;
-    padding: 8px;
-    border: 5px solid $primary;
-  }
-  .hero-title:hover {
-    color: rgba(0, 0, 0, 0);
-    background-image: url('/assets/images/alpha.svg');
   }
 
   .hero-description-container {
@@ -204,7 +204,7 @@
   }
 
   .faq-card-title {
-    font-weight: 500;
+    font-weight: bold;
     color: white;
     font-size: 1.4em;
     letter-spacing: 0.025em;
@@ -214,7 +214,7 @@
 
   .faq-card-description {
     font-weight: 300;
-    font-size: 0.8em;
+    font-size: 1em;
     letter-spacing: 0.07em;
     padding: 2% 0;
     color: white;
