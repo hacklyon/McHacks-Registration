@@ -1,17 +1,48 @@
+header {
+  min-height: 100px;
+
+  li {
+    float: left;
+    display: inline;
+    padding: 0 20px 0 20px;
+  }
+  nav {
+    float: right;
+    margin-top: 10px;
+  }
+
+  .logo {
+     opacity: 1;
+     padding: 20px;
+     float: left;
+   }
+}
+
+#navbar {
+  margin: auto;
+  width: 80%;
+}
+
 #sidebar {
-  height: 100%;
-  position: fixed;
+  //height: 100%;
+  //position: fixed;
+  float: right;
+  //margin: auto;
   background: $sidebar-color;
   color: #0f0f10;
-  width: $sidebar-width;
+  //width: $sidebar-width;
+  width: 100%;
   z-index: 999;
-  overflow: auto;
+  overflow: hidden;
 
   @include transition-duration($sidebar-transition-time);
 
+
+
   .item {
-    width: 100%;
-    padding: 16px;
+    //width: 100%;
+    padding: 8px;
+    margin: 8px;
     transition-duration: .1s;
     transition: border-left, .5s, linear;
     border-bottom: 1px solid lighten($sidebar-color, 3%);
@@ -21,7 +52,7 @@
     &.active {
       background: lighten($sidebar-color, 4%);
       opacity: 1;
-      border-left: 8px solid lighten($sidebar-color, 10%);
+      //border-left: 8px solid lighten($sidebar-color, 10%);
     }
     &:hover {
       cursor: pointer;
@@ -32,12 +63,6 @@
       background: darken($sidebar-color, 5%);
       opacity: 1;
     }
-
-    &.logo {
-      opacity: 1;
-      padding: 48px;
-    }
-
   }
 
   .note {
@@ -52,7 +77,7 @@
   }
 
   // Tab is the sibling of the sidebar
-  +.tab {
+  + .tab {
     position: fixed;
     width: $sidebar-tab-size;
     height: $sidebar-tab-size;
@@ -62,10 +87,10 @@
     z-index: 9999;
 
     // Is not visible unless mobile.
-    visibility: 'hidden';
+    visibility: hidden;
     opacity: 0;
 
-    @include transform(translate3d($sidebar-width, 0,0));
+    @include transform(translate3d($sidebar-width, 0, 0));
     @include transition-duration($sidebar-transition-time);
 
     cursor: pointer;
@@ -77,16 +102,32 @@
   }
 
 }
+@media(max-width: 768px){
+  header .logo,
+  header nav,
+  header nav li,
+  #boxes .box,
+  #sidebar,
+  article#main-col,
+  aside#sidebar{
+    float:none;
+    text-align:center;
+    width:100%;
+  }
 
-@media only screen and (max-width: 768px) {
+  header{
+    padding-bottom:20px;
+  }
+}
+/*@media only screen and (max-width: 768px) {
   #sidebar {
     @include transform(translate3d(-$sidebar-width, 0, 0));
 
     // When the sidebar is open
     &.open {
       // Transform the sidebar to original position
-      @include transform(translate3d(0,0,0));
-      +.tab {
+      @include transform(translate3d(0, 0, 0));
+      + .tab {
         // Transform the tab to the side of the sidebar
         @include transform(translate3d($sidebar-width, 0, 0));
 
@@ -97,10 +138,10 @@
       }
     }
     // When the tab is closed.
-    +.tab {
-      visibility: 'visible';
+    + .tab {
+      visibility: visible;
       opacity: 1;
-      @include transform(translate3d(0,0,0));
+      @include transform(translate3d(0, 0, 0));
       padding: 12px;
     }
     .note {
@@ -108,4 +149,4 @@
     }
 
   }
-}
+}*/

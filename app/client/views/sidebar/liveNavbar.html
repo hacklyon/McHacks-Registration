@@ -1,0 +1,45 @@
+<a
+        ui-sref="app.home"
+        ui-sref-active="menu-item-active"
+        class="menu-item"
+        ng-click="onMenuClick()">
+    HOME
+</a>
+<a
+        ui-sref="app.schedule"
+        ui-sref-active="menu-item-active"
+        class="menu-item"
+        ng-click="onMenuClick()">
+    SCHEDULE
+</a>
+<a
+        href="https://hacklyon2018.slack.com"
+        target="_blank"
+        class="menu-item"
+        ng-click="onMenuClick()">
+    SLACK
+    <i class="fa fa-external-link"></i>
+</a>
+<a
+        href="https://hacklyon2018.devpost.com/"
+        target="_blank"
+        class="menu-item"
+        ng-click="onMenuClick()">
+    DEVPOST
+    <i class="fa fa-external-link"></i>
+</a>
+<a
+        ui-sref-active="menu-item-active"
+        ui-sref="app.admin.stats"
+        class="menu-item"
+        ng-if="currentUser.verified && currentUser.admin"
+        ng-click="onMenuClick()">
+    ADMIN
+</a>
+<a
+        ui-sref-active="menu-item-active"
+        ui-sref="app.expo"
+        class="menu-item"
+        ng-click="onMenuClick()">
+    EXPO
+</a>

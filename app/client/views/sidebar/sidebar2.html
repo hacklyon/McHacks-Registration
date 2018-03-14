@@ -1,0 +1,40 @@
+<div id="navbar" ng-class="transparentNavbar ? 'position-absolute' : 'position-fixed'">
+
+    <div class="navbar ui grid computer only no-margin"
+         ng-class="{'navbar-transparent': transparentNavbar, 'navbar-live': showLiveNavbar}">
+        <div class="logo-header" ui-sref="app.home">
+            <img src="https://cdn.hacklyon.com/images/logo/logo-horiz-white-v2.svg">
+        </div>
+
+        <div class="logo-header_live center" ng-if="showLiveNavbar">LIVE</div>
+        <div class="logo-header_live center" ng-if="showCheckInNavbar">CHECK-IN</div>
+
+        <div class="navbar-menu" ng-if="!showLiveNavbar && !showCheckInNavbar"
+             ng-include="'views/sidebar/normalNavbar.html'"></div>
+        <div class="navbar-menu" ng-if="showLiveNavbar" ng-include="'views/sidebar/liveNavbar.html'"></div>
+    </div>
+
+    <div class="navbar-mobile ui grid mobile only tablet only no-margin"
+         ng-class="{'navbar-mobile-transparent' : transparentNavbar || showLiveNavbar}">
+        <div class="logo-header" ng-show="!transparentNavbar && !showLiveNavbar">
+            <img src="https://cdn.hacklyon.com/images/logo/logo-horiz-v2.svg">
+        </div>
+        <div class="navbar-mobile-menu-button">
+            <i class="fa fa-bars navbar-mobile-menu-icon" aria-hidden="true"></i>
+        </div>
+    </div>
+</div>
+
+
+<div id="navbar-modal" class="ui modal navbar-modal">
+    <div class="header">
+        <span class="modal-title">Menu</span>
+        <div class="navbar-mobile-menu-close-button">
+            <i class="fa fa-times navbar-mobile-menu-close-icon" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="content">
+        <div class="navbar-mobile-menu" ng-if="!showLiveNavbar" ng-include="'views/sidebar/normalNavbar.html'"></div>
+        <div class="navbar-mobile-menu" ng-if="showLiveNavbar" ng-include="'views/sidebar/liveNavbar.html'"></div>
+    </div>
+</div>

@@ -15,6 +15,12 @@ angular.module('reg')
           timeClose: close,
         });
       },
+      updateEventTimes: function(start, end){
+        return $http.put(base + 'event-times', {
+          timeStart: start,
+          timeEnd: end,
+        });
+      },
       updateConfirmationTime: function(time){
         return $http.put(base + 'confirm-by', {
           time: time

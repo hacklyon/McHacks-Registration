@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html ng-app="reg"/>
-  <head lang="en">
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111557657-2"></script>
-      <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+<html ng-app="reg">
+<head lang="en">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111557657-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-          gtag('config', 'UA-111557657-2');
-      </script>
-
-      <!-- <script>
-        var loc = window.location.href+'';
-        if (loc.indexOf('http://')==0){
-          window.location.href = loc.replace('http://','https://');
+        function gtag() {
+            dataLayer.push(arguments);
         }
-      </script> -->
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-111557657-2');
+    </script>
+
+    <!-- <script>
+      var loc = window.location.href+'';
+      if (loc.indexOf('http://')==0){
+        window.location.href = loc.replace('http://','https://');
+      }
+    </script> -->
     <base href="/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,40 +51,53 @@
     <script src="plugins/showdown/dist/showdown.min.js"></script>
 
     <!-- Dropzone -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" as="style"
+          onload="this.rel='stylesheet'">
     <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js"></script>
 
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAits6_GXRu5VVdwX9d25UsPli6hrAps8c"></script>
+
     <!-- Custom styling -->
+    <link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"
+          as="style" onload="this.rel='stylesheet'">
     <link rel="stylesheet" href="build/site.css">
+    <link href='//fonts.googleapis.com/css?family=Arvo:300,400,500,700' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
 
-      <!-- iOS Web Clip -->
-      <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.hacklyon.com/favicon/v1/apple-touch-icon.png?v=E6jRGBpXKw">
-      <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.hacklyon.com/favicon/v1/favicon-32x32.png?v=E6jRGBpXKw">
-      <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.hacklyon.com/favicon/v1/favicon-16x16.png?v=E6jRGBpXKw">
-      <link rel="manifest" href="https://cdn.hacklyon.com/favicon/v1/manifest.json?v=E6jRGBpXKw">
-      <link rel="mask-icon" href="https://cdn.hacklyon.com/favicon/v1/safari-pinned-tab.svg?v=E6jRGBpXKw" color="#5bbad5">
-      <link rel="shortcut icon" href="https://cdn.hacklyon.com/favicon/v1/favicon.ico?v=E6jRGBpXKw">
-      <meta name="msapplication-config" content="https://cdn.hacklyon.com/favicon/v1/browserconfig.xml?v=E6jRGBpXKw">
-      <meta name="theme-color" content="#ffffff">
+    <!-- iOS Web Clip -->
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="https://cdn.hacklyon.com/favicon/v1/apple-touch-icon.png?v=E6jRGBpXKw">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="https://cdn.hacklyon.com/favicon/v1/favicon-32x32.png?v=E6jRGBpXKw">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="https://cdn.hacklyon.com/favicon/v1/favicon-16x16.png?v=E6jRGBpXKw">
+    <link rel="manifest" href="https://cdn.hacklyon.com/favicon/v1/manifest.json?v=E6jRGBpXKw">
+    <link rel="mask-icon" href="https://cdn.hacklyon.com/favicon/v1/safari-pinned-tab.svg?v=E6jRGBpXKw" color="#5bbad5">
+    <link rel="shortcut icon" href="https://cdn.hacklyon.com/favicon/v1/favicon.ico?v=E6jRGBpXKw">
+    <meta name="msapplication-config" content="https://cdn.hacklyon.com/favicon/v1/browserconfig.xml?v=E6jRGBpXKw">
+    <meta name="theme-color" content="#ffffff">
 
     <!-- Facebook and Twitter integration -->
-	  <meta property="og:title" content="Register for HackLyon Alpha" />
-	  <meta property="og:image" content="https://cdn.hacklyon.com/images/alpha/quill-cover-facebook.png" />
-	  <meta property="og:url" content="https://my.alpha.hacklyon.com"/>
-	  <meta property="og:site_name" content="HackLyon Alpha" />
-	  <meta property="og:description" content="HackLyon Alpha, first edition! Join us March 24th and 25th for an awesome weekend of hacking!" />
-	  <meta name="twitter:title" content="Register for HackLyon Alpha" />
-	  <meta name="twitter:image" content="https://cdn.hacklyon.com/images/alpha/quill-cover-twitter.png" />
-	  <meta name="twitter:url" content="https://my.alpha.hacklyon.com" />
-	  <meta name="twitter:card" content="HackLyon Alpha, first edition! Join us March 24th and 25th for an awesome weekend of hacking!" />
+    <meta property="og:title" content="Register for HackLyon Alpha"/>
+    <meta property="og:image" content="https://cdn.hacklyon.com/images/alpha/quill-cover-facebook.png"/>
+    <meta property="og:url" content="https://alpha.hacklyon.com"/>
+    <meta property="og:site_name" content="HackLyon Alpha"/>
+    <meta property="og:description"
+          content="HackLyon Alpha, first edition! Join us April 27th and 28th for an awesome weekend of hacking!"/>
+    <meta name="twitter:title" content="Register for HackLyon Alpha"/>
+    <meta name="twitter:image" content="https://cdn.hacklyon.com/images/alpha/quill-cover-twitter.png"/>
+    <meta name="twitter:url" content="https://alpha.hacklyon.com"/>
+    <meta name="twitter:card"
+          content="HackLyon Alpha, first edition! Join us April 27th and 28th for an awesome weekend of hacking!"/>
 
 
-  </head>
-  <body>
+</head>
+<body>
 
-    <div class="container" id="root-view" ui-view></div>
+<div class="container" id="root-view" ui-view></div>
 
-  </body>
+</body>
 </html>

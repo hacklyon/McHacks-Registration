@@ -1,73 +1,43 @@
 <div id="sidebar"
      ng-class="{open: showSidebar}">
-  <div ui-sref="app.dashboard"
-       class="logo item">
-    <img src="https://cdn.hacklyon.com/images/logo/logo-squared-v2.svg" style="width: 169px;">
-  </div>
-
-  <div ui-sref-active="active"
-       ui-sref="app.dashboard"
-       class="item">
-    Dashboard
-  </div>
-
-  <div ng-show="currentUser.verified">
-
-    <div
-      ui-sref-active="active"
-      ui-sref="app.application"
-      ng-show="!currentUser.status.declined"
-      class="item">
-      Application
+    <div ui-sref="app.dashboard"
+         class="logo">
+        <img src="https://cdn.hacklyon.com/images/logo/logo-horiz-v2.svg" style="width: 169px;">
     </div>
 
-    <div
-      ui-sref-active="active"
-      ui-sref="app.confirmation"
-      ng-show="!pastConfirmation && currentUser.status.admitted && !currentUser.status.declined"
-      class="item">
-      Confirmation
-    </div>
+    <nav>
+        <ul>
+            <li ui-sref-active="active" ui-sref-active="active" ui-sref="app.dashboard" class="item">Dashboard</li>
+            <li ui-sref-active="active" ui-sref="app.application"
+                ng-show="currentUser.verified && !currentUser.status.declined" class="item">Application
+            </li>
+            <li ui-sref-active="active" ui-sref="app.confirmation"
+                ng-show="currentUser.verified && !pastConfirmation && currentUser.status.admitted && !currentUser.status.declined"
+                class="item">Confirmation
+            </li>
+            <li ui-sref-active="active" ui-sref="app.team"
+                ng-show="currentUser.verified && !currentUser.status.declined" class="item">Team
+            </li>
+            <li ui-sref-active="active" ui-sref="app.admin.stats" class="item"
+                ng-show="currentUser.verified && currentUser.admin">Admin
+            </li>
+            <li class="item"><a href="mailto:hello@hacklyon.com" style="text-decoration:none; color:#0f0f10">Contact
+                Us</a></li>
+            <li class="item" ng-click="logout()">Logout</li>
+        </ul>
+    </nav>
 
-    <div
-      ui-sref-active="active"
-      ui-sref="app.team"
-      ng-show="!currentUser.status.declined"
-      class="item">
-      Team
-    </div>
-
-    <div
-      ui-sref-active="active"
-      ui-sref="app.admin.stats"
-      class="item"
-      ng-show="currentUser.admin">
-      Admin
-    </div>
-
-  </div>
-
-  <a href="mailto:hello@hacklyon.com" style="text-decoration:none; color:#0f0f10">
-    <div class="item">
-      Contact Us
-    </div>
-  </a>
-
-  <div class="item"
-       ng-click="logout()">
-    Logout
-  </div>
-
-  <div class="note">
-    <a href="https://alpha.hacklyon.com" target="_blank" style="text-decoration:none; color:#0f0f10">{{ EVENT_INFO.NAME }}</a>
-  </div>
+    <!--div class="note">
+        <a href="https://alpha.hacklyon.com" target="_blank" style="text-decoration:none; color:#0f0f10">{{
+            EVENT_INFO.NAME }}</a>
+    </div-->
 
 </div>
 
 <div class="tab"
-  ng-click="toggleSidebar()">
-  <img ng-show="!showSidebar" src="https://cdn.hacklyon.com/images/logo/logo-squared-v1.png" style="width: 31px" />
-  <span class="close" ng-show="showSidebar">&#x2715</span>
+     ng-click="toggleSidebar()">
+    <img ng-show="!showSidebar" src="https://cdn.hacklyon.com/images/logo/logo-squared-v1.png" style="width: 31px"/>
+    <span class="close" ng-show="showSidebar">&#x2715</span>
 </div>
 
 

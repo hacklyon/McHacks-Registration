@@ -1,151 +1,175 @@
 angular.module('reg')
-  .controller('AdminSettingsCtrl', [
-    '$scope',
-    '$sce',
-    'SettingsService',
-    function($scope, $sce, SettingsService){
+    .controller('AdminSettingsCtrl', [
+        '$scope',
+        '$sce',
+        'SettingsService',
+        function ($scope, $sce, SettingsService) {
 
-      $scope.settings = {};
-      SettingsService
-        .getPublicSettings()
-        .success(function(settings){
-          updateSettings(settings);
-        });
+            $scope.settings = {};
+            SettingsService
+                .getPublicSettings()
+                .success(function (settings) {
+                    updateSettings(settings);
+                });
 
-      function updateSettings(settings){
-        $scope.loading = false;
-         // Format the dates in settings.
-        settings.timeOpen = new Date(settings.timeOpen);
-        settings.timeClose = new Date(settings.timeClose);
-        settings.timeConfirm = new Date(settings.timeConfirm);
+            function updateSettings(settings) {
+                $scope.loading = false;
+                // Format the dates in settings.
+                settings.timeOpen = new Date(settings.timeOpen);
+                settings.timeClose = new Date(settings.timeClose);
+                settings.timeConfirm = new Date(settings.timeConfirm);
+                settings.timeStart = new Date(settings.timeStart);
+                settings.timeEnd = new Date(settings.timeEnd);
 
-        $scope.settings = settings;
-      }
-      
-      // Additional Options --------------------------------------
+                $scope.settings = settings;
+            }
 
-      $scope.updateAllowMinors = function () {
-        SettingsService
-          .updateAllowMinors($scope.settings.allowMinors)
-          .success(function (data) {
-            $scope.settings.allowMinors = data.allowMinors;
-            const successText = $scope.settings.allowMinors ?
-              "Minors are now allowed to register." :
-              "Minors are no longer allowed to register."
-            swal("Looks good!", successText, "success");
-          });
-      };
+            // Additional Options --------------------------------------
 
-      // Whitelist --------------------------------------
+            $scope.updateAllowMinors = function () {
+                SettingsService
+                    .updateAllowMinors($scope.settings.allowMinors)
+                    .success(function (data) {
+                        $scope.settings.allowMinors = data.allowMinors;
+                        const successText = $scope.settings.allowMinors ?
+                            "Minors are now allowed to register." :
+                            "Minors are no longer allowed to register."
+                        swal("Looks good!", successText, "success");
+                    });
+            };
 
-      SettingsService
-        .getWhitelistedEmails()
-        .success(function(emails){
-          $scope.whitelist = emails.join(", ");
-        });
+            // Whitelist --------------------------------------
 
-      $scope.updateWhitelist = function(){
-        SettingsService
-          .updateWhitelistedEmails($scope.whitelist.replace(/ /g, '').split(','))
-          .success(function(settings){
-            swal('Whitelist updated.');
-            $scope.whitelist = settings.whitelistedEmails.join(", ");
-          });
-      };
+            SettingsService
+                .getWhitelistedEmails()
+                .success(function (emails) {
+                    $scope.whitelist = emails.join(", ");
+                });
 
-      // Registration Times -----------------------------
+            $scope.updateWhitelist = function () {
+                SettingsService
+                    .updateWhitelistedEmails($scope.whitelist.replace(/ /g, '').split(','))
+                    .success(function (settings) {
+                        swal('Whitelist updated.');
+                        $scope.whitelist = settings.whitelistedEmails.join(", ");
+                    });
+            };
 
-      $scope.formatDate = function(date){
-        if (!date){
-          return "Invalid Date";
-        }
+            // Registration Times -----------------------------
 
-        // Hack for timezone
-        return moment(date).format('dddd, MMMM Do YYYY, h:mm a') +
-          " " + date.toTimeString().split(' ')[2];
-      };
+            $scope.formatDate = function (date) {
+                if (!date) {
+                    return "Invalid Date";
+                }
 
-      // Take a date and remove the seconds.
-      function cleanDate(date){
-        return new Date(
-          date.getFullYear(),
-          date.getMonth(),
-          date.getDate(),
-          date.getHours(),
-          date.getMinutes()
-        );
-      }
+                // Hack for timezone
+                return moment(date).format('dddd, MMMM Do YYYY, h:mm a') +
+                    " " + date.toTimeString().split(' ')[2];
+            };
 
-      $scope.updateRegistrationTimes = function(){
-        // Clean the dates and turn them to ms.
-        var open = cleanDate($scope.settings.timeOpen).getTime();
-        var close = cleanDate($scope.settings.timeClose).getTime();
+            // Take a date and remove the seconds.
+            function cleanDate(date) {
+                return new Date(
+                    date.getFullYear(),
+                    date.getMonth(),
+                    date.getDate(),
+                    date.getHours(),
+                    date.getMinutes()
+                );
+            }
 
-        if (open < 0 || close < 0 || open === undefined || close === undefined){
-          return swal('Oops...', 'You need to enter valid times.', 'error');
-        }
-        if (open >= close){
-          swal('Oops...', 'Registration cannot open after it closes.', 'error');
-          return;
-        }
+            $scope.updateRegistrationTimes = function () {
+                // Clean the dates and turn them to ms.
+                let open = cleanDate($scope.settings.timeOpen).getTime();
+                let close = cleanDate($scope.settings.timeClose).getTime();
 
-        SettingsService
-          .updateRegistrationTimes(open, close)
-          .success(function(settings){
-            updateSettings(settings);
-            swal("Looks good!", "Registration Times Updated", "success");
-          });
-      };
+                if (open < 0 || close < 0 || open === undefined || close === undefined) {
+                    return swal('Oops...', 'You need to enter valid times.', 'error');
+                }
+                if (open >= close) {
+                    swal('Oops...', 'Registration cannot open after it closes.', 'error');
+                    return;
+                }
 
-      // Confirmation Time -----------------------------
+                SettingsService
+                    .updateRegistrationTimes(open, close)
+                    .success(function (settings) {
+                        updateSettings(settings);
+                        swal("Looks good!", "Registration Times Updated", "success");
+                    });
+            };
 
-      $scope.updateConfirmationTime = function(){
-        var confirmBy = cleanDate($scope.settings.timeConfirm).getTime();
+            // Event time
+            $scope.updateEventTimes = function () {
+                // Clean the dates and turn them to ms.
+                let start = cleanDate($scope.settings.timeStart).getTime();
+                let end = cleanDate($scope.settings.timeEnd).getTime();
 
-        SettingsService
-          .updateConfirmationTime(confirmBy)
-          .success(function(settings){
-            updateSettings(settings);
-            swal("Sounds good!", "Confirmation Date Updated", "success");
-          });
-      };
+                if (start < 0 || end < 0 || start === undefined || end === undefined) {
+                    return swal('Oops...', 'You need to enter valid times.', 'error');
+                }
+                if (start >= end) {
+                    swal('Oops...', 'Registration cannot open after it closes.', 'error');
+                    return;
+                }
 
-      // Acceptance / Confirmation Text ----------------
+                SettingsService
+                    .updateEventTimes(start, end)
+                    .success(function (settings) {
+                        updateSettings(settings);
+                        swal("Looks good!", "Event Times Updated", "success");
+                    });
+            };
 
-      var converter = new showdown.Converter();
+            // Confirmation Time -----------------------------
 
-      $scope.markdownPreview = function(text){
-        return $sce.trustAsHtml(converter.makeHtml(text));
-      };
+            $scope.updateConfirmationTime = function () {
+                var confirmBy = cleanDate($scope.settings.timeConfirm).getTime();
 
-      $scope.updateWaitlistText = function(){
-        var text = $scope.settings.waitlistText;
-        SettingsService
-          .updateWaitlistText(text)
-          .success(function(data){
-            swal("Looks good!", "Waitlist Text Updated", "success");
-            updateSettings(data);
-          });
-      };
+                SettingsService
+                    .updateConfirmationTime(confirmBy)
+                    .success(function (settings) {
+                        updateSettings(settings);
+                        swal("Sounds good!", "Confirmation Date Updated", "success");
+                    });
+            };
 
-      $scope.updateAcceptanceText = function(){
-        var text = $scope.settings.acceptanceText;
-        SettingsService
-          .updateAcceptanceText(text)
-          .success(function(data){
-            swal("Looks good!", "Acceptance Text Updated", "success");
-            updateSettings(data);
-          });
-      };
+            // Acceptance / Confirmation Text ----------------
 
-      $scope.updateConfirmationText = function(){
-        var text = $scope.settings.confirmationText;
-        SettingsService
-          .updateConfirmationText(text)
-          .success(function(data){
-            swal("Looks good!", "Confirmation Text Updated", "success");
-            updateSettings(data);
-          });
-      };
+            var converter = new showdown.Converter();
 
-    }]);
+            $scope.markdownPreview = function (text) {
+                return $sce.trustAsHtml(converter.makeHtml(text));
+            };
+
+            $scope.updateWaitlistText = function () {
+                var text = $scope.settings.waitlistText;
+                SettingsService
+                    .updateWaitlistText(text)
+                    .success(function (data) {
+                        swal("Looks good!", "Waitlist Text Updated", "success");
+                        updateSettings(data);
+                    });
+            };
+
+            $scope.updateAcceptanceText = function () {
+                var text = $scope.settings.acceptanceText;
+                SettingsService
+                    .updateAcceptanceText(text)
+                    .success(function (data) {
+                        swal("Looks good!", "Acceptance Text Updated", "success");
+                        updateSettings(data);
+                    });
+            };
+
+            $scope.updateConfirmationText = function () {
+                var text = $scope.settings.confirmationText;
+                SettingsService
+                    .updateConfirmationText(text)
+                    .success(function (data) {
+                        swal("Looks good!", "Confirmation Text Updated", "success");
+                        updateSettings(data);
+                    });
+            };
+
+        }]);

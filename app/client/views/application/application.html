@@ -1,301 +1,320 @@
 <div id="application" class="page">
-  <script src="client.js"></script>
-  <div class="divided title">
-    Application
-  </div>
+    <script src="client.js"></script>
+    <div class="divided title">
+        Application
+    </div>
 
-  <div class="ui stackable page grid">
-    <div class="column">
-      <div class="ui form" ng-class="{'loading': loading}">
+    <div class="ui stackable page grid">
+        <div class="column">
+            <div class="ui form" ng-class="{'loading': loading}">
 
-        <div class="divided title">Basic Information</div>
+                <div class="divided title">Basic Information</div>
 
-        <fieldset ng-disabled="regIsClosed">
+                <fieldset ng-disabled="regIsClosed">
 
-          <div class="two fields">
-            <div class="field">
-              <label> Full Name </label>
-              <input type="text" name="name" ng-model="user.profile.name">
-            </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label> Full Name </label>
+                            <input type="text" name="name" ng-model="user.profile.name">
+                        </div>
 
-            <div class="field">
-              <label>Gender</label>
-              <script type="text/javascript">
-                function showfield(name) {
-                  if (name == 'O') document.getElementById('div1').innerHTML = 'I identify as: <input type="text" name="other" />';
-                  else document.getElementById('div1').innerHTML = '';
-                }
-              </script>
-              <select name="gender" ng-model="user.profile.gender" id="travel_arriveVia" onchange="showfield(this.options[this.selectedIndex].value)">
-                  <option value=""></option>
-                  <option value="M">Male</option>
-                  <option value="F">Female</option>
-                  <option value="O">I prefer to self identify</option>
-                  <option value="N">I prefer not to answer.</option>
-              </select>
-              <div id="div1"></div>
-            </div>
-          </div>
-          <div class="fields">
-            <div class="eight wide field">
-              <label> Email </label>
-              <input type="email" name="email" disabled="disabled" ng-model="user.email">
-            </div>
-            <div class="eight wide field">
-              <label>Travel Origin</label>
-              <input name="travel" type="text" placeholder="Lyon, Toulouse, Paris, Lleida, Barcelona, Girona..." ng-model="user.profile.travel">
-            </div>
-          </div>
+                        <div class="field">
+                            <label>Gender</label>
+                            <script type="text/javascript">
+                                function showfield(name) {
+                                    if (name == 'O') document.getElementById('div1').innerHTML = 'I identify as: <input type="text" name="other" />';
+                                    else document.getElementById('div1').innerHTML = '';
+                                }
+                            </script>
+                            <select name="gender" ng-model="user.profile.gender" id="travel_arriveVia"
+                                    onchange="showfield(this.options[this.selectedIndex].value)">
+                                <option value=""></option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                                <option value="O">I prefer to self identify</option>
+                                <option value="N">I prefer not to answer.</option>
+                            </select>
+                            <div id="div1"></div>
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="eight wide field">
+                            <label> Email </label>
+                            <input type="email" name="email" disabled="disabled" ng-model="user.email">
+                        </div>
+                        <div class="eight wide field">
+                            <label>Travel Origin</label>
+                            <input name="travel" type="text"
+                                   placeholder="Lyon, Toulouse, Paris, Lleida, Barcelona, Girona..."
+                                   ng-model="user.profile.travel">
+                        </div>
+                    </div>
 
-          <div class="fields">
-            <div class="eight wide field">
-              <label> Shirt Size (Unisex)</label>
-              <select name="shirtSize" ng-model="user.profile.shirtSize" required>
-                <option value=""></option>
-                <option value="XS">X-Small</option>
-                <option value="S">Small</option>
-                <option value="M">Medium</option>
-                <option value="L">Large</option>
-                <option value="XL">X-Large</option>
-                <option value="XXL">XX-Large</option>
-              </select>
-            </div>
-            <div class="eight wide field">
-              <label> Dietary Restrictions </label>
-              <select name="dietaryRestrictions" ng-model="user.profile.dietaryRestrictions" required>
-                <option value=""></option>
-                <option value="None">None</option>
-                <option value="Vegetarian">Vegetarian</option>
-                <option value="Vegan">Vegan</option>
-                <option value="Halal">Halal</option>
-                <option value="Kosher">Kosher</option>
-                <option value="Nut-Allergy">Nut-Allergy</option>
-                <option value="Other">Other</option>
-              </select>
-              <p>
-                If your restriction is not included here, please select
-                <strong>Other</strong> option and let us know in the additional notes at the bottom.
-              </p>
-            </div>
-          </div>
+                    <div class="fields">
+                        <div class="eight wide field">
+                            <label> Shirt Size (Unisex)</label>
+                            <select name="shirtSize" ng-model="user.profile.shirtSize" required>
+                                <option value=""></option>
+                                <option value="XS">X-Small</option>
+                                <option value="S">Small</option>
+                                <option value="M">Medium</option>
+                                <option value="L">Large</option>
+                                <option value="XL">X-Large</option>
+                                <option value="XXL">XX-Large</option>
+                            </select>
+                        </div>
+                        <div class="eight wide field">
+                            <label> Dietary Restrictions </label>
+                            <select name="dietaryRestrictions" ng-model="user.profile.dietaryRestrictions" required>
+                                <option value=""></option>
+                                <option value="None">None</option>
+                                <option value="Vegetarian">Vegetarian</option>
+                                <option value="Vegan">Vegan</option>
+                                <option value="Halal">Halal</option>
+                                <option value="Kosher">Kosher</option>
+                                <option value="Nut-Allergy">Nut-Allergy</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <p>
+                                If your restriction is not included here, please select
+                                <strong>Other</strong> option and let us know in the additional notes at the bottom.
+                            </p>
+                        </div>
+                    </div>
 
 
-          <br>
-          <br>
-          <div class="divided title">School Information</div>
+                    <br>
+                    <br>
+                    <div class="divided title">School Information</div>
 
-          <div class="fields">
-            
-            <div class="eleven wide field">
-              <div class="field" ng-show="autoFilledSchool">
-                <label> School </label>
-                <input class="ui input" disabled="disabled" ng-show="autoFilledSchool" ng-model="user.profile.school">
-              </div>
-              <div class="field" ng-show="!autoFilledSchool">
-                <label> School </label>
-                <div id="school" class="ui search">
-                  <div class="ui input">
-                    <input class="prompt" type="text" placeholder="School" name="school" ng-model="user.profile.school">
-                  </div>
-                  <div class="results"></div>
-                </div>
-              </div>
-            </div>
-            <div class="five wide field">
-              <div class="field">
-                <label>Graduation Year</label>
-                <select name="graduationYear" ng-model="user.profile.graduationYear">
-                  <option value=""></option>
-                  <option value="2018">2018</option>
-                  <option value="2019">2019</option>
-                  <option value="2020">2020</option>
-                  <option value="2021">2021</option>
-                  <option value="2022">2022</option>
-                  <option value="other">other</option>
-                </select>
-              </div>
-            </div>
-            
-          </div>
-          
-          <div class="fields">
-            <div class="eleven wide field">
-              <div class="field">
-                <label> Major </label>
-                <div id="discipline" class="ui search">
-                  <div class="ui input">
-                    <input class="prompt" type="text" placeholder="Discipline" name="discipline" ng-model="user.profile.discipline">
-                  </div>
-                  <div class="results"></div>
-                </div>
-              </div>
-            </div>
-            <div class="five wide field">
-              <label>Degree</label>
-              <select name="degree" ng-model="user.profile.degree">
-                <option value=""></option>
-                <option value="HighSchool">High School</option>
-                <option value="Bachelor">Bachelor</option>
-                <option value="Master">Master</option>
-                <option value="Phd">Phd</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-          </div>
+                    <div class="fields">
 
-          <div class="field">
-            <div class="ui toggle checkbox">
-              <input
-                      type="checkbox"
-                      name="eduroam"
-                      ng-class="{true: 'checked', false: ''}[user.profile.eduroam]"
-                      ng-model="user.profile.eduroam">
-              <label>I have access to Eduroam network</label>
-            </div>
-          </div>
-        
+                        <div class="eleven wide field">
+                            <div class="field" ng-show="autoFilledSchool">
+                                <label> School </label>
+                                <input class="ui input" disabled="disabled" ng-show="autoFilledSchool"
+                                       ng-model="user.profile.school">
+                            </div>
+                            <div class="field" ng-show="!autoFilledSchool">
+                                <label> School </label>
+                                <div id="school" class="ui search">
+                                    <div class="ui input">
+                                        <input class="prompt" type="text" placeholder="School" name="school"
+                                               ng-model="user.profile.school">
+                                    </div>
+                                    <div class="results"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="five wide field">
+                            <div class="field">
+                                <label>Graduation Year</label>
+                                <select name="graduationYear" ng-model="user.profile.graduationYear">
+                                    <option value=""></option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="other">other</option>
+                                </select>
+                            </div>
+                        </div>
 
-          <br>
-          <br>
-          <div class="divided title">Profile</div>
-          
+                    </div>
 
-          <div class="fields">
-            <div class="eight wide field">
-              <label>
-                Resume (PDF)
-                <span class="required">*</span>
-              </label>
-              <button class="ui tiny button" ng-show="!showResumeDropzone" ng-click="toggleResumeDropzone()">Upload New Resume</button>
-              <button class="ui tiny button" ng-click="openResume()">View Resume</button>
-              <div class="resume-dropzone center" ng-class="{ 'resume-uploading': resumeDropzoneIsUploading, 'resume-dropzone-error': resumeDropzoneHasError }"
-                ng-show="showResumeDropzone" id="resume-upload">
+                    <div class="fields">
+                        <div class="eleven wide field">
+                            <div class="field">
+                                <label> Major </label>
+                                <div id="discipline" class="ui search">
+                                    <div class="ui input">
+                                        <input class="prompt" type="text" placeholder="Discipline" name="discipline"
+                                               ng-model="user.profile.discipline">
+                                    </div>
+                                    <div class="results"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="five wide field">
+                            <label>Degree</label>
+                            <select name="degree" ng-model="user.profile.degree">
+                                <option value=""></option>
+                                <option value="HighSchool">High School</option>
+                                <option value="Bachelor">Bachelor</option>
+                                <option value="Master">Master</option>
+                                <option value="Phd">Phd</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="ui toggle checkbox">
+                            <input
+                                    type="checkbox"
+                                    name="eduroam"
+                                    ng-class="{true: 'checked', false: ''}[user.profile.eduroam]"
+                                    ng-model="user.profile.eduroam">
+                            <label>I have access to Eduroam network</label>
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <br>
+                    <div class="divided title">Profile</div>
+
+
+                    <div class="fields">
+                        <div class="eight wide field">
+                            <label>
+                                Resume (PDF)
+                                <span class="required">*</span>
+                            </label>
+                            <button class="ui tiny button" ng-show="!showResumeDropzone"
+                                    ng-click="toggleResumeDropzone()">Upload New Resume
+                            </button>
+                            <button class="ui tiny button" ng-click="openResume()">View Resume</button>
+                            <div class="resume-dropzone center"
+                                 ng-class="{ 'resume-uploading': resumeDropzoneIsUploading, 'resume-dropzone-error': resumeDropzoneHasError }"
+                                 ng-show="showResumeDropzone" id="resume-upload">
                 <span ng-show="showResumeDropzoneIcon">
                   <i class="fa fa-upload" aria-hidden="true"></i>
                   DRAG AND DROP
                 </span>
-                <div class="fallback">
-                  <input name="file" type="file" accept="application/pdf" />
-                </div>
-              </div>
-            </div>
-            
-            
-            <div class="eight wide field">
-              <label>Our sponsors want to hire you, what kind of opportunities are you looking for?</label>
-              <select name="job" ng-model="user.profile.job">
-                <option value=""></option>
-                <option value="FullTime">Full Time</option>
-                <option value="Internship">Internship</option>
-                <option value="N">None</option>
-              </select>
-            </div>
-          </div>
+                                <div class="fallback">
+                                    <input name="file" type="file" accept="application/pdf"/>
+                                </div>
+                            </div>
+                        </div>
 
-          <div class="fields">
-            <div class="eight wide field">
-              <label> Github </label>
-              <input type="text" name="github" placeholder="https://github.com/foobar" ng-model="user.profile.github">
-            </div>
 
-            <div class="eight wide field">
-              <label> Website </label>
-              <input type="text" placeholder="https://foobar.com" name="website" ng-model="user.profile.website">
-            </div>
-            
-            <div class="eight wide field">
-              <label> LinkedIn </label>
-              <input type="text" placeholder="https://linkedin.com/in/foobar" name="linkedin" ng-model="user.profile.linkedin">
-            </div>
-          </div>
+                        <div class="eight wide field">
+                            <label>Our sponsors want to hire you, what kind of opportunities are you looking
+                                for?</label>
+                            <select name="job" ng-model="user.profile.job">
+                                <option value=""></option>
+                                <option value="FullTime">Full Time</option>
+                                <option value="Internship">Internship</option>
+                                <option value="N">None</option>
+                            </select>
+                        </div>
+                    </div>
 
-          <br>
+                    <div class="fields">
+                        <div class="eight wide field">
+                            <label> Github </label>
+                            <input type="text" name="github" placeholder="https://github.com/foobar"
+                                   ng-model="user.profile.github">
+                        </div>
 
-          <div class="field">
-            <label>
-              Why HackLyon? (Max 300 chars)
-            </label>
-            <textarea name="essay" ng-model="user.profile.essay">
+                        <div class="eight wide field">
+                            <label> Website </label>
+                            <input type="text" placeholder="https://foobar.com" name="website"
+                                   ng-model="user.profile.website">
+                        </div>
+
+                        <div class="eight wide field">
+                            <label> LinkedIn </label>
+                            <input type="text" placeholder="https://linkedin.com/in/foobar" name="linkedin"
+                                   ng-model="user.profile.linkedin">
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="field">
+                        <label>
+                            Why HackLyon? (Max 300 chars)
+                        </label>
+                        <textarea name="essay" ng-model="user.profile.essay">
             </textarea>
-          </div>
+                    </div>
 
-          <div class="field">
-            <label>
-              Additional Notes
-            </label>
-            <p>
-              If there's anything else you need to let us know, tell us here!
-              <textarea name="suggestion" ng-model="user.profile.suggestion">
+                    <div class="field">
+                        <label>
+                            Additional Notes
+                        </label>
+                        <p>
+                            If there's anything else you need to let us know, tell us here!
+                            <textarea name="suggestion" ng-model="user.profile.suggestion">
               </textarea>
-          </div>
+                    </div>
 
-          <div class="field">
-            <p>
-              <strong>
-                If you are under 18, you will receive a consent form to be filled and signed by your legal guardian. Acceptance will be conditional
-                on the completion of that form and a valid Student ID will be required on the first day of the event.
-              </strong>
-            </p>
-            <div class="ui checkbox">
-              <input type="checkbox" id="adult" ng-model="user.profile.adult">
-              <label for="adult">I am at least 18 years of age on March 24th 2018.</label>
+                    <div class="field">
+                        <p>
+                            <strong>
+                                If you are under 18, you will receive a consent form to be filled and signed by your
+                                legal guardian. Acceptance will be conditional
+                                on the completion of that form and a valid Student ID will be required on the first day
+                                of the event.
+                            </strong>
+                        </p>
+                        <div class="ui checkbox">
+                            <input type="checkbox" id="adult" ng-model="user.profile.adult">
+                            <label for="adult">I am at least 18 years of age on {{ formatDate(timeStart) }}.</label>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" id="mlhshareinfo" ng-model="user.profile.mlhshareinfo">
+                            <label for="mlhshareinfo">
+                                <p>I agree to the terms of both the
+                                    <a href="https://github.com/MLH/mlh-policies/tree/master/prize-terms-and-conditions"
+                                       target="_blank">MLH Contest Terms and Conditions</a>
+                                    and the
+                                    <a href="https://mlh.io/privacy" target="_blank">MLH Privacy Policy</a>. Please note
+                                    that you may receive pre and post-event informational e-mails and occasional
+                                    messages about hackathons from MLH as per the MLH Privacy Policy.
+                                </p>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" id="mlhcodeconduct" ng-model="user.profile.mlhcodeconduct">
+                            <label for="mlhcodeconduct">
+                                <p>
+                                    I agree that I have read and will abide by the
+                                    <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
+                                       target="_blank">MLH Code of Conduct</a>. It is extremely important to us that
+                                    attendees follow a set of guidelines to make
+                                    the event fun for everyone involved. Please read through and make sure you
+                                    understand what we will be expecting
+                                    of you.
+                                </p>
+                            </label>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="field" ng-hide="regIsClosed">
+                        <button type="submit" class="fluid ui button" ng-click="submitForm()">
+                            Submit
+                        </button>
+                    </div>
+
+                </fieldset>
+
+                <div class="ui error message"></div>
             </div>
-          </div>
-
-          <div class="field">
-            <div class="ui checkbox">
-              <input type="checkbox" id="mlhshareinfo" ng-model="user.profile.mlhshareinfo">
-              <label for="mlhshareinfo">
-                <p>I agree to the terms of both the
-                  <a href="https://github.com/MLH/mlh-policies/tree/master/prize-terms-and-conditions" target="_blank">MLH Contest Terms and Conditions</a>
-                  and the
-                  <a href="https://mlh.io/privacy" target="_blank">MLH Privacy Policy</a>. Please note that you may receive pre and post-event informational e-mails and occasional
-                  messages about hackathons from MLH as per the MLH Privacy Policy.
-                </p>
-              </label>
-            </div>
-          </div>
-          <div class="field">
-            <div class="ui checkbox">
-              <input type="checkbox" id="mlhcodeconduct" ng-model="user.profile.mlhcodeconduct">
-              <label for="mlhcodeconduct">
-                <p>
-                  I agree that I have read and will abide by the
-                  <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
-                    target="_blank">MLH Code of Conduct</a>. It is extremely important to us that attendees follow a set of guidelines to make
-                  the event fun for everyone involved. Please read through and make sure you understand what we will be expecting
-                  of you.
-                </p>
-              </label>
-            </div>
-          </div>
-          <br>
-
-          <div class="field" ng-hide="regIsClosed">
-            <button type="submit" class="fluid ui button" ng-click="submitForm()">
-              Submit
-            </button>
-          </div>
-
-        </fieldset>
-
-        <div class="ui error message"></div>
-      </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <div id="resume-dropzone-preview" class="dz-preview dz-file-preview" style="display:none">
-  <div class="dz-details">
-    <div class="dz-icon">
-      <i class="fa fa-file" aria-hidden="true"></i>
+    <div class="dz-details">
+        <div class="dz-icon">
+            <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+        <div class="dz-filename">
+            <span data-dz-name></span>
+        </div>
+        <div class="dz-size" data-dz-size></div>
+        <div class="dz-error-message">
+            <span data-dz-errormessage ng-bind="resumeDropzoneErrorMessage"></span>
+        </div>
     </div>
-    <div class="dz-filename">
-      <span data-dz-name></span>
-    </div>
-    <div class="dz-size" data-dz-size></div>
-    <div class="dz-error-message">
-      <span data-dz-errormessage ng-bind="resumeDropzoneErrorMessage"></span>
-    </div>
-  </div>
 </div>

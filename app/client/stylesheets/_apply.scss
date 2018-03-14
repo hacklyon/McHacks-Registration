@@ -1,4 +1,4 @@
-#application {
+#apply {
 	#school .title {
 		text-align: left;
 		text-transform: none;
@@ -9,7 +9,7 @@
 		color: red;
 		font-weight: 500;
 	}
-	
+
 	.error-red-color {
 		color: red;
 	}
@@ -23,10 +23,6 @@
 		display: flex;
 		justify-content: flex-end;
 		flex: 1 0 auto;
-	}
-
-	button+.resume-dropzone {
-		margin-top: .67861429em;
 	}
 
 	.ui.checkbox {

@@ -1,0 +1,76 @@
+<a
+        ui-sref="app.home"
+        ui-sref-active="menu-item-active"
+        class="menu-item"
+        ng-click="onMenuClick()">
+    HOME
+</a>
+<a
+        ui-sref="app.dashboard"
+        ui-sref-active="menu-item-active"
+        class="menu-item"
+        ng-if="isLoggedIn"
+        ng-click="onMenuClick()">
+    DASHBOARD
+</a>
+<a
+        ui-sref="app.login"
+        ui-sref-active="menu-item-active"
+        class="menu-item"
+        ng-if="!isLoggedIn"
+        ng-click="onMenuClick()">
+    LOGIN
+</a>
+<a
+        ui-sref-active="menu-item-active"
+        ui-sref="app.apply"
+        ng-if="!isLoggedIn && regIsOpen"
+        class="menu-item"
+        ng-click="onMenuClick()">
+    APPLY
+</a>
+<a
+        ui-sref-active="menu-item-active"
+        ui-sref="app.application"
+        ng-if="isLoggedIn && !currentUser.status.declined"
+        class="menu-item"
+        ng-click="onMenuClick()">
+    APPLICATION
+</a>
+<a
+        ui-sref-active="menu-item-active"
+        ui-sref="app.confirmation"
+        ng-if="currentUser.verified && !pastConfirmation && currentUser.status.admitted && !currentUser.status.declined"
+        class="menu-item"
+        ng-click="onMenuClick()">
+    CONFIRMATION
+</a>
+<a
+        ui-sref-active="menu-item-active"
+        ui-sref="app.team"
+        ng-if="currentUser.verified && !currentUser.status.declined"
+        class="menu-item"
+        ng-click="onMenuClick()">
+    TEAM
+</a>
+<a
+        ui-sref-active="menu-item-active"
+        ui-sref="app.admin.stats"
+        class="menu-item"
+        ng-if="currentUser.verified && currentUser.admin"
+        ng-click="onMenuClick()">
+    ADMIN
+</a>
+<a class="menu-item"
+   ng-click="logout()"
+   ng-if="isLoggedIn"
+   ng-click="onMenuClick()">
+    LOGOUT
+</a>
+<a ng-if="isEvent"
+   ui-sref-active="menu-item-active"
+   ui-sref="app.schedule"
+   class="menu-item menu-item--sponsor"
+   ng-click="onMenuClick()">
+    LIVE
+</a>
