@@ -74,4 +74,8 @@ angular.module('reg')
                     });
             }
 
+            $scope.$on('$viewContentLoaded', function() {
+                init();
+            });
+
         }]);
