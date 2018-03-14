@@ -185,16 +185,16 @@ angular.module('reg')
                 function animate() {
                     if (animateHeader) {
                         ctx.clearRect(0, 0, width, height);
-                        for (var i in points) {
+                        for (let i in points) {
                             // detect points in range
-                            if (Math.abs(getDistance(target, points[i])) < 20000) {
+                            if (Math.abs(getDistance(target, points[i])) < 40000) {
                                 points[i].active = 0.5;
                                 points[i].circle.active = 0.8;
                             }
-                            else if (Math.abs(getDistance(target, points[i])) < 40000) {
+                            else if (Math.abs(getDistance(target, points[i])) < 60000) {
                                 points[i].active = 0.4;
                                 points[i].circle.active = 0.6;
-                            } else if (Math.abs(getDistance(target, points[i])) < 80000) {
+                            } else if (Math.abs(getDistance(target, points[i])) < 140000) {
                                 points[i].active = 0.1;
                                 points[i].circle.active = 0.3;
                             } else {
