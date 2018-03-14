@@ -264,6 +264,16 @@
       width: 100%;
       height: 300px;
     }
+    #address {
+    	padding-top: 10px;
+    	color: white;
+    	position: absolute;
+    	right: 0;
+    	text-align: right;
+    	a {
+    		color: white;
+    	}
+	}
   }
 
   /* Footer */
