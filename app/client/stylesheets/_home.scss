@@ -259,21 +259,20 @@
 
   /* Map */
   #map-section {
-    padding-bottom: 16px;
     #map {
       width: 100%;
       height: 300px;
     }
     #address {
-    	padding-top: 10px;
-    	color: white;
-    	position: absolute;
-    	right: 0;
-    	text-align: right;
-    	a {
-    		color: white;
-    	}
-	}
+      padding-top: 10px;
+      color: white;
+      position: absolute;
+      right: 0;
+      text-align: right;
+      a {
+        color: white;
+      }
+    }
   }
 
   /* Footer */
