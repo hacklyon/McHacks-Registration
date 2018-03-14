@@ -90,8 +90,8 @@
     border: 5px solid $primary;
   }
   .hero-title:hover {
-  	background-color: $primary;
-  	color: $tertiary;
+    color: rgba(0, 0, 0, 0);
+    background-image: url('/assets/images/alpha.svg');
   }
 
   .hero-description-container {
@@ -262,7 +262,7 @@
   }
 
   #callforsponsors > * {
-  	vertical-align: top;
+    vertical-align: top;
   }
 
   /* Map */
@@ -297,16 +297,14 @@
   #footer-content {
     font-size: 2em;
     width: 100%;
-  }
-
-  #footer-content > a {
-    color: rgba(255, 255, 255, 0.95);
-    padding: 0 1%;
-    transition: all .2s ease;
-  }
-
-  #footer-content > a:hover {
-    color: rgba(255, 255, 255, 1);
+    > a {
+      color: rgba(255, 255, 255, 0.95);
+      padding: 0 1%;
+      transition: all .2s ease;
+      &:hover {
+        color: rgba(255, 255, 255, 1);
+      }
+    }
   }
 
   /* Mobile */
