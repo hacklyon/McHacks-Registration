@@ -139,8 +139,8 @@ angular.module('reg')
                 ctx.fillStyle = "#ccc";
                 ctx.font = "50px Verdana";
                 ctx.fillText(
-                    "Calculating Nodes",
-                    w / 2 - ctx.measureText("Calculating Nodes").width / 2,
+                    "Loading...",
+                    w / 2 - ctx.measureText("Loading...").width / 2,
                     h / 2 - 15
                 );
 
