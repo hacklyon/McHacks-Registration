@@ -15,15 +15,6 @@
       max-width: 320px;
       margin: 0 auto;
 
-      .logo {
-        max-width: 100px;
-        margin: .5rem auto 1rem auto;
-        img {
-          width: 100px;
-          height: 100px;
-        }
-      }
-
       .button {
         color: white;
         &.login {
@@ -44,21 +35,31 @@
   #form {
     background: none;
     border: none;
-    * {
+    label {
       color: white;
     }
-    > .logo {
-      display: none;
-    }
-    .input-login input {
+    #email, #password {
       background-color: transparent;
-      border: 3px solid $primary;
+      border: 3px solid white;
+      color: white;
       &::placeholder {
-        color: $primary;
+        color: white;
+        opacity: .8;
+      }
+      &:focus {
+        border-color: $primary;
       }
     }
     #login-password {
+      background-color: $quaternary;
+
+    }
+    #register {
       background-color: $primary;
+    }
+    #register, #login-password {
+      margin-top: 30px;
+      margin-bottom: 15px;
     }
   }
 }
