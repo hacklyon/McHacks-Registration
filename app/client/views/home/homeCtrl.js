@@ -74,6 +74,7 @@ angular.module('reg')
             }
 
             $scope.$on('$viewContentLoaded', function () {
+                // map
                 init();
 
                 // https://codepen.io/Kyzer/pen/XKKQpq
@@ -94,7 +95,7 @@ angular.module('reg')
                         addedDist: 30,
                         connectionAttempts: 10,
 
-                        dataToConnections: 5,
+                        dataToConnections: 10,
                         baseSpeed: 0.04,
                         addedSpeed: 0.05,
                         baseGlowSpeed: 0.1,
@@ -151,7 +152,7 @@ angular.module('reg')
                     all.length = 0;
                     toDevelop.length = 0;
 
-                    var connection = new Connection(0, 0, 0, opts.baseSize);
+                    let connection = new Connection(0, 0, 0, opts.baseSize);
                     connection.step = Connection.rootStep;
                     connections.push(connection);
                     all.push(connection);
@@ -166,6 +167,8 @@ angular.module('reg')
                         animating = true;
                         anim();
                     }
+                    opts.rotVelX = 100 / 99000;
+                    opts.rotVelY = 100 / 99000;
                 }
                 function Connection(x, y, z, size) {
                     this.x = x;
@@ -184,7 +187,7 @@ angular.module('reg')
                 Connection.prototype.link = function() {
                     if (this.size < opts.minSize) return (this.isEnd = true);
 
-                    var links = [],
+                    let links = [],
                         connectionsNum =
                             (opts.baseConnections + Math.random() * opts.addedConnections) | 0,
                         attempt = opts.connectionAttempts,
@@ -230,12 +233,12 @@ angular.module('reg')
 
                     if (links.length === 0) this.isEnd = true;
                     else {
-                        for (var i = 0; i < links.length; ++i) {
-                            var pos = links[i],
+                        for (let i = 0; i < links.length; ++i) {
+                            let posi = links[i],
                                 connection = new Connection(
-                                    pos.x,
-                                    pos.y,
-                                    pos.z,
+                                    posi.x,
+                                    posi.y,
+                                    posi.z,
                                     this.size * opts.sizeMultiplier
                                 );
 
@@ -243,7 +246,7 @@ angular.module('reg')
                             all.push(connection);
                             connections.push(connection);
                         }
-                        for (var i = 0; i < this.links.length; ++i) toDevelop.push(this.links[i]);
+                        for (let i = 0; i < this.links.length; ++i) toDevelop.push(this.links[i]);
                     }
                 };
                 Connection.prototype.step = function() {
@@ -252,7 +255,7 @@ angular.module('reg')
                         .replace("light", 30 + (tick * this.glowSpeed) % 30)
                         .replace("alp", 0.2 + (1 - this.screen.z / mostDistant) * 0.8);
 
-                    for (var i = 0; i < this.links.length; ++i) {
+                    for (let i = 0; i < this.links.length; ++i) {
                         ctx.moveTo(this.screen.x, this.screen.y);
                         ctx.lineTo(this.links[i].screen.x, this.links[i].screen.y);
                     }
@@ -263,7 +266,7 @@ angular.module('reg')
                         .replace("light", 30 + (tick * this.glowSpeed) % 30)
                         .replace("alp", (1 - this.screen.z / mostDistant) * 0.8);
 
-                    for (var i = 0; i < this.links.length; ++i) {
+                    for (let i = 0; i < this.links.length; ++i) {
                         ctx.moveTo(this.screen.x, this.screen.y);
                         ctx.lineTo(this.links[i].screen.x, this.links[i].screen.y);
                     }
@@ -271,7 +274,7 @@ angular.module('reg')
                 Connection.prototype.draw = function() {
                     ctx.fillStyle = this.screen.color;
                     ctx.beginPath();
-                    ctx.arc(this.screen.x, this.screen.y, this.screen.scale * this.size, 0, Tau);
+                    ctx.arc(this.screen.x, this.screen.y, Math.abs(this.screen.scale * this.size), 0, Tau);
                     ctx.fill();
                 };
                 function Data(connection) {
@@ -339,17 +342,17 @@ angular.module('reg')
                     }
                 };
                 Connection.prototype.setScreen = Data.prototype.setScreen = function() {
-                    var x = this.x,
+                    let x = this.x,
                         y = this.y,
                         z = this.z;
 
                     // apply rotation on X axis
-                    var Y = y;
+                    let Y = y;
                     y = y * cosX - z * sinX;
                     z = z * cosX + Y * sinX;
 
                     // rot on Y
-                    var Z = z;
+                    let Z = z;
                     z = z * cosY - x * sinY;
                     x = x * cosY + Z * sinY;
 
@@ -363,7 +366,7 @@ angular.module('reg')
                     this.screen.y = opts.vanishPoint.y + y * this.screen.scale;
                 };
                 function squareDist(a, b) {
-                    var x = b.x - a.x,
+                    let x = b.x - a.x,
                         y = b.y - a.y,
                         z = b.z - a.z;
 
@@ -379,7 +382,7 @@ angular.module('reg')
 
                     ++tick;
 
-                    var rotX = tick * opts.rotVelX,
+                    let rotX = tick * opts.rotVelX,
                         rotY = tick * opts.rotVelY;
 
                     cosX = Math.cos(rotX);
@@ -387,8 +390,8 @@ angular.module('reg')
                     cosY = Math.cos(rotY);
                     sinY = Math.sin(rotY);
 
-                    if (data.length < connections.length * opts.dataToConnections) {
-                        var datum = new Data(connections[0]);
+                    if (data.length < connections.length * opts.dataToConnections && data.length < 500) {
+                        let datum = new Data(connections[0]);
                         data.push(datum);
                         all.push(datum);
                     }
@@ -413,7 +416,7 @@ angular.module('reg')
                     ctx.strokeStyle = 'red';
                     ctx.arc( opts.vanishPoint.x, opts.vanishPoint.y, opts.range * opts.focalLength / opts.depth, 0, Tau );
                     ctx.stroke();*/
-                };
+                }
 
                 window.addEventListener("resize", function() {
                     opts.vanishPoint.x = (w = c.width = window.innerWidth) / 2;
@@ -422,27 +425,6 @@ angular.module('reg')
                 });
 
                 window.addEventListener("click", init_neural);
-
-                window.addEventListener(
-                    "deviceorientation",
-                    function() {
-                        // Constrain rotval range
-                        opts.rotVelY = Math.min(Math.max(-event.beta, -30), 30);
-                        opts.rotVelX = Math.min(Math.max(-event.gamma, -30), 30);
-                    },
-                    true
-                );
-
-                document.addEventListener(
-                    "mousemove",
-                    function(e) {
-                        //opts.rotVelX = e.pageY / 99000;
-                        //opts.rotVelY = e.pageX / 99000;
-                    },
-                    false
-                );
-
-
             });
 
         }]);
