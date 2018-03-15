@@ -44,24 +44,6 @@
     position: absolute;
   }
 
-  .hero-title {
-    font-size: 5em;
-    font-family: 'Montserrat', sans-serif;
-    line-height: 1.1em;
-    font-weight: 700;
-    text-align: center;
-    display: block;
-    animation: fadein .5s both;
-    animation-delay: .3s;
-    padding: 8px;
-    border: 5px solid $primary;
-    &:hover {
-      background-color: $primary;
-      color: $tertiary;
-    }
-  }
-
-
   .hero-content {
     height: 100%;
     position: relative;
