@@ -7,10 +7,11 @@ var emailTemplates = require('email-templates');
 
 var ROOT_URL = process.env.ROOT_URL;
 
-var HACKATHON_NAME = process.env.HACKATHON_NAME;
-var EMAIL_ADDRESS = process.env.EMAIL_ADDRESS;
-var TWITTER_HANDLE = process.env.TWITTER_HANDLE;
-var FACEBOOK_HANDLE = process.env.FACEBOOK_HANDLE;
+const HACKATHON_ORG = process.env.HACKATHON_ORG;
+const HACKATHON_NAME = process.env.HACKATHON_NAME;
+const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS;
+const TWITTER_HANDLE = process.env.TWITTER_HANDLE;
+const FACEBOOK_HANDLE = process.env.FACEBOOK_HANDLE;
 
 var EMAIL_HOST = process.env.EMAIL_HOST;
 var EMAIL_USER = process.env.EMAIL_USER;
@@ -25,136 +26,137 @@ var EMAIL_HEADER_IMAGE = process.env.EMAIL_HEADER_IMAGE;
 var NODE_ENV = process.env.NODE_ENV;
 
 var options = {
-  host: EMAIL_HOST,
-  port: EMAIL_PORT,
-  secure: true,
-  auth: {
-    user: EMAIL_USER,
-    pass: EMAIL_PASS
-  }
+    host: EMAIL_HOST,
+    port: EMAIL_PORT,
+    secure: true,
+    auth: {
+        user: EMAIL_USER,
+        pass: EMAIL_PASS
+    }
 };
 
-var transporter = nodemailer.createTransport(smtpTransport(options));
+let transporter = nodemailer.createTransport(smtpTransport(options));
 
-var controller = {};
+let controller = {};
 
 controller.transporter = transporter;
 
-function sendOne(templateName, options, data, callback){
+function sendOne(templateName, options, data, callback) {
 
-  if (NODE_ENV === "dev") {
-    console.log(templateName);
-    console.log(JSON.stringify(data, "", 2));
-  }
-
-  emailTemplates(templatesDir, function(err, template){
-    if (err) {
-      return callback(err);
+    if (NODE_ENV === "dev") {
+        console.log(templateName);
+        console.log(JSON.stringify(data, "", 2));
     }
 
-    data.emailHeaderImage = EMAIL_HEADER_IMAGE;
-    data.emailAddress = EMAIL_ADDRESS;
-    data.hackathonName = HACKATHON_NAME;
-    data.twitterHandle = TWITTER_HANDLE;
-    data.facebookHandle = FACEBOOK_HANDLE;
-    template(templateName, data, function(err, html, text){
-      if (err) {
-        return callback(err);
-      }
-
-      transporter.sendMail({
-        from: EMAIL_CONTACT,
-        to: options.to,
-        subject: options.subject,
-        html: html,
-        text: text
-      }, function(err, info){
-        if(callback){
-          callback(err, info);
+    emailTemplates(templatesDir, function (err, template) {
+        if (err) {
+            return callback(err);
         }
-      });
+
+        data.emailHeaderImage = EMAIL_HEADER_IMAGE;
+        data.emailAddress = EMAIL_ADDRESS;
+        data.hackathonOrg = HACKATHON_ORG;
+        data.hackathonName = HACKATHON_NAME;
+        data.twitterHandle = TWITTER_HANDLE;
+        data.facebookHandle = FACEBOOK_HANDLE;
+        template(templateName, data, function (err, html, text) {
+            if (err) {
+                return callback(err);
+            }
+
+            transporter.sendMail({
+                from: EMAIL_CONTACT,
+                to: options.to,
+                subject: options.subject,
+                html: html,
+                text: text
+            }, function (err, info) {
+                if (callback) {
+                    callback(err, info);
+                }
+            });
+        });
     });
-  });
 }
 
-controller.sendLaggerEmails = function(users, callback) {
-  for (var i = 0; i < users.length; i++) {
-    var user = users[i];
+controller.sendLaggerEmails = function (users, callback) {
+    for (var i = 0; i < users.length; i++) {
+        var user = users[i];
+        var options = {
+            to: user.email,
+            subject: "[" + HACKATHON_NAME + "] - First round applications close soon!"
+        };
+
+        var locals = {
+            name: user.name,
+            dashUrl: ROOT_URL
+        };
+
+        console.log('Sending lagger email to address ' + user.email);
+        sendOne('email-lagger', options, locals, function (err, info) {
+            if (err) {
+                console.log(err);
+            }
+            if (info) {
+                console.log(info.message);
+            }
+            if (callback) {
+                callback(err, info);
+            }
+        });
+    }
+}
+
+controller.sendAcceptEmails = function (users, callback) {
+    for (var i = 0; i < users.length; i++) {
+        var user = users[i];
+        var options = {
+            to: user.email,
+            subject: "[" + HACKATHON_NAME + "] -  You've been accepted! (For Real!)"
+        };
+
+        var locals = {
+            name: user.name,
+            dashUrl: ROOT_URL
+        };
+
+        console.log('Sending accepted email to address ' + user.email);
+        sendOne('email-accept', options, locals, function (err, info) {
+            if (err) {
+                console.log(err);
+            }
+            if (info) {
+                console.log(info.message);
+            }
+            if (callback) {
+                callback(err, info);
+            }
+        });
+    }
+}
+
+controller.sendApplicationEmail = function (user, callback) {
     var options = {
-      to: user.email,
-      subject: "["+HACKATHON_NAME+"] - First round applications close soon!"
+        to: user.email,
+        subject: "[" + HACKATHON_NAME + "] - We have received your application!"
     };
 
     var locals = {
-      name: user.name,
-      dashUrl: ROOT_URL
+        nickname: user.nickname,
+        dashUrl: ROOT_URL
     };
 
-    console.log('Sending lagger email to address ' + user.email);
-    sendOne('email-lagger', options, locals, function(err, info){
-      if (err){
-        console.log(err);
-      }
-      if (info){
-        console.log(info.message);
-      }
-      if (callback){
-        callback(err, info);
-      }
+    sendOne('email-application', options, locals, function (err, info) {
+        if (err) {
+            console.log(err);
+        }
+        if (info) {
+            console.log(info.message);
+        }
+        if (callback) {
+            callback(err, info);
+        }
     });
-  }
-}
-
-controller.sendAcceptEmails = function(users, callback) {
-  for (var i = 0; i < users.length; i++) {
-    var user = users[i];
-    var options = {
-      to: user.email,
-      subject: "["+HACKATHON_NAME+"] -  You've been accepted! (For Real!)"
-    };
-
-    var locals = {
-      name: user.name,
-      dashUrl: ROOT_URL
-    };
-
-    console.log('Sending accepted email to address ' + user.email);
-    sendOne('email-accept', options, locals, function(err, info){
-      if (err){
-        console.log(err);
-      }
-      if (info){
-        console.log(info.message);
-      }
-      if (callback){
-        callback(err, info);
-      }
-    });
-  }
-}
-
-controller.sendApplicationEmail = function(user, callback) {
-  var options = {
-    to: user.email,
-    subject: "["+HACKATHON_NAME+"] - We have received your application!"
-  };
-
-  var locals = {
-    nickname: user.nickname,
-    dashUrl: ROOT_URL
-  };
-
-  sendOne('email-application', options, locals, function(err, info){
-    if (err){
-      console.log(err);
-    }
-    if (info){
-      console.log(info.message);
-    }
-    if (callback){
-      callback(err, info);
-    }
-  });
 }
 
 /**
@@ -164,34 +166,34 @@ controller.sendApplicationEmail = function(user, callback) {
  * @param  {Function} callback [description]
  * @return {[type]}            [description]
  */
-controller.sendVerificationEmail = function(email, token, callback) {
+controller.sendVerificationEmail = function (email, token, callback) {
 
-  var options = {
-    to: email,
-    subject: "["+HACKATHON_NAME+"] - Verify your email"
-  };
+    var options = {
+        to: email,
+        subject: "[" + HACKATHON_NAME + "] - Verify your email"
+    };
 
-  var locals = {
-    verifyUrl: ROOT_URL + '/verify/' + token
-  };
+    var locals = {
+        verifyUrl: ROOT_URL + '/verify/' + token
+    };
 
-  /**
-   * Eamil-verify takes a few template values:
-   * {
+    /**
+     * Eamil-verify takes a few template values:
+     * {
    *   verifyUrl: the url that the user must visit to verify their account
    * }
-   */
-  sendOne('email-verify', options, locals, function(err, info){
-    if (err){
-      console.log(err);
-    }
-    if (info){
-      console.log(info.message);
-    }
-    if (callback){
-      callback(err, info);
-    }
-  });
+     */
+    sendOne('email-verify', options, locals, function (err, info) {
+        if (err) {
+            console.log(err);
+        }
+        if (info) {
+            console.log(info.message);
+        }
+        if (callback) {
+            callback(err, info);
+        }
+    });
 
 };
 
@@ -201,39 +203,39 @@ controller.sendVerificationEmail = function(email, token, callback) {
  * @param  {[type]}   token    [description]
  * @param  {Function} callback [description]
  */
-controller.sendPasswordResetEmail = function(email, token, callback) {
+controller.sendPasswordResetEmail = function (email, token, callback) {
 
-  var options = {
-    to: email,
-    subject: "["+HACKATHON_NAME+"] - Password reset requested!"
-  };
+    var options = {
+        to: email,
+        subject: "[" + HACKATHON_NAME + "] - Password reset requested!"
+    };
 
-  var locals = {
-    title: 'Password Reset Request',
-    subtitle: '',
-    description: 'Somebody (hopefully you!) has requested that your password be reset. If ' +
-      'this was not you, feel free to disregard this email. This link will expire in one hour.',
-    actionUrl: ROOT_URL + '/reset/' + token,
-    actionName: "Reset Password"
-  };
+    var locals = {
+        title: 'Password Reset Request',
+        subtitle: '',
+        description: 'Somebody (hopefully you!) has requested that your password be reset. If ' +
+        'this was not you, feel free to disregard this email. This link will expire in one hour.',
+        actionUrl: ROOT_URL + '/reset/' + token,
+        actionName: "Reset Password"
+    };
 
-  /**
-   * Eamil-verify takes a few template values:
-   * {
+    /**
+     * Eamil-verify takes a few template values:
+     * {
    *   verifyUrl: the url that the user must visit to verify their account
    * }
-   */
-  sendOne('email-link-action', options, locals, function(err, info){
-    if (err){
-      console.log(err);
-    }
-    if (info){
-      console.log(info.message);
-    }
-    if (callback){
-      callback(err, info);
-    }
-  });
+     */
+    sendOne('email-link-action', options, locals, function (err, info) {
+        if (err) {
+            console.log(err);
+        }
+        if (info) {
+            console.log(info.message);
+        }
+        if (callback) {
+            callback(err, info);
+        }
+    });
 
 };
 
@@ -242,35 +244,35 @@ controller.sendPasswordResetEmail = function(email, token, callback) {
  * @param  {[type]}   email    [description]
  * @param  {Function} callback [description]
  */
-controller.sendPasswordChangedEmail = function(email, callback){
+controller.sendPasswordChangedEmail = function (email, callback) {
 
-  var options = {
-    to: email,
-    subject: "["+HACKATHON_NAME+"] - Your password has been changed!"
-  };
+    var options = {
+        to: email,
+        subject: "[" + HACKATHON_NAME + "] - Your password has been changed!"
+    };
 
-  var locals = {
-    title: 'Password Updated',
-    body: 'Somebody (hopefully you!) has successfully changed your password.',
-  };
+    var locals = {
+        title: 'Password Updated',
+        body: 'Somebody (hopefully you!) has successfully changed your password.',
+    };
 
-  /**
-   * Eamil-verify takes a few template values:
-   * {
+    /**
+     * Eamil-verify takes a few template values:
+     * {
    *   verifyUrl: the url that the user must visit to verify their account
    * }
-   */
-  sendOne('email-basic', options, locals, function(err, info){
-    if (err){
-      console.log(err);
-    }
-    if (info){
-      console.log(info.message);
-    }
-    if (callback){
-      callback(err, info);
-    }
-  });
+     */
+    sendOne('email-basic', options, locals, function (err, info) {
+        if (err) {
+            console.log(err);
+        }
+        if (info) {
+            console.log(info.message);
+        }
+        if (callback) {
+            callback(err, info);
+        }
+    });
 
 };
 
