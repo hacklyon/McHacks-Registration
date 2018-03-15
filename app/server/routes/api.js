@@ -69,6 +69,8 @@ module.exports = function (router) {
                 return res.status(500).send(err);
             }
 
+            // This == is intended to be like this, otherwise the app doesn't work anymore
+            // TODO test casting
             if (user._id == userId || user.admin) {
                 return next();
             }
