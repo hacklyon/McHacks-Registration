@@ -146,6 +146,21 @@
     vertical-align: bottom;
   }
 
+  .more-content {
+    position: absolute;
+    top: 85%;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    z-index: 999;
+
+    span {
+      &:hover{
+        color: $primary;
+      }
+    }
+  }
+
   /* Info */
   #info {
     padding: 7% 0;

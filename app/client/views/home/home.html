@@ -36,6 +36,13 @@
                     </a>
                 </div>
             </div>
+
+
+        </div>
+        <div class="more-content">
+            <span class="hero-description">
+                <i class="fa fa-arrow-circle-down" style="font-size: 2em;"></i>
+            </span>
         </div>
     </section>
 
@@ -91,7 +98,7 @@
             <br>
             <div id="sponsors-list" class="ui grid" ng-repeat="spo in sponsors">
                 <a href="{{spo.href}}" class="sixteen wide phone eight wide tablet four wide computer column"
-                   target="_blank">
+                   target="_blank" ng-if="spo.show">
                     <img src="{{spo.logo}}">
                 </a>
             </div>
@@ -119,7 +126,7 @@
 
     <script>
         // Google Maps Scripts
-        var map = null;
+        let map = null;
         // When the window has finished loading create our google map below
         google.maps.event.addDomListener(window, 'load', init);
         google.maps.event.addDomListener(window, 'resize', function () {
