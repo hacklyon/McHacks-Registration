@@ -5,7 +5,7 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
-var uglify = require('gulp-uglify');
+var uglify = require('gulp-uglify-es').default;
 var ngAnnotate = require('gulp-ng-annotate');
 var livereload = require('gulp-livereload');
 
@@ -31,7 +31,7 @@ gulp.task('js', function () {
             .pipe(concat('app.js'))
             .pipe(ngAnnotate())
             .on('error', swallowError)
-            //.pipe(uglify())
+            .pipe(uglify())
             .pipe(gulp.dest('app/client/build'));
     } else {
         gulp.src(['app/client/src/**/*.js', 'app/client/views/**/*.js'])
