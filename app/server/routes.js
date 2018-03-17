@@ -3,7 +3,10 @@ var User = require('./models/User');
 module.exports = function (app) {
 
     app.get('/brochure', function (req, res) {
-        res.redirect(process.env.BROCHURE);
+        let url = process.env.BROCHURE;
+        if(req.params.download)
+            url += "&export=download";
+        res.redirect(url);
     });
 
     // Application ------------------------------------------
