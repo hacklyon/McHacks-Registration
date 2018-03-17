@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "private": "true",
   "dependencies": {
+    "angular-translate": "^2.17.0",
     "async": "^1.4.2",
     "aws-sdk": "^2.156.0",
     "bcrypt-nodejs": "0.0.3",

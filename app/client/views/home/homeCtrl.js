@@ -2,11 +2,16 @@ angular.module('reg')
     .controller('HomeCtrl', [
         '$scope',
         '$stateParams',
+        '$translate',
+        '$translatePartialLoader',
         'AuthService',
         'settings',
         'Utils',
-        function ($scope, $stateParams, AuthService, settings, Utils) {
+        function ($scope, $stateParams, $translate, $translatePartialLoader, AuthService, settings, Utils) {
             let token = $stateParams.token;
+
+            $translatePartialLoader.addPart('home');
+            $translate.refresh();
 
             $scope.loading = true;
             // Is registration open?
@@ -24,41 +29,44 @@ angular.module('reg')
 
             $scope.faqs = [
                 {
-                    q: "What is Alpha?",
-                    a: "Alpha is a student run hackathon held at The Web Tour, Lyon."
+                    q: "FAQ_Q_WHAT_HL",
+                    a: "FAQ_A_WHAT_HL"
                 }, {
-                    q: "Will there be any travel reimbursements?",
-                    a: "We are unable to provide this information at the moment."
+                    q: "FAQ_Q_NASA",
+                    a: "FAQ_A_NASA"
                 }, {
-                    q: "What is a hackathon?",
-                    a: "A hackathon is an event in which computer programmers and others in the field of software development, like graphic designers, interface designers and project managers collaborate intensively on software-related projects."
+                    q: "FAQ_Q_WHAT",
+                    a: "FAQ_A_WHAT"
                 }, {
-                    q: "Code of Conduct?",
-                    a: "It will be available soon."
+                    q: "FAQ_Q_CODE_CONDUCT",
+                    a: "FAQ_A_CODE_CONDUCT"
                 }, {
-                    q: "Who can apply?",
-                    a: "If you are a student and over 18 you are welcome to Alpha! If you graduated less than a year ago, you are very welcome to!"
+                    q: "FAQ_Q_WHO",
+                    a: "FAQ_A_WHO"
                 }, {
-                    q: "What about sleep?",
-                    a: "Classrooms will be available to get a nap. Don't forget to bring a sleeping bag and a pillow."
+                    q: "FAQ_Q_SLEEP",
+                    a: "FAQ_A_SLEEP"
                 }, {
-                    q: "How much does it cost to attend?",
-                    a: "Zero. Cero. Zéro. Null."
+                    q: "FAQ_Q_HOW_MUCH",
+                    a: "FAQ_A_HOW_MUCH"
                 }, {
-                    q: "What do I need to bring?",
-                    a: "We put food, power and wifi. You just need to bring a laptop and a charger."
+                    q: "FAQ_Q_WHAT_BRING",
+                    a: "FAQ_A_WHAT_BRING"
                 }, {
-                    q: "What is the maximum size of a team?",
-                    a: "Teams can be up to 5 students. If you don't have a team, we will help you to find one at the beginning of the event."
+                    q: "FAQ_Q_MAXSIZE_TEAM",
+                    a: "FAQ_A_MAXSIZE_TEAM"
                 }, {
-                    q: "Who owns the intellectual property of hacks?",
-                    a: "All the hacks belong to hackers."
+                    q: "FAQ_Q_WHO_COPYRIGHT",
+                    a: "FAQ_A_WHO_COPYRIGHT"
                 }, {
-                    q: "How can I form my team?",
-                    a: "Teams can be pre-made or done at the beginning of the event. We will help you find one if need be."
+                    q: "FAQ_Q_HOW_TEAM",
+                    a: "FAQ_Q_HOW_TEAM"
                 }, {
-                    q: "What about the schedule?",
-                    a: "We will make it available closer to the event."
+                    q: "FAQ_Q_SCHEDULE",
+                    a: "FAQ_A_SCHEDULE"
+                }, {
+                    q: "FAQ_Q_TRAVEL_REIMBURSEMENTS",
+                    a: "FAQ_A_TRAVEL_REIMBURSEMENTS"
                 }
             ];
 

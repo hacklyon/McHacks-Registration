@@ -1,26 +1,27 @@
 var app = angular.module('reg', [
-  'ui.router',
+    'ui.router',
+    'pascalprecht.translate'
 ]);
 
 app
-  .config([
-    '$httpProvider',
-    function($httpProvider){
+    .config([
+        '$httpProvider',
+        function ($httpProvider) {
 
-      // Add auth token to Authorization header
-      $httpProvider.interceptors.push('AuthInterceptor');
+            // Add auth token to Authorization header
+            $httpProvider.interceptors.push('AuthInterceptor');
 
-    }])
-  .run([
-    'AuthService',
-    'Session',
-    function(AuthService, Session){
+        }])
+    .run([
+        'AuthService',
+        'Session',
+        function (AuthService, Session) {
 
-      // Startup, login if there's  a token.
-      var token = Session.getToken();
-      if (token){
-        AuthService.loginWithToken(token);
-      }
+            // Startup, login if there's  a token.
+            var token = Session.getToken();
+            if (token) {
+                AuthService.loginWithToken(token);
+            }
 
-  }]);
+        }]);
 

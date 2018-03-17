@@ -13,8 +13,8 @@
                 </div>
                 <span class="hero-title">Alpha</span>
                 <div class="hero-description-container">
-                    <span class="hero-description ui grid computer only tablet only no-margin-right">APRIL 27 – 28,&nbsp;</span>
-                    <span class="hero-description ui grid mobile only">APRIL 27 – 28&nbsp;</span>
+                    <span class="hero-description ui grid computer only tablet only no-margin-right">{{ "HOME_DATES" | translate }},&nbsp;</span>
+                    <span class="hero-description ui grid mobile only">{{ "HOME_DATES" | translate }}&nbsp;</span>
                     <span class="hero-description">LYON</span>
                 </div>
                 <div class="hero-button-container">
@@ -28,11 +28,11 @@
                     </a> -->
                     <a ui-sref="app.login" class="btn" ng-if="regIsOpen">
                         <i class="fa fa-rocket" aria-hidden="true"></i>
-                        APPLY
+                        {{ "HOME_APPLY_BTN" | translate }}
                     </a>
                     <a class="btn btn--coming-soon" ng-if="!regIsOpen">
                         <i class="fa fa-rocket" aria-hidden="true"></i>
-                        REGISTRATION CLOSED {{ regIsOpen }}
+                        {{ "HOME_REG_CLOSED" | translate }} {{ regIsOpen }}
                     </a>
                 </div>
             </div>
@@ -53,10 +53,10 @@
 			</span>
             <span class="headline">&nbsp;</span>
             <span class="headline">
-				<span class="bold">34</span> Hours.
+				<span class="bold">34</span> {{ "HOME_HOURS" | translate }}.
 			</span>
             <span class="headline">&nbsp;</span>
-            <span class="headline">WEB × <span title="Artificial Intelligence">AI</span>.</span>
+            <span class="headline">{{ "HOME_THEME" | translate }}</span>
         </div>
     </section>
 
@@ -68,21 +68,15 @@
             <div class="faq-list ui stackable two column grid">
                 <div class="column">
                     <div class="faq-card" ng-repeat="f in faqs" ng-if="$even">
-                        <div class="faq-card-title">
-                            {{f.q}}
-                        </div>
-                        <div class="faq-card-description">
-                            {{f.a}}
-                        </div>
+                        <div class="faq-card-title" translate="{{ f.q }}"></div>
+                        <div class="faq-card-description" translate="{{ f.a }}"></div>
                     </div>
                 </div>
                 <div class="column">
                     <div class="faq-card" ng-repeat="f in faqs" ng-if="$odd">
-                        <div class="faq-card-title">
-                            {{f.q}}
+                        <div class="faq-card-title" translate="{{ f.q }}">
                         </div>
-                        <div class="faq-card-description">
-                            {{f.a}}
+                        <div class="faq-card-description" translate="{{ f.a }}">
                         </div>
                     </div>
                 </div>
@@ -92,8 +86,7 @@
 
     <section id="sponsors" class="center">
         <div id="sponsors-content">
-            <div class="title">
-                Sponsors & Partners
+            <div class="title" translate="SPONSORS_TITLE">
             </div>
             <br>
             <div id="sponsors-list" class="ui grid" ng-repeat="spo in sponsors">
@@ -104,11 +97,11 @@
             </div>
             <br>
             <div id="callforsponsors" class="center" style="padding-top: 76px">
-                <span class="headline">
-                    Do you want to see <span class="bold">your logo here</span>?&nbsp;
+                <span class="headline" translate="SPONSORS_LOGO">&nbsp;
                 </span>
-                <span class="headline">
-                    Contact us by <a href="mailto:partnerships@hacklyon.com?subject=Partnership%20HackLyon">email</a>.
+                <span>&nbsp;</span>
+                <span class="headline" translate="SPONSORS_MAIL">
+
                 </span>
             </div>
         </div>

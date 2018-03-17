@@ -3,12 +3,14 @@ angular.module('reg')
         '$rootScope',
         '$scope',
         '$state',
+        '$translate',
+        '$translatePartialLoader',
         'settings',
         'Utils',
         'AuthService',
         'Session',
         'EVENT_INFO',
-        function ($rootScope, $scope, $state, settings, Utils, AuthService, Session, EVENT_INFO) {
+        function ($rootScope, $scope, $state, $translate, $translatePartialLoader, settings, Utils, AuthService, Session, EVENT_INFO) {
             let transparentNavbarViews = ['app.home', 'app.login', 'app.sponsor', 'app.mentor', 'app.recruit', 'app.logistics', 'app.corporate', 'app.marketing', 'app.technology'];
             let liveViews = ['app.live', 'app.schedule', 'app.expo'];
 
