@@ -60,7 +60,7 @@ angular.module('reg')
                     a: "FAQ_A_WHO_COPYRIGHT"
                 }, {
                     q: "FAQ_Q_HOW_TEAM",
-                    a: "FAQ_Q_HOW_TEAM"
+                    a: "FAQ_A_HOW_TEAM"
                 }, {
                     q: "FAQ_Q_SCHEDULE",
                     a: "FAQ_A_SCHEDULE"
