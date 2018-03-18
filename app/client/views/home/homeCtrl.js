@@ -20,15 +20,21 @@ angular.module('reg')
 
             $scope.sponsors = [
                 {
+                    name: "Webcome Lyon ",
+                    href: "https://webcomelyon.fr/",
+                    logo: "/assets/images/logos/webcome.png",
+                    show: true
+                },
+                {
                     name: "Epitech",
-                    logo: "/assets/images/sponsors/epitech.png",
+                    logo: "/assets/images/logos/epitech.png",
                     href: "http://lyon.epitech.eu/",
                     show: false
                 },
                 {
                     name: "ETIC INSA Technologies",
                     href: "http://www.etic-insa.com/",
-                    logo: "/assets/images/sponsors/etic.png",
+                    logo: "/assets/images/logos/etic.png",
                     show: true
                 }
             ];

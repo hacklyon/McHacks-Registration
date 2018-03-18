@@ -89,8 +89,8 @@
             <div class="title" translate="SPONSORS_TITLE">
             </div>
             <br>
-            <div id="sponsors-list" class="ui grid" ng-repeat="spo in sponsors">
-                <a href="{{spo.href}}" class="sixteen wide phone eight wide tablet four wide computer column"
+            <div id="sponsors-list" class="ui grid" >
+                <a ng-repeat="spo in sponsors" href="{{spo.href}}" class="sixteen wide phone eight wide tablet four wide computer column"
                    target="_blank" ng-if="spo.show">
                     <img src="{{spo.logo}}">
                 </a>
