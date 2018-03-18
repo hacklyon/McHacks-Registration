@@ -35,7 +35,7 @@ angular.module('reg')
                     name: "ETIC INSA Technologies",
                     href: "http://www.etic-insa.com/",
                     logo: "/assets/images/logos/etic.png",
-                    show: true
+                    show: false
                 }
             ];
 
