@@ -21,7 +21,7 @@ angular.module('reg')
             $scope.sponsors = [
                 {
                     name: "Webcome Lyon ",
-                    href: "https://webcomelyon.fr/",
+                    href: "https://webcomelyon.fr/alpha-34h-pour-hacker-les-transports/",
                     logo: "/assets/images/logos/webcome.png",
                     show: true
                 },
@@ -100,6 +100,73 @@ angular.module('reg')
                         scrollTop: $("#info").offset().top
                     }, 700);
                 });
+
+                let element = $('.chatbot');
+                let myStorage = localStorage;
+
+                if (!myStorage.getItem('chatID')) {
+                    myStorage.setItem('chatID', createUUID());
+                }
+
+                setTimeout(function() {
+                    element.addClass('enter');
+                }, 1000);
+
+                element.click(openElement);
+
+
+
+                function openElement() {
+                    var messages = element.find('.messages');
+                    var textInput = element.find('.text-box');
+                    $('.chatbot-logo').hide();
+                    element.find('>i').hide();
+                    element.addClass('expand');
+                    element.find('.chat').addClass('enter');
+                    var strLength = textInput.val().length * 2;
+                    textInput.keydown(onMetaAndEnter).prop("disabled", false);
+                    element.off('click', openElement);
+                    element.find('.header button').click(closeElement);
+                    element.find('#sendMessage').click(sendNewMessage);
+                    messages.scrollTop(messages.prop("scrollHeight"));
+                }
+                function closeElement() {
+                    element.find('.chat').removeClass('enter').hide();
+                    element.find('>i').show();
+                    element.removeClass('expand');
+                    element.find('.header button').off('click', closeElement);
+                    element.find('#sendMessage').off('click', sendNewMessage);
+                    element.find('.text-box').off('keydown', onMetaAndEnter).prop("disabled", true).blur();
+                    $('.chatbot-logo').show();
+                    setTimeout(function() {
+                        element.find('.chat').removeClass('enter').show()
+                        element.click(openElement);
+                    }, 500);
+                }
+                sendNewMessage = function sendNewMessage() {
+                    var userInput = $('.text-box');
+                    var newMessage = userInput.html().replace(/\<div\>|\<br.*?\>/ig, '\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g, '<br>');
+
+                    if (!newMessage) return;
+
+                    var messagesContainer = $('.messages');
+
+                    messagesContainer.append([
+                        '<li class="self">',
+                        newMessage,
+                        '</li>'
+                    ].join(''));
+
+                    // clean out old message
+                    userInput.html('');
+                    // focus on input
+                    userInput.focus();
+
+                    messagesContainer.finish().animate({
+                        scrollTop: messagesContainer.prop("scrollHeight")
+                    }, 250);
+                }
+
 
                 // map
                 init();

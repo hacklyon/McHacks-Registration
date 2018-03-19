@@ -40,6 +40,36 @@
     height: 100%;
   }
 
+  /* Chatbot */
+  .chatbot {
+    position: fixed;
+    z-index: 50;
+    right: 15px;
+    bottom: 15px;
+    .chatbot-btn {
+      z-index: 8000;
+      cursor: pointer !important;
+      width: 60px;
+      -webkit-transition: width 0.2s ease-in-out;
+      -moz-transition: width 0.2s ease-in-out;
+      -o-transition: width 0.2s ease-in-out;
+      transition: width 0.2s ease-in-out;
+      &:hover {
+        cursor: pointer !important;
+        width: 70px;
+      }
+    }
+    .chatbot-text {
+      width: 400px;
+      height: 600px;
+      background-color: #0ea432;
+      position: absolute;
+      right: 70px;
+      bottom: 0px;
+      display: none;
+    }
+  }
+
   /* Hero */
   #hero {
     background-size: cover;
@@ -152,7 +182,7 @@
     color: #fff;
     width: 100%;
     text-align: center;
-    z-index: 999;
+    z-index: 45;
 
     span {
       &:hover{
@@ -286,7 +316,7 @@
       position: relative;
       right: 0;
       top: 220px;
-      z-index: 50;
+      z-index: 40;
       width: 50%;
       float: right;
       a {
