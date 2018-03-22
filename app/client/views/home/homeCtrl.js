@@ -20,15 +20,21 @@ angular.module('reg')
 
             $scope.sponsors = [
                 {
-                    name: "Webcome Lyon ",
+                    name: "Webcome Lyon",
                     href: "https://webcomelyon.fr/alpha-34h-pour-hacker-les-transports/",
                     logo: "/assets/images/logos/webcome.png",
                     show: true
                 },
                 {
-                    name: "Epitech",
+                    name: "Epitech Lyon",
                     logo: "/assets/images/logos/epitech.png",
                     href: "http://lyon.epitech.eu/",
+                    show: true
+                },
+                {
+                    name: "Major League Hacking",
+                    href: "https://mlh.io/",
+                    logo: "/assets/images/logos/mlh.png",
                     show: true
                 },
                 {
