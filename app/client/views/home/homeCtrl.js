@@ -29,7 +29,7 @@ angular.module('reg')
                     name: "Epitech",
                     logo: "/assets/images/logos/epitech.png",
                     href: "http://lyon.epitech.eu/",
-                    show: false
+                    show: true
                 },
                 {
                     name: "ETIC INSA Technologies",
