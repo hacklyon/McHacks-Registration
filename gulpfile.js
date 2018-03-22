@@ -31,7 +31,7 @@ gulp.task('js', function () {
             .pipe(concat('app.js'))
             .pipe(ngAnnotate())
             .on('error', swallowError)
-            .pipe(uglify())
+            //.pipe(uglify())
             .pipe(gulp.dest('app/client/build'));
     } else {
         gulp.src(['app/client/src/**/*.js', 'app/client/views/**/*.js'])
