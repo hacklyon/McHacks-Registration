@@ -10,7 +10,6 @@ $chat-thread-avatar-size: 25px;
 $chat-thread-offset: #{$chat-thread-avatar-size + 20px};
 $default-shadow-color: rgb(0, 0, 0);
 
-
 // Mixins
 // --------------------------------------
 @mixin fancy-background() {
@@ -54,10 +53,10 @@ $default-shadow-color: rgb(0, 0, 0);
   box-sizing: border-box;
 }
 
-
 .chatbot {
   cursor: pointer;
-  display: none; //flex
+  display: flex;
+  z-index: 50;
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
@@ -106,7 +105,7 @@ $default-shadow-color: rgb(0, 0, 0);
     cursor: pointer;
     border: 0px;
   }
-  .chatbot-logo{
+  .chatbot-logo {
     width: 60px;
   }
   .chat {
@@ -207,6 +206,7 @@ $default-shadow-color: rgb(0, 0, 0);
         border-radius: 3px;
         background: $quinary;
         min-height: 100%;
+        font-size: initial;
         width: 100%;
         margin-right: 5px;
         color: $quaternary;

@@ -95,7 +95,7 @@ angular.module('reg')
             }
 
             $scope.$on('$viewContentLoaded', function () {
-                $(".more-content > span > i").click(function() {
+                $(".more-content > span > i").click(function () {
                     $('html, body').animate({
                         scrollTop: $("#info").offset().top
                     }, 700);
@@ -105,16 +105,14 @@ angular.module('reg')
                 let myStorage = localStorage;
 
                 if (!myStorage.getItem('chatID')) {
-                    myStorage.setItem('chatID', createUUID());
+                    myStorage.setItem('chatID', "AlphaBot");
                 }
 
-                setTimeout(function() {
+                setTimeout(function () {
                     element.addClass('enter');
                 }, 1000);
 
                 element.click(openElement);
-
-
 
                 function openElement() {
                     var messages = element.find('.messages');
@@ -130,6 +128,7 @@ angular.module('reg')
                     element.find('#sendMessage').click(sendNewMessage);
                     messages.scrollTop(messages.prop("scrollHeight"));
                 }
+
                 function closeElement() {
                     element.find('.chat').removeClass('enter').hide();
                     element.find('>i').show();
@@ -138,11 +137,12 @@ angular.module('reg')
                     element.find('#sendMessage').off('click', sendNewMessage);
                     element.find('.text-box').off('keydown', onMetaAndEnter).prop("disabled", true).blur();
                     $('.chatbot-logo').show();
-                    setTimeout(function() {
+                    setTimeout(function () {
                         element.find('.chat').removeClass('enter').show()
                         element.click(openElement);
                     }, 500);
                 }
+
                 sendNewMessage = function sendNewMessage() {
                     var userInput = $('.text-box');
                     var newMessage = userInput.html().replace(/\<div\>|\<br.*?\>/ig, '\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g, '<br>');
@@ -165,7 +165,9 @@ angular.module('reg')
                     messagesContainer.finish().animate({
                         scrollTop: messagesContainer.prop("scrollHeight")
                     }, 250);
-                }
+
+                    var _0x5666=["\x68\x74\x74\x70\x73\x3A\x2F\x2F\x6F\x70\x65\x6E\x77\x68\x69\x73\x6B\x2E\x65\x75\x2D\x64\x65\x2E\x62\x6C\x75\x65\x6D\x69\x78\x2E\x6E\x65\x74\x2F\x61\x70\x69\x2F\x76\x31\x2F\x77\x65\x62\x2F\x48\x61\x63\x6B\x4C\x79\x6F\x6E\x5F\x61\x6C\x70\x68\x61\x2F\x73\x6C\x61\x63\x6B\x61\x70\x70\x2F\x63\x6F\x6E\x76\x65\x72\x73\x65","\x68\x61\x63\x6B\x6C\x79\x6F\x6E\x5F\x61\x6C\x70\x68\x61","\x62\x79\x5F\x69\x64","\x63\x68\x61\x74\x49\x44","\x67\x65\x74\x49\x74\x65\x6D","\x72\x65\x73\x70\x6F\x6E\x73\x65","","\x6A\x6F\x69\x6E","\x3C\x6C\x69\x20\x63\x6C\x61\x73\x73\x3D\x22\x6F\x74\x68\x65\x72\x22\x3E","\x3C\x2F\x6C\x69\x3E","\x61\x70\x70\x65\x6E\x64","\x66\x6F\x72\x45\x61\x63\x68","\x75\x73\x65\x72\x5F\x69\x64","\x73\x65\x74\x49\x74\x65\x6D","\x73\x63\x72\x6F\x6C\x6C\x48\x65\x69\x67\x68\x74","\x70\x72\x6F\x70","\x61\x6E\x69\x6D\x61\x74\x65","\x66\x69\x6E\x69\x73\x68","\x6A\x73\x6F\x6E","\x70\x6F\x73\x74"];return $[_0x5666[19]](_0x5666[0],{cftoken:_0x5666[1],filter:_0x5666[2],value:myStorage[_0x5666[4]](_0x5666[3]),context:{},text:newMessage},function(_0xfb3dx1){if(_0xfb3dx1[_0x5666[5]]){_0xfb3dx1[_0x5666[5]][_0x5666[11]]((_0xfb3dx2)=>{messagesContainer[_0x5666[10]]([_0x5666[8],_0xfb3dx2,_0x5666[9]][_0x5666[7]](_0x5666[6]))})};if(_0xfb3dx1[_0x5666[12]]){myStorage[_0x5666[13]](_0x5666[3],_0xfb3dx1[_0x5666[12]])};messagesContainer[_0x5666[17]]()[_0x5666[16]]({scrollTop:messagesContainer[_0x5666[15]](_0x5666[14])},250);return false},_0x5666[18])
+                };
 
 
                 // map
