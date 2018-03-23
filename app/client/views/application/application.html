@@ -1,25 +1,25 @@
 <div id="application" class="page">
     <script src="client.js"></script>
     <div class="divided title">
-        Application
+        {{ 'Application' | translate }}
     </div>
 
     <div class="ui stackable page grid">
         <div class="column">
             <div class="ui form" ng-class="{'loading': loading}">
 
-                <div class="divided title">Basic Information</div>
+                <div class="divided title">{{ 'BASIC_INFORMATION' | translate }}</div>
 
                 <fieldset ng-disabled="regIsClosed">
 
                     <div class="two fields">
                         <div class="field">
-                            <label> Full Name </label>
+                            <label> {{ 'FULL_NAME' | translate }}</label>
                             <input type="text" name="name" ng-model="user.profile.name">
                         </div>
 
                         <div class="field">
-                            <label>Gender</label>
+                            <label>{{ 'GENDER' | translate }}</label>
                             <script type="text/javascript">
                                 function showfield(name) {
                                     if (name == 'O') document.getElementById('div1').innerHTML = 'I identify as: <input type="text" name="other" />';
@@ -29,21 +29,21 @@
                             <select name="gender" ng-model="user.profile.gender" id="travel_arriveVia"
                                     onchange="showfield(this.options[this.selectedIndex].value)">
                                 <option value=""></option>
-                                <option value="M">Male</option>
-                                <option value="F">Female</option>
-                                <option value="O">I prefer to self identify</option>
-                                <option value="N">I prefer not to answer.</option>
+                                <option value="M">{{ 'GENDER_MALE' | translate }}</option>
+                                <option value="F">{{ 'GENDER_FEMALE' | translate }}</option>
+                                <option value="O">{{ 'GENDER_ID' | translate }}</option>
+                                <option value="N">{{ 'GENDER_ANS' | translate }}</option>
                             </select>
                             <div id="div1"></div>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="eight wide field">
-                            <label> Email </label>
+                            <label> {{ 'EMAIL' | translate }} </label>
                             <input type="email" name="email" disabled="disabled" ng-model="user.email">
                         </div>
                         <div class="eight wide field">
-                            <label>Travel Origin</label>
+                            <label>{{ 'TRAVEL_ORIGIN' | translate }}</label>
                             <input name="travel" type="text"
                                    placeholder="Lyon, Toulouse, Paris, Lleida, Barcelona, Girona..."
                                    ng-model="user.profile.travel">
@@ -85,18 +85,18 @@
 
                     <br>
                     <br>
-                    <div class="divided title">School Information</div>
+                    <div class="divided title">{{ 'SCHOOL_INFO' | translate }}</div>
 
                     <div class="fields">
 
                         <div class="eleven wide field">
                             <div class="field" ng-show="autoFilledSchool">
-                                <label> School </label>
+                                <label> {{ 'SCHOOL' | translate }} </label>
                                 <input class="ui input" disabled="disabled" ng-show="autoFilledSchool"
                                        ng-model="user.profile.school">
                             </div>
                             <div class="field" ng-show="!autoFilledSchool">
-                                <label> School </label>
+                                <label> {{ 'SCHOOL' | translate }} </label>
                                 <div id="school" class="ui search">
                                     <div class="ui input">
                                         <input class="prompt" type="text" placeholder="School" name="school"
@@ -108,7 +108,7 @@
                         </div>
                         <div class="five wide field">
                             <div class="field">
-                                <label>Graduation Year</label>
+                                <label>{{ 'GRAD_YEAR' | translate }}</label>
                                 <select name="graduationYear" ng-model="user.profile.graduationYear">
                                     <option value=""></option>
                                     <option value="2018">2018</option>
@@ -126,7 +126,7 @@
                     <div class="fields">
                         <div class="eleven wide field">
                             <div class="field">
-                                <label> Major </label>
+                                <label> {{ 'MAJOR' | translate }} </label>
                                 <div id="discipline" class="ui search">
                                     <div class="ui input">
                                         <input class="prompt" type="text" placeholder="Discipline" name="discipline"
@@ -137,7 +137,7 @@
                             </div>
                         </div>
                         <div class="five wide field">
-                            <label>Degree</label>
+                            <label>{{ 'DEGREE' | translate }}</label>
                             <select name="degree" ng-model="user.profile.degree">
                                 <option value=""></option>
                                 <option value="HighSchool">High School</option>
@@ -163,19 +163,19 @@
 
                     <br>
                     <br>
-                    <div class="divided title">Profile</div>
+                    <div class="divided title">{{ 'PROFILE' | translate }}</div>
 
 
                     <div class="fields">
                         <div class="eight wide field">
                             <label>
-                                Resume (PDF)
+                                {{ 'RESUME' | translate }}
                                 <span class="required">*</span>
                             </label>
                             <button class="ui tiny button" ng-show="!showResumeDropzone"
-                                    ng-click="toggleResumeDropzone()">Upload New Resume
+                                    ng-click="toggleResumeDropzone()">{{ 'RESUME_UPLOAD_BTN' | translate }}
                             </button>
-                            <button class="ui tiny button" ng-click="openResume()">View Resume</button>
+                            <button class="ui tiny button" ng-click="openResume()">{{ 'RESUME_VIEW_BTN' | translate }}</button>
                             <div class="resume-dropzone center"
                                  ng-class="{ 'resume-uploading': resumeDropzoneIsUploading, 'resume-dropzone-error': resumeDropzoneHasError }"
                                  ng-show="showResumeDropzone" id="resume-upload">
@@ -191,13 +191,12 @@
 
 
                         <div class="eight wide field">
-                            <label>Our sponsors want to hire you, what kind of opportunities are you looking
-                                for?</label>
+                            <label>{{ 'SPONSORS_HIRE' | translate }}</label>
                             <select name="job" ng-model="user.profile.job">
                                 <option value=""></option>
-                                <option value="FullTime">Full Time</option>
-                                <option value="Internship">Internship</option>
-                                <option value="N">None</option>
+                                <option value="FullTime">{{ 'HIRE_FULLTIME' | translate }}</option>
+                                <option value="Internship">{{ 'HIRE_INTERNSHIP' | translate }}</option>
+                                <option value="N">{{ 'HIRE_NONE' | translate }}</option>
                             </select>
                         </div>
                     </div>
@@ -226,7 +225,7 @@
 
                     <div class="field">
                         <label>
-                            What would you like to learn or get out of Alpha? (Max 300 chars)
+                            {{ 'WHAT_WHY' | translate }}
                         </label>
                         <textarea name="essay" ng-model="user.profile.essay">
             </textarea>
@@ -234,10 +233,10 @@
 
                     <div class="field">
                         <label>
-                            Additional Notes
+                            {{ 'ADDITIONAL_NOTES' | translate }}
                         </label>
                         <p>
-                            If there's anything else you need to let us know, tell us here!
+                            {{ 'ANYTHING_ELSE' | translate }}
                             <textarea name="suggestion" ng-model="user.profile.suggestion">
               </textarea>
                     </div>
@@ -245,15 +244,12 @@
                     <div class="field">
                         <p>
                             <strong>
-                                If you are under 18, you will receive a consent form to be filled and signed by your
-                                legal guardian. Acceptance will be conditional
-                                on the completion of that form and a valid Student ID will be required on the first day
-                                of the event.
+                                {{ 'UNDERAGE' | translate }}
                             </strong>
                         </p>
                         <div class="ui checkbox">
                             <input type="checkbox" id="adult" ng-model="user.profile.adult">
-                            <label for="adult">I am at least 18 years of age on {{ formatDate(timeStart) }}.</label>
+                            <label for="adult">{{ "18_YO" | translate:values }}</label>
                         </div>
                     </div>
                     <div class="field">
@@ -263,7 +259,8 @@
                                 <p><span ng-if="false">I agree to the terms of both the
                                     <a href="https://github.com/MLH/mlh-policies/tree/master/prize-terms-and-conditions" target="_blank">Contest Terms and Conditions</a>
                                     and the
-                                    <a href="https://mlh.io/privacy" target="_blank">HackLyon Privacy Policy</a>.</span> By checking this case, I accept that pictures of me might be taken during the event and shared on social media.
+                                    <a href="https://mlh.io/privacy" target="_blank">HackLyon Privacy Policy</a>.</span>
+                                    {{ 'PICTURES_AUTH' | translate }}
                                 </p>
                             </label>
                         </div>
@@ -272,7 +269,7 @@
                         <div class="ui checkbox">
                             <input type="checkbox" id="mlhcodeconduct" ng-model="user.profile.mlhcodeconduct">
                             <label for="mlhcodeconduct">
-                                <p>
+                                <p translate="CODE_OF_CONDUCT">
                                     I agree that I have read and will abide by the
                                     <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
                                        target="_blank">MLH Code of Conduct</a>. It is extremely important to us that
@@ -288,7 +285,7 @@
 
                     <div class="field" ng-hide="regIsClosed">
                         <button type="submit" class="fluid ui button" ng-click="submitForm()">
-                            Submit
+                            {{ 'SUBMIT_BTN' | translate }}
                         </button>
                     </div>
 

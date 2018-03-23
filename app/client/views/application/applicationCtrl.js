@@ -8,9 +8,11 @@ angular.module('reg')
         'currentUser',
         'settings',
         'Session',
+        '$translate',
+        '$translatePartialLoader',
         'Utils',
         'UserService',
-        function ($scope, $rootScope, $state, $http, $window, currentUser, Settings, Session, Utils, UserService) {
+        function ($scope, $rootScope, $state, $http, $window, currentUser, Settings, Session, $translate, $translatePartialLoader, Utils, UserService) {
 
             // Set up the user
             $scope.user = currentUser.data;
@@ -23,11 +25,18 @@ angular.module('reg')
 
                 date = new Date(time);
                 // Hack for timezone
-                return moment(date).format('MMMM Do YYYY') + "";
+                //moment.locale('fr');
+                return moment(date).format('LL') + "";
 
             };
 
             $scope.submitButtonDisabled = true;
+
+            $scope.values = {
+                date: $scope.formatDate(Settings.data.timeStart)
+            };
+            $translatePartialLoader.addPart('application');
+            $translate.refresh();
 
             var dropzoneConfig = {
                 url: '/api/resume/upload',

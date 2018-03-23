@@ -4,4 +4,5 @@ app.config(['$translateProvider', function ($translateProvider) {
     });
 
     $translateProvider.preferredLanguage('fr');
+    moment.locale('fr');
 }]);
