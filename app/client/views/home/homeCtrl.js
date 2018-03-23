@@ -26,21 +26,21 @@ angular.module('reg')
                     show: true
                 },
                 {
-                    name: "Epitech Lyon",
-                    logo: "/assets/images/logos/epitech.png",
-                    href: "http://lyon.epitech.eu/",
-                    show: true
-                },
-                {
                     name: "IBM",
                     logo: "/assets/images/logos/ibmpos_blurgb.jpg",
                     href: "https://ibm.com/",
-                    show: false
+                    show: true
                 },
                 {
                     name: "Major League Hacking",
                     href: "https://mlh.io/",
                     logo: "/assets/images/logos/mlh.png",
+                    show: true
+                },
+                {
+                    name: "Epitech Lyon",
+                    logo: "/assets/images/logos/epitech.png",
+                    href: "http://lyon.epitech.eu/",
                     show: true
                 },
                 {

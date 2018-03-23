@@ -248,8 +248,9 @@
   }
 
   #sponsors-list {
+    margin-top: 1%;
     > a {
-      height: 60px;
+      //height: 60px;
       padding-right: 10px;
       padding-left: 10px;
       margin-top: 1%;
@@ -263,7 +264,7 @@
 
       > img {
         width: 100%;
-        padding: 0 7%;
+        padding: 0 10%;
       }
     }
   }
