@@ -7,7 +7,7 @@
     <div class="column">
       <div class="ui status segment">
         <div class="small title">
-          Your status:
+          {{ 'YOUR_STATUS' | translate }}
         </div>
         <br>
 
@@ -28,7 +28,7 @@
         <div
           ng-if="showWaitlist"
           class="waitlist state">
-          On waitlist
+          {{ 'ON_WAITLIST' | translate }}
         </div>
 
         <div class="ui divider"></div>
@@ -36,7 +36,7 @@
         <div ng-if="user.profile.name.length > 0">
           <p>
             <strong>
-              Welcome back, {{user.profile.name}}!
+              {{ 'WELCOME_BACK' | translate:user }}
             </strong>
           </p>
           <p>
@@ -48,14 +48,14 @@
           class="description">
           <p>
             <strong>
-            Your email address ({{user.email}}) is not yet verified.
+            {{ 'EMAIL_TO_VERIFY' | translate:user }}
             </strong>
           </p>
           <p>
-            {{ DASHBOARD.UNVERIFIED }}
+            {{ 'UNVERIFIED' | translate }}
           </p>
           <div class="ui teal button" ng-click="resendEmail()">
-            Resend verification email
+            {{ "RESEND" | translate }}
           </div>
         </div>
 
@@ -63,7 +63,7 @@
           ng-class="settings.timeClose"
           ng-if="!dashState('admittedAndCanConfirm') || !dashState('admittedAndCannotConfirm') || !dashState('confirmed') || !dashState('declined')">
           <strong>
-            Registration Deadline:
+            {{ 'REGISTRATION_DEADLINE' | translate }}:
           </strong>
           {{ timeClose }}
           <br>
@@ -86,11 +86,11 @@
           class="description">
           <p>
             <strong>
-                {{ DASHBOARD.INCOMPLETE_TITLE }}
+                {{ 'INCOMPLETE_TITLE' | translate }}
             </strong>
           </p>
           <p>
-            {{ DASHBOARD.INCOMPLETE }}
+            {{ 'INCOMPLETE' | translate:values }}
           </p>
 
           <div class="ui button"
@@ -105,15 +105,15 @@
           class="description">
           <p>
             <strong>
-                {{ DASHBOARD.SUBMITTED_TITLE }}
+                {{ 'SUBMITTED_TITLE' | translate }}
             </strong>
           </p>
           <p>
-            {{ DASHBOARD.SUBMITTED }}
+            {{ 'SUBMITTED' | translate }}
           </p>
           <div class="ui button"
                ui-sref="app.application">
-            Edit your application
+            {{ 'EDIT_APPLICATION' | translate }}
           </div>
 
           <div

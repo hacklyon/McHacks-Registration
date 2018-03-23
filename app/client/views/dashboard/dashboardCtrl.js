@@ -19,6 +19,11 @@ angular.module('reg')
             $scope.timeClose = Utils.formatTime(Settings.timeClose);
             $scope.timeConfirm = Utils.formatTime(Settings.timeConfirm);
 
+            $scope.values = {
+                APP_DEADLINE: $scope.timeClose,
+                CONFIRM_DEADLINE: Utils.formatTime(user.status.confirmBy)
+            };
+
             $translatePartialLoader.addPart('dashboard');
             $translate.refresh();
 
