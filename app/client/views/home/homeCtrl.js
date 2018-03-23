@@ -27,7 +27,7 @@ angular.module('reg')
                 },
                 {
                     name: "IBM",
-                    logo: "/assets/images/logos/ibmpos_blurgb.jpg",
+                    logo: "/assets/images/logos/ibmpos_blurgb.jpg?v=new",
                     href: "https://ibm.com/",
                     show: true
                 },
