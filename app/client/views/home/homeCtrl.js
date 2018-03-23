@@ -21,7 +21,7 @@ angular.module('reg')
             $scope.sponsors = [
                 {
                     name: "Webcome Lyon",
-                    href: "https://webcomelyon.fr/alpha-34h-pour-hacker-les-transports/",
+                    href: "https://webcomelyon.fr/events/hacker-les-transports/",
                     logo: "/assets/images/logos/webcome.png",
                     show: true
                 },
