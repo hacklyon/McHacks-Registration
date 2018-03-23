@@ -32,6 +32,12 @@ angular.module('reg')
                     show: true
                 },
                 {
+                    name: "IBM",
+                    logo: "/assets/images/logos/ibmpos_blurgb.jpg",
+                    href: "https://ibm.com/",
+                    show: false
+                },
+                {
                     name: "Major League Hacking",
                     href: "https://mlh.io/",
                     logo: "/assets/images/logos/mlh.png",
