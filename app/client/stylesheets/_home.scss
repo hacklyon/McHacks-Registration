@@ -282,7 +282,8 @@
     }
     #address {
       padding-right: 5%;
-      color: #FFF;
+      color: #000 !important;
+      text-shadow: 1px 1px 8px #fff;
       text-align: right;
       position: relative;
       right: 0;
@@ -291,7 +292,7 @@
       width: 50%;
       float: right;
       a {
-        color: white;
+        color: #000;
       }
     }
   }
