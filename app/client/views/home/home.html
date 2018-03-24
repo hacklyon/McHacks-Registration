@@ -167,34 +167,98 @@
                 // This is where you would paste any style found on Snazzy Maps.
                 styles: [
                     {
-                        "featureType": "all",
+                        "featureType": "administrative",
+                        "elementType": "labels",
                         "stylers": [
                             {
-                                "saturation": 0
-                            },
-                            {
-                                "hue": "#e7ecf0"
+                                "visibility": "on"
                             }
                         ]
                     },
                     {
-                        "featureType": "road",
-                        "stylers": [
-                            {
-                                "saturation": -70
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "transit",
+                        "featureType": "administrative.country",
+                        "elementType": "labels",
                         "stylers": [
                             {
                                 "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative.province",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "on"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative.locality",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "on"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative.neighborhood",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative.land_parcel",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape.natural",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "visibility": "on"
+                            },
+                            {
+                                "color": "#e0efef"
                             }
                         ]
                     },
                     {
                         "featureType": "poi",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "visibility": "on"
+                            },
+                            {
+                                "hue": "#1900ff"
+                            },
+                            {
+                                "color": "#c0e8e8"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "labels",
                         "stylers": [
                             {
                                 "visibility": "off"
@@ -202,13 +266,53 @@
                         ]
                     },
                     {
-                        "featureType": "water",
+                        "featureType": "road",
+                        "elementType": "geometry",
                         "stylers": [
                             {
-                                "visibility": "simplified"
+                                "lightness": 100
                             },
                             {
-                                "saturation": -60
+                                "visibility": "simplified"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit.line",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "visibility": "on"
+                            },
+                            {
+                                "lightness": 700
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "color": "#7dcdcd"
                             }
                         ]
                     }
