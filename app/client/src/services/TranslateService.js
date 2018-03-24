@@ -3,6 +3,17 @@ app.config(['$translateProvider', function ($translateProvider) {
         urlTemplate: '/assets/i18n/{part}/{lang}.json'
     });
 
-    $translateProvider.preferredLanguage('fr');
-    moment.locale('fr');
+    let browser_langs = window.navigator.languages;
+    let found = false;
+    browser_langs.forEach((browser_lang) => {
+        if(!found) {
+            let lang = browser_lang.substr(0, 2);
+            if (["en", "fr"].includes(lang)) {
+                found = true;
+                $translateProvider.preferredLanguage(lang);
+                moment.locale(lang);
+            }
+        }
+    });
+    if (!found) $translateProvider.preferredLanguage('fr');
 }]);
