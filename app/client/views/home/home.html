@@ -151,7 +151,7 @@
         function init() {
             // Basic options for a simple Google Map
             // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-            var mapOptions = {
+            let mapOptions = {
                 // How zoomed in you want the map to start at (always required)
                 zoom: 13,
 
@@ -321,26 +321,21 @@
 
             // Get the HTML DOM element that will contain your map
             // We are using a div with id="map" seen below in the <body>
-            var mapElement = document.getElementById('map');
+            let mapElement = document.getElementById('map');
 
             // Create the Google Map using out element and options defined above
             map = new google.maps.Map(mapElement, mapOptions);
 
             // Custom Map Marker Icon - Customize the map-marker.png file to customize your icon
-            var image = {
-                url: 'assets/images/map-marker.svg?v=new',
+            let image = {
+                url: 'assets/images/map-marker.svg?v=pink',
                 size: new google.maps.Size(48,48)
             };
-            var myLatLng = new google.maps.LatLng(45.7459289, 4.8349169);
-            var beachMarker = new google.maps.Marker({
+            let myLatLng = new google.maps.LatLng(45.7459289, 4.8349169);
+            let beachMarker = new google.maps.Marker({
                 position: myLatLng,
                 map: map,
                 icon: image
-            });
-
-            $("img[src='assets/images/map-marker.svg?v=new']").each(function(index) {
-                $(this).width(48);
-                $(this).height(48);
             });
         }
     </script>
