@@ -31,28 +31,29 @@
     <link rel="preload" href="stylesheets/normalize.css" as="style" onload="this.rel='stylesheet'">
 
     <!-- Angular stuff -->
-    <script src="plugins/angular/angular.min.js"></script>
-    <script src="plugins/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="plugins/angular-translate/angular-translate.min.js"></script>
-    <script src="plugins/angular-translate-loader-partial/angular-translate-loader-partial.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.17.0/angular-translate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.17.0/angular-translate-loader-partial/angular-translate-loader-partial.min.js"></script>
 
     <!-- Angular app -->
     <script src="build/app.js?v=B"></script>
 
     <!-- Semantic-UI -->
-    <link rel="stylesheet" href="plugins/semantic-ui/dist/semantic.min.css">
-    <script src="plugins/semantic-ui/dist/semantic.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.0/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.0/semantic.min.js"></script>
 
     <!-- Sweet Alert -->
-    <script src="plugins/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="plugins/sweetalert/dist/sweetalert.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.0.1/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.0.1/sweetalert.min.css">
 
     <!-- Moment -->
-    <script src="plugins/moment/min/moment.min.js"></script>
-    <script src="plugins/moment/locale/fr.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/locale/fr.js"></script>
 
     <!-- showdown! -->
-    <script src="plugins/showdown/dist/showdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.2.1/showdown.min.js"></script>
 
     <!-- Dropzone -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" as="style"
@@ -62,12 +63,11 @@
     <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAits6_GXRu5VVdwX9d25UsPli6hrAps8c"></script>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/2.0.2/velocity.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenLite.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/easing/EasePack.min.js"></script>
 
     <!-- Custom styling -->
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="build/site.css?v=8">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Montserrat:400,700|Raleway" rel="stylesheet">
 
@@ -101,7 +101,129 @@
 </head>
 <body>
 
-<div class="container" id="root-view" ui-view></div>
+<div class="container" id="root-view" ui-view>
+    <div id="base" class="ng-scope">
+
+        <!-- uiView: sidebar -->
+        <div ui-view="sidebar" class="ng-scope">
+            <div id="navbar" ng-class="transparentNavbar ? 'position-absolute' : 'position-fixed'"
+                 class="ng-scope position-absolute">
+                <div class="navbar ui grid computer only no-margin navbar-transparent"
+                     ng-class="{'navbar-transparent': transparentNavbar, 'navbar-live': showLiveNavbar}">
+                    <div class="logo-header" ui-sref="app.home" href="/">
+                        <img src="https://cdn.hacklyon.com/images/logo/logo-horiz-white-v2.svg">
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="navbar-modal" class="ui modal navbar-modal ng-scope">
+                <div class="header">
+                    <span class="modal-title">Menu</span>
+                    <div class="navbar-mobile-menu-close-button">
+                        <i class="fa fa-times navbar-mobile-menu-close-icon" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="content">
+                    <!-- ngIf: !showLiveNavbar --><!-- ngInclude: 'views/sidebar/normalNavbar.html' -->
+                    <div class="navbar-mobile-menu ng-scope" ng-if="!showLiveNavbar"
+                         ng-include="'views/sidebar/normalNavbar.html'"><a ui-sref="app.home"
+                                                                           ui-sref-active="menu-item-active"
+                                                                           class="menu-item ng-scope menu-item-active"
+                                                                           ng-click="onMenuClick()" href="/">
+                        HOME
+                    </a>
+                        <!-- ngIf: isLoggedIn -->
+                        <!-- ngIf: !isLoggedIn --><a ui-sref="app.login" ui-sref-active="menu-item-active"
+                                                     class="menu-item ng-scope" ng-if="!isLoggedIn"
+                                                     ng-click="onMenuClick()" href="/login">
+                            LOGIN / REGISTER
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="container">
+                <!-- uiView:  -->
+                <div ui-view="" class="ng-scope">
+                    <div id="home" class="ng-scope">
+                        <section id="hero">
+                            <div class="hero-content center" style="height: 983px;">
+                                <canvas id="neural-back" style="position: absolute; width: 100%; height: 100%;"
+                                        width="2560" height="983"></canvas>
+                                <div ng-class="{ 'fade-out': fadeOut }">
+                                    <div class="logo-header-container ui grid mobile only tablet only">
+
+                                        <div class="logo-header">
+                                            <img src="https://cdn.hacklyon.com/images/logo/logo-horiz-v2.svg">
+                                        </div>
+                                    </div>
+                                    <span class="hero-title">Alpha</span>
+                                    <div class="hero-description-container">
+                                        <span class="hero-description ui grid computer only tablet only no-margin-right ng-binding">27 – 28 AVRIL,&nbsp;</span>
+                                        <span class="hero-description ui grid mobile only ng-binding">27 – 28 AVRIL&nbsp;</span>
+                                        <span class="hero-description">LYON</span>
+                                    </div>
+                                    <div class="hero-button-container">
+                                        <a ui-sref="app.login" class="btn ng-binding ng-scope"
+                                           ng-if="regIsOpen" href="/login">
+                                            <i class="fa fa-rocket" aria-hidden="true"></i>
+                                            S'INSCRIRE
+                                        </a>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="more-content">
+                                <span class="hero-description">
+                                   <i class="fa fa-arrow-circle-down" style="font-size: 2em;"></i>
+                                </span>
+                            </div>
+                        </section>
+
+                        <section id="info" class="center">
+                            <div id="info-content">
+                                <span class="headline">
+                                    <span class="bold">50</span> Hackers.
+                                </span>
+                                <span class="headline">&nbsp;</span>
+                                <span class="headline ng-binding">
+                                    <span class="bold">34</span> Heures.
+                                </span>
+                                <span class="headline">&nbsp;</span>
+                                <span class="headline ng-binding">WEB × AI × Transports Urbains.</span>
+                            </div>
+                        </section>
+
+                        <section id="about" class="center">
+                            <div id="about-content">
+                                <div class="title ng-binding">
+                                    Vers une nouvelle mobilité
+                                </div>
+                                <div class="about-text ng-scope" translate="MORE_INFO_CONTENT"><p>Les transports urbains
+                                    nous concernent tous directement. Tu as certainement plein d’idées pour les
+                                    améliorer: accessibilité, entretien, information… Les exemples quotidiens ne
+                                    manquent pas ! HackLyon Alpha t’offre l’opportunité de venir développer une solution
+                                    qui utilise l’Intelligence Artificielle et le Cloud, que tu sois porteur d’idée ou
+                                    passionné d’IA.</p>
+                                    <p>Les coachs techniques et les supports de formation t’aideront à libérer la
+                                        puissance du Cloud et à porter ta solution jusqu’en finale pour la présenter
+                                        devant le public du <a href="https://webcomelyon.fr/">WebCome Day</a>, réuni à
+                                        Lyon en clôture de la <a href="https://www2018.thewebconf.org/">Conférence du
+                                            Web</a> organisée par l’IW3C2. De nombreuses surprises sont à venir… <a
+                                                href="/login">inscris toi vite</a> !</p></div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 </body>
 </html>
