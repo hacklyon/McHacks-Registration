@@ -2,7 +2,7 @@
   "COMPLETE_BTN": "Complète ton inscription",
   "ON_WAITLIST": "En liste d'attente",
   "YOUR_STATUS": "Ton statut :",
-  "UNVERIFIED": "Tu devrais avoir reçu un mail te demandant de vérifier ton adresse. Click sur le lien dans le mail et tu pourras commencer ton inscription !",
+  "UNVERIFIED": "Tu devrais avoir reçu un mail te demandant de vérifier ton adresse. Clique sur le lien dans le mail et tu pourras commencer ton inscription !",
   "INCOMPLETE_TITLE": "Tu dois encore faire ton inscription !",
   "INCOMPLETE": "Si tu ne complètes pas ton inscription avant le {{APP_DEADLINE}}, ton inscription ne sera pas considérée !",
   "SUBMITTED_TITLE": "Ton inscription a été envoyée !",
