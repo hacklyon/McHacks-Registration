@@ -41,6 +41,8 @@
   "FAQ_A_SCHEDULE": "We will make it available closer to the event.",
   "FAQ_Q_QUESTIONS": "Where can I ask more questions?",
   "FAQ_A_QUESTIONS": "You can drop us a line at <a href=\"mailto:info@hacklyon.com\">info@hacklyon.com</a> or check the <a class=\" js-scroll-trigger\" href=\"#contact\">contact</a> section.",
+  "SHOW_MORE": "Show More",
+  "SHOW_LESS": "Show Less",
   "CONTACT_TITLE": "Contact HackLyon",
   "CONTACT_EMAIL": "Feel free to drop us a line at <a href=\"mailto:hello@hacklyon.com\">hello@hacklyon.com</a> and check our social profiles!"
 }

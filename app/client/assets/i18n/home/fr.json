@@ -41,6 +41,8 @@
   "FAQ_A_SCHEDULE": "Nous rendrons disponible le détail des 34H un peu plus tard.",
   "FAQ_Q_QUESTIONS": "Où puis-je poser plus de  questions&nbsp;?",
   "FAQ_A_QUESTIONS": "Tu peux nous envoyer un message à <a href=\"mailto:info@hacklyon.com\">info@hacklyon.com</a> ou aller voir la section <a class=\" js-scroll-trigger\" href=\"#contact\">contact</a>.",
+  "SHOW_MORE": "Montre plus",
+  "SHOW_LESS": "Montre moins",
   "CONTACT_TITLE": "Contactez HackLyon",
   "CONTACT_EMAIL": "N'hésitez pas à nous envoyer un message à <a href=\"mailto:hello@hacklyon.com\">hello@hacklyon.com</a> et à consulter nos profils sur les réseaux sociaux !"
 }
