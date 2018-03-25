@@ -161,6 +161,24 @@
     }
   }
 
+  /* About */
+  #about {
+    padding: 7% 0;
+    background: $tertiary;
+    color: white;
+    #about-content {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+    .about-text {
+      margin-top: 4%;
+      text-align: left;
+      font-size: 1.3em;
+    }
+  }
+
   /* Info */
   #info {
     padding: 7% 0;
@@ -194,8 +212,8 @@
   }
 
   #faq-show-more {
-    background: linear-gradient(to top, rgba($secondary,1), rgba($secondary,0));
-      //      $secondary;
+    background: linear-gradient(to top, rgba($secondary, 1), rgba($secondary, 0));
+    //      $secondary;
     color: white;
     padding: 2% 0;
     position: absolute;
@@ -392,7 +410,7 @@
       width: 90%;
     }
 
-    #faq-show-more{
+    #faq-show-more {
       padding: 6.5% 0;
     }
 
@@ -443,7 +461,7 @@
       width: 90%;
     }
 
-    #faq-show-more{
+    #faq-show-more {
       padding: 6.5% 0;
     }
 
