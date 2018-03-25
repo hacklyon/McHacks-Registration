@@ -86,6 +86,14 @@
             <div class="title">
                 FAQs
             </div>
+            <div id="faq-show-more" class="center">
+                <div class="faq-button-container">
+                    <a id="faq-show-more-btn" class="btn" >
+                        <span class="faq-show-more"><i class="fa fa-plus" aria-hidden="true"></i>{{ "SHOW_MORE" | translate }}</span>
+                        <span class="faq-show-more" hidden><i class="fa fa-minus" aria-hidden="true"></i>{{ "SHOW_LESS" | translate }}</span>
+                    </a>
+                </div>
+            </div>
             <div class="faq-list ui stackable two column grid">
                 <div class="column">
                     <div class="faq-card" ng-repeat="f in faqs" ng-if="$even">
@@ -102,14 +110,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section id="faq-show-more" class="center">
-        <div class="faq-button-container">
-            <a id="faq-show-more-btn" class="btn" >
-                <span class="faq-show-more"><i class="fa fa-plus" aria-hidden="true"></i>{{ "SHOW_MORE" | translate }}</span>
-                <span class="faq-show-more" hidden><i class="fa fa-minus" aria-hidden="true"></i>{{ "SHOW_LESS" | translate }}</span>
-            </a>
         </div>
     </section>
 
