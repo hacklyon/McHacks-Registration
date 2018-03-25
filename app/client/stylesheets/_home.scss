@@ -164,7 +164,7 @@
   /* About */
   #about {
     padding: 7% 0;
-    background: $tertiary;
+    background: $tertiary url(/assets/images/plan.png) 100%;
     color: white;
     #about-content {
       width: 80%;
@@ -239,7 +239,7 @@
   }
 
   #faq-content {
-    width: 100%;
+    width: 85%;
     height: fit-content;
     max-height: 400px;
     padding: 5% 0 70px;
@@ -378,6 +378,7 @@
   @media (max-width: 767px) {
     .title {
       margin-bottom: 5%;
+      line-height: normal;
     }
 
     .hero-border {
