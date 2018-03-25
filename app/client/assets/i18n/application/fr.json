@@ -24,7 +24,7 @@
   "HIRE_NONE": "Aucune",
   "WHAT_WHY": "Parle nous de toi. C'est quoi tes compétences en informatique ? Qu'est-ce que tu voudrais apprendre ou retenir de Alpha ? (Max 300 chars)",
   "ADDITIONAL_NOTES": "Notes",
-  "ANYTHING_ELSE": "Si tu as besoin de nous dire quelque chose en plus, fais le ici !",
+  "ANYTHING_ELSE": "Si tu as besoin de nous dire quelque chose en plus, fais le ici ! (Notamment si tu participes avec des amis)",
   "UNDERAGE": "Si tu es mineur, tu recevras un formulaire de consentement à remplir et signer par ton tuteur légal. L'acceptation sera conditionnelle à l'achèvement de ce formulaire et une pièce d'identité valide sera requise le premier jour de l'événement.",
   "18_YO": "J'ai au moins 18 ans le {{date}}.",
   "PICTURES_AUTH": "En cochant cette case, j’accepte d’être pris(e) en photo durant l’événement et que les photos soient diffusées sur les réseaux sociaux",
