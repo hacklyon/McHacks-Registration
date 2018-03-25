@@ -217,6 +217,219 @@
                                                 href="/login">inscris toi vite</a> !</p></div>
                             </div>
                         </section>
+
+                        <section id="faq" class="center">
+                            <div id="faq-content">
+                                <div class="title">
+                                    FAQs
+                                </div>
+                                <div id="faq-show-more" class="center">
+                                    <div class="faq-button-container">
+                                        <a id="faq-show-more-btn" class="btn">
+                                            <span class="faq-show-more ng-binding"><i class="fa fa-plus"
+                                                                                      aria-hidden="true"></i>Montrer plus</span>
+                                            <span class="faq-show-more ng-binding" hidden=""><i class="fa fa-minus"
+                                                                                                aria-hidden="true"></i>Montrer moins</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="faq-list ui stackable two column grid">
+                                    <div class="column">
+                                        <!-- ngRepeat: f in faqs --><!-- ngIf: $even -->
+                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$even">
+                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_WHAT_HL">Qu'est-ce que
+                                                “Alpha”&nbsp;?
+                                            </div>
+                                            <div class="faq-card-description ng-scope" translate="FAQ_A_WHAT_HL">Alpha
+                                                est un hackathon organisé à la “Tour du Web” à Lyon les 27 et 28 avril
+                                                2018. Le hackathon est organisé par l’association étudiante <a
+                                                        href="https://asso.hacklyon.com" target="_blank">HackLyon</a>.
+                                            </div>
+                                        </div><!-- end ngIf: $even --><!-- end ngRepeat: f in faqs -->
+                                        <!-- ngIf: $even --><!-- end ngRepeat: f in faqs --><!-- ngIf: $even -->
+                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$even">
+                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_WHAT">Qu'est-ce qu'un
+                                                hackathon&nbsp;?
+                                            </div>
+                                            <div class="faq-card-description ng-scope" translate="FAQ_A_WHAT">Notre
+                                                hackathon est un événement créatif et formateur pendant lequel des
+                                                étudiant[e]s se réunissent pour partager leurs idées et produire une
+                                                solution technique (logicielle) en 34H. Tu vas y apprendre énormément de
+                                                choses et rencontrer des personnes passionnantes parmi les étudiant[e]s
+                                                et les entreprises.
+                                            </div>
+                                        </div><!-- end ngIf: $even --><!-- end ngRepeat: f in faqs -->
+                                        <!-- ngIf: $even --><!-- end ngRepeat: f in faqs --><!-- ngIf: $even -->
+                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$even">
+                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_WHO">Qui peut
+                                                participer&nbsp;?
+                                            </div>
+                                            <div class="faq-card-description ng-scope" translate="FAQ_A_WHO">Si tu es
+                                                étudiant[e] (ou jeune diplômé[e]) et que tu as plus de 18 ans, alors tu
+                                                es bienvenu à Alpha ! Pas besoin d’être expert[e] en Web et Intelligence
+                                                Artificielle ni de connaître le monde des Transports, tu es là aussi
+                                                pour apprendre !
+                                            </div>
+                                        </div><!-- end ngIf: $even --><!-- end ngRepeat: f in faqs -->
+                                        <!-- ngIf: $even --><!-- end ngRepeat: f in faqs --><!-- ngIf: $even -->
+                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$even">
+                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_HOW_MUCH">Combien cela
+                                                coûte-t-il de participer&nbsp;?
+                                            </div>
+                                            <div class="faq-card-description ng-scope" translate="FAQ_A_HOW_MUCH">Zéro.
+                                                Cero. Zero. Null... C'est gratuit !
+                                            </div>
+                                        </div><!-- end ngIf: $even --><!-- end ngRepeat: f in faqs -->
+                                        <!-- ngIf: $even --><!-- end ngRepeat: f in faqs --><!-- ngIf: $even -->
+                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$even">
+                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_MAXSIZE_TEAM">Quelle
+                                                est la taille maximale d'une équipe&nbsp;?
+                                            </div>
+                                            <div class="faq-card-description ng-scope" translate="FAQ_A_MAXSIZE_TEAM">
+                                                Les équipes peuvent aller jusqu’à 5 étudiant[e]s. Pas besoin d’avoir une
+                                                équipe constituée, nous le ferons ensemble au début de l’événement.
+                                            </div>
+                                        </div><!-- end ngIf: $even --><!-- end ngRepeat: f in faqs -->
+                                        <!-- ngIf: $even --><!-- end ngRepeat: f in faqs --><!-- ngIf: $even -->
+                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$even">
+                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_HOW_TEAM">Comment
+                                                constituer mon équipe&nbsp;?
+                                            </div>
+                                            <div class="faq-card-description ng-scope" translate="FAQ_A_HOW_TEAM">Tu
+                                                peux venir avec tes amis et travailler avec eux pendant l’événement.
+                                                Mais ce n’est pas une obligation, au contraire ! Il y a aura une phase
+                                                de constitution où tu trouveras sans problème une équipe à rejoindre.
+                                            </div>
+                                        </div><!-- end ngIf: $even --><!-- end ngRepeat: f in faqs -->
+                                        <!-- ngIf: $even --><!-- end ngRepeat: f in faqs --><!-- ngIf: $even -->
+                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$even">
+                                            <div class="faq-card-title ng-scope"
+                                                 translate="FAQ_Q_TRAVEL_REIMBURSEMENTS">Je ne viens pas de Lyon, le
+                                                transport est-il remboursé&nbsp;?
+                                            </div>
+                                            <div class="faq-card-description ng-scope"
+                                                 translate="FAQ_A_TRAVEL_REIMBURSEMENTS">Nous ne pouvons pas répondre à
+                                                cette question pour le moment.
+                                            </div>
+                                        </div><!-- end ngIf: $even --><!-- end ngRepeat: f in faqs -->
+                                    </div>
+                                    <div class="column">
+                                        <!-- ngRepeat: f in faqs --><!-- ngIf: $odd --><!-- end ngRepeat: f in faqs -->
+                                        <!-- ngIf: $odd -->
+                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$odd">
+                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_NASA">Est-ce que je
+                                                vais hacker la NASA ?
+                                            </div>
+                                            <div class="faq-card-description ng-scope" translate="FAQ_A_NASA">Non. Le
+                                                mot hack est utilisé pour désigner une solution à un problème, pour le
+                                                contourner ou le résoudre. Un hackathon est un événement qui réunit des
+                                                développeurs mais également des designers, des porteurs d’idée, etc.
+                                                Cela dit, si tu réussis à hacker la NASA, le premier prix sera pour toi.
+                                            </div>
+                                        </div><!-- end ngIf: $odd --><!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
+                                        <!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
+                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$odd">
+                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_CODE_CONDUCT">Y a-t-il
+                                                un code de conduite&nbsp;?
+                                            </div>
+                                            <div class="faq-card-description ng-scope" translate="FAQ_A_CODE_CONDUCT">
+                                                Oui ! Et il est très important pour nous et le bon déroulement du
+                                                hackathon. Il sera disponible très bientôt et te sera envoyé avant le
+                                                début de l’événement.
+                                            </div>
+                                        </div><!-- end ngIf: $odd --><!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
+                                        <!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
+                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$odd">
+                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_SLEEP">Comment faire
+                                                pour dormir&nbsp;?
+                                            </div>
+                                            <div class="faq-card-description ng-scope" translate="FAQ_A_SLEEP">Pas
+                                                besoin de réserver une nuit à l’hôtel : Nous mettrons à disposition des
+                                                salles pour faire une sieste (mais c’est à toi de penser à l’oreiller
+                                                ;-) ).
+                                            </div>
+                                        </div><!-- end ngIf: $odd --><!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
+                                        <!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
+                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$odd">
+                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_WHAT_BRING">Qu’est-ce
+                                                que j’ai besoin d’amener&nbsp;?
+                                            </div>
+                                            <div class="faq-card-description ng-scope" translate="FAQ_A_WHAT_BRING">On
+                                                s’occupe des repas, de l’internet et de l’électricité. Tu as juste
+                                                besoin d’amener ton PC et un chargeur.
+                                            </div>
+                                        </div><!-- end ngIf: $odd --><!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
+                                        <!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
+                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$odd">
+                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_WHO_COPYRIGHT">Qui
+                                                détient la propriété intellectuelle des hacks&nbsp;?
+                                            </div>
+                                            <div class="faq-card-description ng-scope" translate="FAQ_A_WHO_COPYRIGHT">
+                                                Les solutions développées appartiennent à leurs auteurs.
+                                            </div>
+                                        </div><!-- end ngIf: $odd --><!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
+                                        <!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
+                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$odd">
+                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_SCHEDULE">Quel est le
+                                                planning du hackathon&nbsp;?
+                                            </div>
+                                            <div class="faq-card-description ng-scope" translate="FAQ_A_SCHEDULE">Nous
+                                                rendrons disponible le détail des 34H un peu plus tard.
+                                            </div>
+                                        </div><!-- end ngIf: $odd --><!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
+                                        <!-- end ngRepeat: f in faqs -->
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section id="sponsors" class="center">
+                            <div id="sponsors-content">
+                                <div class="title ng-scope" translate="SPONSORS_TITLE">Partenaires &amp; Sponsors</div>
+                                <br>
+                                <div id="sponsors-list" class="ui grid">
+                                    <!-- ngRepeat: spo in sponsors --><!-- ngIf: spo.show --><a
+                                        ng-repeat="spo in sponsors"
+                                        href="https://webcomelyon.fr/events/hacker-les-transports/"
+                                        class="sixteen wide phone eight wide tablet four wide computer column ng-scope"
+                                        target="_blank" ng-if="spo.show">
+                                    <img src="/assets/images/logos/webcome.png" alt="Webcome Lyon">
+                                </a><!-- end ngIf: spo.show --><!-- end ngRepeat: spo in sponsors -->
+                                    <!-- ngIf: spo.show --><a ng-repeat="spo in sponsors" href="https://ibm.com/"
+                                                              class="sixteen wide phone eight wide tablet four wide computer column ng-scope"
+                                                              target="_blank" ng-if="spo.show">
+                                    <img src="/assets/images/logos/ibmpos_blurgb.jpg?v=new" alt="IBM">
+                                </a><!-- end ngIf: spo.show --><!-- end ngRepeat: spo in sponsors -->
+                                    <!-- ngIf: spo.show --><a ng-repeat="spo in sponsors" href="https://mlh.io/"
+                                                              class="sixteen wide phone eight wide tablet four wide computer column ng-scope"
+                                                              target="_blank" ng-if="spo.show">
+                                    <img src="/assets/images/logos/mlh.png" alt="Major League Hacking">
+                                </a><!-- end ngIf: spo.show --><!-- end ngRepeat: spo in sponsors -->
+                                    <!-- ngIf: spo.show --><a ng-repeat="spo in sponsors" href="http://lyon.epitech.eu/"
+                                                              class="sixteen wide phone eight wide tablet four wide computer column ng-scope"
+                                                              target="_blank" ng-if="spo.show">
+                                    <img src="/assets/images/logos/epitech.png" alt="Epitech Lyon">
+                                </a><!-- end ngIf: spo.show --><!-- end ngRepeat: spo in sponsors -->
+                                    <!-- ngIf: spo.show --><!-- end ngRepeat: spo in sponsors -->
+                                </div>
+                                <br>
+                                <div id="callforsponsors" class="center" style="padding-top: 76px">
+                                    <span class="headline ng-scope" translate="SPONSORS_LOGO">Vous voulez voir <span
+                                            class="bold">votre logo ici</span>?</span>
+                                    <span>&nbsp;</span>
+                                    <span class="headline ng-scope" translate="SPONSORS_MAIL">Contactez nous par <a
+                                            class="bold"
+                                            href="mailto:partnerships@hacklyon.com?subject=Partnership%20HackLyon">email</a>.</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section id="map-section">
+                            <div id="address">
+                                <p><span class="headline">Venue</span></p>
+                                <p><a href="http://www.latourduweb.com/">La Tour Du Web</a>, Lyon</p>
+                                <p>4 Rue du Professeur Charles Appleton, 69007 Lyon</p>
+                            </div>
+
+                        </section>
                     </div>
                 </div>
             </div>
