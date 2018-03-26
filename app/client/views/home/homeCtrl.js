@@ -382,10 +382,12 @@ angular.module('reg')
                     return Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2);
                 }
 
-                $("#faq-show-more-btn").click(function () {
-                    $("#faq-content").toggleClass("expanded");
-                    $(".faq-show-more").toggle();
-                });
-            });
 
+                setTimeout(function () {
+                    $("#faq-show-more-btn").click(function () {
+                        $("#faq-content").toggleClass("expanded");
+                        $(".faq-show-more").toggle();
+                    });
+                },1000);
+            });
         }]);
