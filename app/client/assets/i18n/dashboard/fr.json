@@ -6,7 +6,7 @@
   "INCOMPLETE_TITLE": "Tu dois encore faire ton inscription !",
   "INCOMPLETE": "Si tu ne complètes pas ton inscription avant le {{APP_DEADLINE}}, ton inscription ne sera pas prise en compte !",
   "SUBMITTED_TITLE": "Ton inscription a été envoyée !",
-  "SUBMITTED": "Modifie-la autant que tu veux. Par contre, quand les inscriptions seront fermées, tu ne pourras plus la modifier.\nAssure toi que ton information est précise avant que les inscriptions ferment !",
+  "SUBMITTED": "Modifie-la autant que tu veux. Par contre, quand les inscriptions seront fermées, tu ne pourras plus la modifier.\nAssure toi que tes informations sont bonnes avant que les inscriptions ferment !",
   "CLOSED_AND_INCOMPLETE_TITLE": "Malheuresement, les inscriptions sont fermées !",
   "CLOSED_AND_INCOMPLETE": "Comme tu n'as pas complété ton profile à temps, ton inscription ne sera pas prise en compte !",
   "ADMITTED_AND_CAN_CONFIRM_TITLE": "Tu dois confirmer avant le {{CONFIRM_DEADLINE}}.",
