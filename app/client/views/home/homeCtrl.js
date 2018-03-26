@@ -113,11 +113,6 @@ angular.module('reg')
                     }, 700);
                 });
 
-                $("#faq-show-more-btn").click(function () {
-                    $("#faq-content").toggleClass("expanded");
-                    $(".faq-show-more").toggle();
-                });
-
                 let element = $('.chatbot');
                 let myStorage = localStorage;
 
@@ -386,6 +381,11 @@ angular.module('reg')
                 function getDistance(p1, p2) {
                     return Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2);
                 }
+
+                $("#faq-show-more-btn").click(function () {
+                    $("#faq-content").toggleClass("expanded");
+                    $(".faq-show-more").toggle();
+                });
             });
 
         }]);
