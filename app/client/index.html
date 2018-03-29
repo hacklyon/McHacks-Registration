@@ -6,42 +6,68 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111557657-2"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
+
         function gtag() {
             dataLayer.push(arguments);
         }
+
         gtag('js', new Date());
+
         gtag('config', 'UA-111557657-2');
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
-    <!-- Angular stuff -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.17.0/angular-translate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.17.0/angular-translate-loader-partial/angular-translate-loader-partial.min.js"></script>
-
-    <!-- Angular app -->
-    <script src="build/app.js?v=D"></script>
-
+    <!-- <script>
+      var loc = window.location.href+'';
+      if (loc.indexOf('http://')==0){
+        window.location.href = loc.replace('http://','https://');
+      }
+    </script> -->
     <base href="/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HackLyon Alpha</title>
 
+    <script src="plugins/jquery/dist/jquery.min.js"></script>
     <link rel="preload" href="stylesheets/normalize.css" as="style" onload="this.rel='stylesheet'">
 
+    <!-- Angular stuff -->
+    <script src="plugins/angular/angular.min.js"></script>
+    <script src="plugins/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="plugins/angular-translate/angular-translate.min.js"></script>
+    <script src="plugins/angular-translate-loader-partial/angular-translate-loader-partial.min.js"></script>
+
+    <!-- Angular app -->
+    <script src="build/app.js?v=E"></script>
+
     <!-- Semantic-UI -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.0/semantic.min.css">
+    <link rel="stylesheet" href="plugins/semantic-ui/dist/semantic.min.css">
+    <script src="plugins/semantic-ui/dist/semantic.min.js"></script>
 
     <!-- Sweet Alert -->
-    <link rel="stylesheet" type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.0.1/sweetalert.min.css">
+    <script src="plugins/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="plugins/sweetalert/dist/sweetalert.css">
+
+    <!-- Moment -->
+    <script src="plugins/moment/min/moment.min.js"></script>
+    <script src="plugins/moment/locale/fr.js"></script>
+
+    <!-- showdown! -->
+    <script src="plugins/showdown/dist/showdown.min.js"></script>
+
     <!-- Dropzone -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" as="style"
           onload="this.rel='stylesheet'">
+    <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js"></script>
+
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAits6_GXRu5VVdwX9d25UsPli6hrAps8c"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/2.0.2/velocity.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenLite.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/easing/EasePack.min.js"></script>
 
     <!-- Custom styling -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="build/site.css?v=8">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Montserrat:400,700|Raleway" rel="stylesheet">
 
@@ -75,354 +101,7 @@
 </head>
 <body>
 
-<div class="container" id="root-view" ui-view>
-    <div id="base" class="ng-scope">
+<div class="container" id="root-view" ui-view></div>
 
-        <!-- uiView: sidebar -->
-        <div ui-view="sidebar" class="ng-scope">
-            <div id="navbar" ng-class="transparentNavbar ? 'position-absolute' : 'position-fixed'"
-                 class="ng-scope position-absolute">
-                <div class="navbar ui grid computer only no-margin navbar-transparent"
-                     ng-class="{'navbar-transparent': transparentNavbar, 'navbar-live': showLiveNavbar}">
-                    <div class="logo-header" ui-sref="app.home" href="/">
-                        <img src="https://cdn.hacklyon.com/images/logo/logo-horiz-white-v2.svg">
-                    </div>
-                </div>
-            </div>
-
-
-            <div id="navbar-modal" class="ui modal navbar-modal ng-scope">
-                <div class="header">
-                    <span class="modal-title">Menu</span>
-                    <div class="navbar-mobile-menu-close-button">
-                        <i class="fa fa-times navbar-mobile-menu-close-icon" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="content">
-                    <!-- ngIf: !showLiveNavbar --><!-- ngInclude: 'views/sidebar/normalNavbar.html' -->
-                    <div class="navbar-mobile-menu ng-scope" ng-if="!showLiveNavbar"
-                         ng-include="'views/sidebar/normalNavbar.html'"><a ui-sref="app.home"
-                                                                           ui-sref-active="menu-item-active"
-                                                                           class="menu-item ng-scope menu-item-active"
-                                                                           ng-click="onMenuClick()" href="/">
-                        HOME
-                    </a>
-                        <!-- ngIf: isLoggedIn -->
-                        <!-- ngIf: !isLoggedIn --><a ui-sref="app.login" ui-sref-active="menu-item-active"
-                                                     class="menu-item ng-scope" ng-if="!isLoggedIn"
-                                                     ng-click="onMenuClick()" href="/login">
-                            LOGIN / REGISTER
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="content">
-            <div class="container">
-                <!-- uiView:  -->
-                <div ui-view="" class="ng-scope">
-                    <div id="home" class="ng-scope">
-                        <section id="hero">
-                            <div class="hero-content center" style="height: 983px;">
-                                <canvas id="neural-back" style="position: absolute; width: 100%; height: 100%;"
-                                        width="2560" height="983"></canvas>
-                                <div ng-class="{ 'fade-out': fadeOut }">
-                                    <div class="logo-header-container ui grid mobile only tablet only">
-
-                                        <div class="logo-header">
-                                            <img src="https://cdn.hacklyon.com/images/logo/logo-horiz-v2.svg">
-                                        </div>
-                                    </div>
-                                    <span class="hero-title">Alpha</span>
-                                    <div class="hero-description-container">
-                                        <span class="hero-description ui grid computer only tablet only no-margin-right ng-binding">27 – 28 AVRIL,&nbsp;</span>
-                                        <span class="hero-description ui grid mobile only ng-binding">27 – 28 AVRIL&nbsp;</span>
-                                        <span class="hero-description">LYON</span>
-                                    </div>
-                                    <div class="hero-button-container">
-                                        <a ui-sref="app.login" class="btn ng-binding ng-scope"
-                                           ng-if="regIsOpen" href="/login">
-                                            <i class="fa fa-rocket" aria-hidden="true"></i>
-                                            S'INSCRIRE
-                                        </a>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <div class="more-content">
-                                <span class="hero-description">
-                                   <i class="fa fa-arrow-circle-down" style="font-size: 2em;"></i>
-                                </span>
-                            </div>
-                        </section>
-
-                        <section id="info" class="center">
-                            <div id="info-content">
-                                <span class="headline">
-                                    <span class="bold">50</span> Hackers.
-                                </span>
-                                <span class="headline">&nbsp;</span>
-                                <span class="headline ng-binding">
-                                    <span class="bold">34</span> Heures.
-                                </span>
-                                <span class="headline">&nbsp;</span>
-                                <span class="headline ng-binding">WEB × AI × Transports Urbains.</span>
-                            </div>
-                        </section>
-
-                        <section id="about" class="center">
-                            <div id="about-content">
-                                <div class="title ng-binding">
-                                    Vers une nouvelle mobilité
-                                </div>
-                                <div class="about-text ng-scope" translate="MORE_INFO_CONTENT"><p>Les transports urbains
-                                    nous concernent tous directement. Tu as certainement plein d’idées pour les
-                                    améliorer: accessibilité, entretien, information… Les exemples quotidiens ne
-                                    manquent pas ! HackLyon Alpha t’offre l’opportunité de venir développer une solution
-                                    qui utilise l’Intelligence Artificielle et le Cloud, que tu sois porteur d’idée ou
-                                    passionné d’IA.</p>
-                                    <p>Les coachs techniques et les supports de formation t’aideront à libérer la
-                                        puissance du Cloud et à porter ta solution jusqu’en finale pour la présenter
-                                        devant le public du <a href="https://webcomelyon.fr/">WebCome Day</a>, réuni à
-                                        Lyon en clôture de la <a href="https://www2018.thewebconf.org/">Conférence du
-                                            Web</a> organisée par l’IW3C2. De nombreuses surprises sont à venir… <a
-                                                href="/login">inscris toi vite</a> !</p></div>
-                            </div>
-                        </section>
-
-                        <section id="faq" class="center">
-                            <div id="faq-content">
-                                <div class="title">
-                                    FAQs
-                                </div>
-
-                                <div class="faq-list ui stackable two column grid">
-                                    <div class="column">
-                                        <!-- ngRepeat: f in faqs --><!-- ngIf: $even -->
-                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$even">
-                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_WHAT_HL">Qu'est-ce que
-                                                “Alpha”&nbsp;?
-                                            </div>
-                                            <div class="faq-card-description ng-scope" translate="FAQ_A_WHAT_HL">Alpha
-                                                est un hackathon organisé à la “Tour du Web” à Lyon les 27 et 28 avril
-                                                2018. Le hackathon est organisé par l’association étudiante <a
-                                                        href="https://asso.hacklyon.com" target="_blank">HackLyon</a>.
-                                            </div>
-                                        </div><!-- end ngIf: $even --><!-- end ngRepeat: f in faqs -->
-                                        <!-- ngIf: $even --><!-- end ngRepeat: f in faqs --><!-- ngIf: $even -->
-                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$even">
-                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_WHAT">Qu'est-ce qu'un
-                                                hackathon&nbsp;?
-                                            </div>
-                                            <div class="faq-card-description ng-scope" translate="FAQ_A_WHAT">Notre
-                                                hackathon est un événement créatif et formateur pendant lequel des
-                                                étudiant[e]s se réunissent pour partager leurs idées et produire une
-                                                solution technique (logicielle) en 34H. Tu vas y apprendre énormément de
-                                                choses et rencontrer des personnes passionnantes parmi les étudiant[e]s
-                                                et les entreprises.
-                                            </div>
-                                        </div><!-- end ngIf: $even --><!-- end ngRepeat: f in faqs -->
-                                        <!-- ngIf: $even --><!-- end ngRepeat: f in faqs --><!-- ngIf: $even -->
-                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$even">
-                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_WHO">Qui peut
-                                                participer&nbsp;?
-                                            </div>
-                                            <div class="faq-card-description ng-scope" translate="FAQ_A_WHO">Si tu es
-                                                étudiant[e] (ou jeune diplômé[e]) et que tu as plus de 18 ans, alors tu
-                                                es bienvenu à Alpha ! Pas besoin d’être expert[e] en Web et Intelligence
-                                                Artificielle ni de connaître le monde des Transports, tu es là aussi
-                                                pour apprendre !
-                                            </div>
-                                        </div><!-- end ngIf: $even --><!-- end ngRepeat: f in faqs -->
-                                        <!-- ngIf: $even --><!-- end ngRepeat: f in faqs --><!-- ngIf: $even -->
-                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$even">
-                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_HOW_MUCH">Combien cela
-                                                coûte-t-il de participer&nbsp;?
-                                            </div>
-                                            <div class="faq-card-description ng-scope" translate="FAQ_A_HOW_MUCH">Zéro.
-                                                Cero. Zero. Null... C'est gratuit !
-                                            </div>
-                                        </div><!-- end ngIf: $even --><!-- end ngRepeat: f in faqs -->
-                                        <!-- ngIf: $even --><!-- end ngRepeat: f in faqs --><!-- ngIf: $even -->
-                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$even">
-                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_MAXSIZE_TEAM">Quelle
-                                                est la taille maximale d'une équipe&nbsp;?
-                                            </div>
-                                            <div class="faq-card-description ng-scope" translate="FAQ_A_MAXSIZE_TEAM">
-                                                Les équipes peuvent aller jusqu’à 5 étudiant[e]s. Pas besoin d’avoir une
-                                                équipe constituée, nous le ferons ensemble au début de l’événement.
-                                            </div>
-                                        </div><!-- end ngIf: $even --><!-- end ngRepeat: f in faqs -->
-                                        <!-- ngIf: $even --><!-- end ngRepeat: f in faqs --><!-- ngIf: $even -->
-                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$even">
-                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_HOW_TEAM">Comment
-                                                constituer mon équipe&nbsp;?
-                                            </div>
-                                            <div class="faq-card-description ng-scope" translate="FAQ_A_HOW_TEAM">Tu
-                                                peux venir avec tes amis et travailler avec eux pendant l’événement.
-                                                Mais ce n’est pas une obligation, au contraire ! Il y a aura une phase
-                                                de constitution où tu trouveras sans problème une équipe à rejoindre.
-                                            </div>
-                                        </div><!-- end ngIf: $even --><!-- end ngRepeat: f in faqs -->
-                                        <!-- ngIf: $even --><!-- end ngRepeat: f in faqs --><!-- ngIf: $even -->
-                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$even">
-                                            <div class="faq-card-title ng-scope"
-                                                 translate="FAQ_Q_TRAVEL_REIMBURSEMENTS">Je ne viens pas de Lyon, le
-                                                transport est-il remboursé&nbsp;?
-                                            </div>
-                                            <div class="faq-card-description ng-scope"
-                                                 translate="FAQ_A_TRAVEL_REIMBURSEMENTS">Nous ne pouvons pas répondre à
-                                                cette question pour le moment.
-                                            </div>
-                                        </div><!-- end ngIf: $even --><!-- end ngRepeat: f in faqs -->
-                                    </div>
-                                    <div class="column">
-                                        <!-- ngRepeat: f in faqs --><!-- ngIf: $odd --><!-- end ngRepeat: f in faqs -->
-                                        <!-- ngIf: $odd -->
-                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$odd">
-                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_NASA">Est-ce que je
-                                                vais hacker la NASA ?
-                                            </div>
-                                            <div class="faq-card-description ng-scope" translate="FAQ_A_NASA">Non. Le
-                                                mot hack est utilisé pour désigner une solution à un problème, pour le
-                                                contourner ou le résoudre. Un hackathon est un événement qui réunit des
-                                                développeurs mais également des designers, des porteurs d’idée, etc.
-                                                Cela dit, si tu réussis à hacker la NASA, le premier prix sera pour toi.
-                                            </div>
-                                        </div><!-- end ngIf: $odd --><!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
-                                        <!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
-                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$odd">
-                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_CODE_CONDUCT">Y a-t-il
-                                                un code de conduite&nbsp;?
-                                            </div>
-                                            <div class="faq-card-description ng-scope" translate="FAQ_A_CODE_CONDUCT">
-                                                Oui ! Et il est très important pour nous et le bon déroulement du
-                                                hackathon. Il sera disponible très bientôt et te sera envoyé avant le
-                                                début de l’événement.
-                                            </div>
-                                        </div><!-- end ngIf: $odd --><!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
-                                        <!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
-                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$odd">
-                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_SLEEP">Comment faire
-                                                pour dormir&nbsp;?
-                                            </div>
-                                            <div class="faq-card-description ng-scope" translate="FAQ_A_SLEEP">Pas
-                                                besoin de réserver une nuit à l’hôtel : Nous mettrons à disposition des
-                                                salles pour faire une sieste (mais c’est à toi de penser à l’oreiller
-                                                ;-) ).
-                                            </div>
-                                        </div><!-- end ngIf: $odd --><!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
-                                        <!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
-                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$odd">
-                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_WHAT_BRING">Qu’est-ce
-                                                que j’ai besoin d’amener&nbsp;?
-                                            </div>
-                                            <div class="faq-card-description ng-scope" translate="FAQ_A_WHAT_BRING">On
-                                                s’occupe des repas, de l’internet et de l’électricité. Tu as juste
-                                                besoin d’amener ton PC et un chargeur.
-                                            </div>
-                                        </div><!-- end ngIf: $odd --><!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
-                                        <!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
-                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$odd">
-                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_WHO_COPYRIGHT">Qui
-                                                détient la propriété intellectuelle des hacks&nbsp;?
-                                            </div>
-                                            <div class="faq-card-description ng-scope" translate="FAQ_A_WHO_COPYRIGHT">
-                                                Les solutions développées appartiennent à leurs auteurs.
-                                            </div>
-                                        </div><!-- end ngIf: $odd --><!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
-                                        <!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
-                                        <div class="faq-card ng-scope" ng-repeat="f in faqs" ng-if="$odd">
-                                            <div class="faq-card-title ng-scope" translate="FAQ_Q_SCHEDULE">Quel est le
-                                                planning du hackathon&nbsp;?
-                                            </div>
-                                            <div class="faq-card-description ng-scope" translate="FAQ_A_SCHEDULE">Nous
-                                                rendrons disponible le détail des 34H un peu plus tard.
-                                            </div>
-                                        </div><!-- end ngIf: $odd --><!-- end ngRepeat: f in faqs --><!-- ngIf: $odd -->
-                                        <!-- end ngRepeat: f in faqs -->
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <section id="sponsors" class="center">
-                            <div id="sponsors-content">
-                                <div class="title ng-scope" translate="SPONSORS_TITLE">Partenaires &amp; Sponsors</div>
-                                <br>
-                                <div id="sponsors-list" class="ui grid">
-                                    <!-- ngRepeat: spo in sponsors --><!-- ngIf: spo.show --><a
-                                        ng-repeat="spo in sponsors"
-                                        href="https://webcomelyon.fr/events/hacker-les-transports/"
-                                        class="sixteen wide phone eight wide tablet four wide computer column ng-scope"
-                                        target="_blank" ng-if="spo.show">
-                                    <img src="/assets/images/logos/webcome.png" alt="Webcome Lyon">
-                                </a><!-- end ngIf: spo.show --><!-- end ngRepeat: spo in sponsors -->
-                                    <!-- ngIf: spo.show --><a ng-repeat="spo in sponsors" href="https://ibm.com/"
-                                                              class="sixteen wide phone eight wide tablet four wide computer column ng-scope"
-                                                              target="_blank" ng-if="spo.show">
-                                    <img src="/assets/images/logos/ibmpos_blurgb.jpg?v=new" alt="IBM">
-                                </a><!-- end ngIf: spo.show --><!-- end ngRepeat: spo in sponsors -->
-                                    <!-- ngIf: spo.show --><a ng-repeat="spo in sponsors" href="https://mlh.io/"
-                                                              class="sixteen wide phone eight wide tablet four wide computer column ng-scope"
-                                                              target="_blank" ng-if="spo.show">
-                                    <img src="/assets/images/logos/mlh.png" alt="Major League Hacking">
-                                </a><!-- end ngIf: spo.show --><!-- end ngRepeat: spo in sponsors -->
-                                    <!-- ngIf: spo.show --><a ng-repeat="spo in sponsors" href="http://lyon.epitech.eu/"
-                                                              class="sixteen wide phone eight wide tablet four wide computer column ng-scope"
-                                                              target="_blank" ng-if="spo.show">
-                                    <img src="/assets/images/logos/epitech.png" alt="Epitech Lyon">
-                                </a><!-- end ngIf: spo.show --><!-- end ngRepeat: spo in sponsors -->
-                                    <!-- ngIf: spo.show --><!-- end ngRepeat: spo in sponsors -->
-                                </div>
-                                <br>
-                                <div id="callforsponsors" class="center" style="padding-top: 76px">
-                                    <span class="headline ng-scope" translate="SPONSORS_LOGO">Vous voulez voir <span
-                                            class="bold">votre logo ici</span>?</span>
-                                    <span>&nbsp;</span>
-                                    <span class="headline ng-scope" translate="SPONSORS_MAIL">Contactez nous par <a
-                                            class="bold"
-                                            href="mailto:partnerships@hacklyon.com?subject=Partnership%20HackLyon">email</a>.</span>
-                                </div>
-                            </div>
-                        </section>
-                        <section id="map-section">
-                            <div id="address">
-                                <p><span class="headline">Venue</span></p>
-                                <p><a href="http://www.latourduweb.com/">La Tour Du Web</a>, Lyon</p>
-                                <p>4 Rue du Professeur Charles Appleton, 69007 Lyon</p>
-                            </div>
-
-                        </section>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.0/semantic.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.0.1/sweetalert.min.js"></script>
-
-<!-- Moment -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/locale/fr.js"></script>
-
-<!-- showdown! -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.2.1/showdown.min.js"></script>
-
-<script async defer src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js"></script>
-
-<!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAits6_GXRu5VVdwX9d25UsPli6hrAps8c"></script>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenLite.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/easing/EasePack.min.js"></script>
 </body>
 </html>
