@@ -48,6 +48,12 @@ angular.module('reg')
                     href: "http://www.etic-insa.com/",
                     logo: "/assets/images/logos/etic.png",
                     show: false
+                },
+                {
+                    name: "Heetch",
+                    href: "https://www.heetch.com/fr/services/",
+                    logo: "/assets/images/logos/heetch2.png",
+                    show: true
                 }
             ];
 
