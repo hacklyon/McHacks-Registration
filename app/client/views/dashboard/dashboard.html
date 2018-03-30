@@ -1,265 +1,269 @@
 <div id="dashboard" class="page">
-  <div class="divided title">
-    {{ 'DASHBOARD' | translate }}
-  </div>
-
-  <div class="ui stackable centered page grid">
-    <div class="column">
-      <div class="ui status segment">
-        <div class="small title">
-          {{ 'YOUR_STATUS' | translate }}
-        </div>
-        <br>
-
-        <div
-          class="state"
-          ng-class="user.status.name"
-          ng-if="!showWaitlist && !dashState('admittedAndCannotConfirm')">
-          {{user.status.name}}
-        </div>
-
-        <div
-          class="declined state"
-          ng-if="dashState('admittedAndCannotConfirm')">
-          Expired Admission
-        </div>
-
-
-        <div
-          ng-if="showWaitlist"
-          class="waitlist state">
-          {{ 'ON_WAITLIST' | translate }}
-        </div>
-
-        <div class="ui divider"></div>
-
-        <div ng-if="user.profile.name.length > 0">
-          <p>
-            <strong>
-              {{ 'WELCOME_BACK' | translate:user }}
-            </strong>
-          </p>
-          <p>
-          </p>
-        </div>
-
-        <div
-          ng-if="dashState('unverified')"
-          class="description">
-          <p>
-            <strong>
-            {{ 'EMAIL_TO_VERIFY' | translate:user }}
-            </strong>
-          </p>
-          <p translate="{{ 'UNVERIFIED' }}">
-          </p>
-          <div class="ui teal button" ng-click="resendEmail()">
-            {{ "RESEND" | translate }}
-          </div>
-        </div>
-
-        <div
-          ng-class="settings.timeClose"
-          ng-if="!dashState('admittedAndCanConfirm') || !dashState('admittedAndCannotConfirm') || !dashState('confirmed') || !dashState('declined')">
-          <strong>
-            {{ 'REGISTRATION_DEADLINE' | translate }}:
-          </strong>
-          {{ timeClose }}
-          <br>
-          <br>
-        </div>
-
-        <div
-          ng-class="settings.timeConfirm"
-          ng-if="dashState('admittedAndCanConfirm') || dashState('admittedAndCannotConfirm') || dashState('confirmed') || dashState('declined')">
-          <strong>
-            Confirmation Deadline:
-          </strong>
-          {{ timeConfirm }}
-          <br>
-          <br>
-        </div>
-
-        <div
-          ng-if="dashState('openAndIncomplete')"
-          class="description">
-          <p>
-            <strong>
-                {{ 'INCOMPLETE_TITLE' | translate }}
-            </strong>
-          </p>
-          <p>
-            {{ 'INCOMPLETE' | translate:values }}
-          </p>
-
-          <div class="ui button"
-               ui-sref="app.application">
-            {{ "COMPLETE_BTN" | translate }}
-          </div>
-
-        </div>
-
-        <div
-          ng-if="dashState('openAndSubmitted')"
-          class="description">
-          <p>
-            <strong>
-                {{ 'SUBMITTED_TITLE' | translate }}
-            </strong>
-          </p>
-          <p>
-            {{ 'SUBMITTED' | translate }}
-          </p>
-          <div class="ui button"
-               ui-sref="app.application">
-            {{ 'EDIT_APPLICATION' | translate }}
-          </div>
-
-          <div
-            class="ui teal button"
-            ng-show="false && !user.teamCode"
-            ui-sref="app.team">
-            Create or join a team
-          </div>
-
-          <div
-            class="ui teal button"
-            ng-show="user.teamCode"
-            ui-sref="app.team">
-            View your Team
-          </div>
-
-        </div>
-
-        <div
-          ng-if="dashState('closedAndIncomplete')">
-          <p>
-            <strong>
-                {{ DASHBOARD.CLOSED_AND_INCOMPLETE_TITLE }}
-            </strong>
-          </p>
-          <p>
-            {{ DASHBOARD.CLOSED_AND_INCOMPLETE }}
-          </p>
-        </div>
-
-        <div
-          ng-if="dashState('closedAndSubmitted')"
-          class="description" >
-
-          <div
-            class="markdown"
-            ng-bind-html="waitlistText">
-          </div>
-
-          <div class="ui teal button"
-               ui-sref="app.application">
-            View your application
-          </div>
-
-          <div
-            class="ui teal button"
-            ng-show="user.teamCode"
-            ui-sref="app.team">
-            View your Team
-          </div>
-        </div>
-
-        <div
-          class="description"
-          ng-if="dashState('admittedAndCanConfirm')">
-
-          <div class="markdown">
-            <h4>
-                {{ DASHBOARD.ADMITTED_AND_CAN_CONFIRM_TITLE }}
-            </h4>
-          </div>
-
-          <div
-            class="markdown"
-            ng-bind-html="acceptanceText">
-          </div>
-
-          <div class="markdown">
-            <h4>
-                {{ DASHBOARD.ADMITTED_AND_CAN_CONFIRM }}
-            </h4>
-          </div>
-
-          <div class="ui teal button"
-               ui-sref="app.confirmation">
-            Confirm your spot
-          </div>
-
-          <div class="ui red button"
-               ng-click="declineAdmission()">
-            Sorry, I can't make it
-          </div>
-
-        </div>
-
-        <div
-          class="description"
-          ng-if="dashState('admittedAndCannotConfirm')">
-
-          <div class="markdown">
-            <h4>
-                {{ DASHBOARD.ADMITTED_AND_CANNOT_CONFIRM_TITLE }}
-            </h4>
-
-            <p>
-                {{ DASHBOARD.ADMITTED_AND_CANNOT_CONFIRM }}
-            </p>
-          </div>
-
-        </div>
-
-        <div
-          class="description"
-          ng-if="dashState('confirmed')">
-
-          <div
-            ng-show="!pastConfirmation"
-            class="markdown">
-            <h4>
-                {{ DASHBOARD.CONFIRMED_NOT_PAST_TITLE }}
-            </h4>
-          </div>
-
-          <div
-            class="markdown"
-            ng-bind-html="confirmationText">
-          </div>
-
-          <div>
-            Show this QR code when you arrive at the event.
-            <br />
-            <img src='https://chart.googleapis.com/chart?cht=qr&chl=hacklyon%3A%2F%2F{{ user._id }}&chs=180x180&choe=UTF-8&chld=L|2' alt=''>
-          </div>
-
-          <div class="ui teal button"
-               ui-sref="app.confirmation">
-            {{pastConfirmation ? 'View' : 'Edit'}} your confirmation information
-          </div>
-
-          <div class="ui red button"
-               ng-click="declineAdmission()">
-            Sorry, I can't make it
-          </div>
-
-        </div>
-
-        <div
-          class="description"
-          ng-if="dashState('declined')">
-
-          <p>
-            {{ DASHBOARD.DECLINED }}
-          </p>
-        </div>
-
-      </div>
-
+    <div class="divided title">
+        {{ 'DASHBOARD' | translate }}
     </div>
-  </div>
+
+    <div class="ui stackable centered page grid">
+        <div class="column">
+            <div class="ui status segment">
+                <div class="small title">
+                    {{ 'YOUR_STATUS' | translate }}
+                </div>
+                <br>
+
+                <div
+                        class="state"
+                        ng-class="user.status.name"
+                        ng-if="!showWaitlist && !dashState('admittedAndCannotConfirm')">
+                    {{user.status.name}}
+                </div>
+
+                <div
+                        class="declined state"
+                        ng-if="dashState('admittedAndCannotConfirm')">
+                    Expired Admission
+                </div>
+
+
+                <div
+                        ng-if="showWaitlist"
+                        class="waitlist state">
+                    {{ 'ON_WAITLIST' | translate }}
+                </div>
+
+                <div class="ui divider"></div>
+
+                <div ng-if="user.profile.name.length > 0">
+                    <p>
+                        <strong>
+                            {{ 'WELCOME_BACK' | translate:user }}
+                        </strong>
+                    </p>
+                    <p>
+                    </p>
+                </div>
+
+                <div
+                        ng-if="dashState('unverified')"
+                        class="description">
+                    <p>
+                        <strong>
+                            {{ 'EMAIL_TO_VERIFY' | translate:user }}
+                        </strong>
+                    </p>
+                    <p translate="{{ 'UNVERIFIED' }}">
+                    </p>
+                    <div class="ui teal button" ng-click="resendEmail()">
+                        {{ "RESEND" | translate }}
+                    </div>
+                </div>
+
+                <div
+                        ng-class="settings.timeClose"
+                        ng-if="!dashState('admittedAndCanConfirm') || !dashState('admittedAndCannotConfirm') || !dashState('confirmed') || !dashState('declined')">
+                    <strong>
+                        {{ 'REGISTRATION_DEADLINE' | translate }}:
+                    </strong>
+                    {{ timeClose }}
+                    <br>
+                    <br>
+                </div>
+
+                <div
+                        ng-class="settings.timeConfirm"
+                        ng-if="dashState('admittedAndCanConfirm') || dashState('admittedAndCannotConfirm') || dashState('confirmed') || dashState('declined')">
+                    <strong>
+                        Confirmation Deadline:
+                    </strong>
+                    {{ timeConfirm }}
+                    <br>
+                    <br>
+                </div>
+
+                <div
+                        ng-if="dashState('openAndIncomplete')"
+                        class="description">
+                    <p>
+                        <strong>
+                            {{ 'INCOMPLETE_TITLE' | translate }}
+                        </strong>
+                    </p>
+                    <p>
+                        {{ 'INCOMPLETE' | translate:values }}
+                    </p>
+
+                    <div class="ui button"
+                         ui-sref="app.application">
+                        {{ "COMPLETE_BTN" | translate }}
+                    </div>
+
+                </div>
+
+                <div
+                        ng-if="dashState('openAndSubmitted')"
+                        class="description">
+                    <p>
+                        <strong>
+                            {{ 'SUBMITTED_TITLE' | translate }}
+                        </strong>
+                    </p>
+                    <p>
+                        {{ 'SUBMITTED' | translate }}
+                    </p>
+                    <p>
+                        <strong translate="{{ 'SUBMITTED_FACEBOOK' }}"></strong>
+                    </p>
+                    <div class="ui button"
+                         ui-sref="app.application">
+                        {{ 'EDIT_APPLICATION' | translate }}
+                    </div>
+
+                    <div
+                            class="ui teal button"
+                            ng-show="false && !user.teamCode"
+                            ui-sref="app.team">
+                        Create or join a team
+                    </div>
+
+                    <div
+                            class="ui teal button"
+                            ng-show="user.teamCode"
+                            ui-sref="app.team">
+                        View your Team
+                    </div>
+
+                </div>
+
+                <div
+                        ng-if="dashState('closedAndIncomplete')">
+                    <p>
+                        <strong>
+                            {{ DASHBOARD.CLOSED_AND_INCOMPLETE_TITLE }}
+                        </strong>
+                    </p>
+                    <p>
+                        {{ DASHBOARD.CLOSED_AND_INCOMPLETE }}
+                    </p>
+                </div>
+
+                <div
+                        ng-if="dashState('closedAndSubmitted')"
+                        class="description">
+
+                    <div
+                            class="markdown"
+                            ng-bind-html="waitlistText">
+                    </div>
+
+                    <div class="ui teal button"
+                         ui-sref="app.application">
+                        View your application
+                    </div>
+
+                    <div
+                            class="ui teal button"
+                            ng-show="user.teamCode"
+                            ui-sref="app.team">
+                        View your Team
+                    </div>
+                </div>
+
+                <div
+                        class="description"
+                        ng-if="dashState('admittedAndCanConfirm')">
+
+                    <div class="markdown">
+                        <h4>
+                            {{ DASHBOARD.ADMITTED_AND_CAN_CONFIRM_TITLE }}
+                        </h4>
+                    </div>
+
+                    <div
+                            class="markdown"
+                            ng-bind-html="acceptanceText">
+                    </div>
+
+                    <div class="markdown">
+                        <h4>
+                            {{ DASHBOARD.ADMITTED_AND_CAN_CONFIRM }}
+                        </h4>
+                    </div>
+
+                    <div class="ui teal button"
+                         ui-sref="app.confirmation">
+                        Confirm your spot
+                    </div>
+
+                    <div class="ui red button"
+                         ng-click="declineAdmission()">
+                        Sorry, I can't make it
+                    </div>
+
+                </div>
+
+                <div
+                        class="description"
+                        ng-if="dashState('admittedAndCannotConfirm')">
+
+                    <div class="markdown">
+                        <h4>
+                            {{ DASHBOARD.ADMITTED_AND_CANNOT_CONFIRM_TITLE }}
+                        </h4>
+
+                        <p>
+                            {{ DASHBOARD.ADMITTED_AND_CANNOT_CONFIRM }}
+                        </p>
+                    </div>
+
+                </div>
+
+                <div
+                        class="description"
+                        ng-if="dashState('confirmed')">
+
+                    <div
+                            ng-show="!pastConfirmation"
+                            class="markdown">
+                        <h4>
+                            {{ DASHBOARD.CONFIRMED_NOT_PAST_TITLE }}
+                        </h4>
+                    </div>
+
+                    <div
+                            class="markdown"
+                            ng-bind-html="confirmationText">
+                    </div>
+
+                    <div>
+                        Show this QR code when you arrive at the event.
+                        <br/>
+                        <img src='https://chart.googleapis.com/chart?cht=qr&chl=hacklyon%3A%2F%2F{{ user._id }}&chs=180x180&choe=UTF-8&chld=L|2'
+                             alt=''>
+                    </div>
+
+                    <div class="ui teal button"
+                         ui-sref="app.confirmation">
+                        {{pastConfirmation ? 'View' : 'Edit'}} your confirmation information
+                    </div>
+
+                    <div class="ui red button"
+                         ng-click="declineAdmission()">
+                        Sorry, I can't make it
+                    </div>
+
+                </div>
+
+                <div
+                        class="description"
+                        ng-if="dashState('declined')">
+
+                    <p>
+                        {{ DASHBOARD.DECLINED }}
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 </div>

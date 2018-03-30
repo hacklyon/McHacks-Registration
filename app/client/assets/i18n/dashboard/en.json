@@ -8,6 +8,7 @@
   "INCOMPLETE": "If you do not complete your application before the {{APP_DEADLINE}}, your application will not be considered!",
   "SUBMITTED_TITLE": "Your application has been submitted!",
   "SUBMITTED": "Feel free to edit it at any time. However, once registration is closed, you will not be able to edit it any further.\nPlease make sure your information is accurate before registration is closed! We will get in touch quickly if you are accepted.",
+  "SUBMITTED_FACEBOOK": "In the meantime, don't forget to like our Facebook page to make sure you don't miss any information! <a href=\"https://fb.com/hacklyonfr\">fb.com/hacklyonfr</a>",
   "CLOSED_AND_INCOMPLETE_TITLE": "Unfortunately, registration has closed!",
   "CLOSED_AND_INCOMPLETE": "Because you have not completed your profile in time, you will not be will not be considered!",
   "ADMITTED_AND_CAN_CONFIRM_TITLE": "You must confirm by {{CONFIRM_DEADLINE}}.",
