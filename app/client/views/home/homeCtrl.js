@@ -54,7 +54,7 @@ angular.module('reg')
                 equally: [{
                     name: "Dreamhack",
                     href: "https://www.dreamhack.es/valencia",
-                    logo: "/assets/images/logos/dreamhack.png",
+                    logo: "/assets/images/logos/dreamhack.png?v=new",
                     show: true
                 }, {
                     name: "Heetch",

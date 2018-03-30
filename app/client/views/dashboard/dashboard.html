@@ -51,8 +51,7 @@
             {{ 'EMAIL_TO_VERIFY' | translate:user }}
             </strong>
           </p>
-          <p>
-            {{ 'UNVERIFIED' | translate }}
+          <p translate="{{ 'UNVERIFIED' }}">
           </p>
           <div class="ui teal button" ng-click="resendEmail()">
             {{ "RESEND" | translate }}
