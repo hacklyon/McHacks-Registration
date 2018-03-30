@@ -10,11 +10,12 @@
   "HOME_HOURS": "Heures",
   "HOME_THEME": "WEB × AI × Transports Urbains",
   "MORE_INFO_TITLE": "Vers une nouvelle mobilité",
-  "MORE_INFO_CONTENT": "<p>Les transports urbains nous concernent tous directement. Tu as certainement plein d’idées pour les améliorer: accessibilité, entretien, information… Les exemples quotidiens ne manquent pas ! HackLyon Alpha t’offre l’opportunité de venir développer une solution qui utilise l’Intelligence Artificielle et le Cloud, que tu sois porteur d’idée ou passionné d’IA.</p><p>Les coachs techniques et les supports de formation t’aideront à libérer la puissance du Cloud et à porter ta solution jusqu’en finale pour la présenter devant le public du <a href=\"https://webcomelyon.fr/\" target=\"_blank\">WebCome Day</a>, réuni à Lyon en clôture de la <a href=\"https://www2018.thewebconf.org/\" target=\"_blank\">Conférence du Web</a> organisée par l’IW3C2. De nombreuses surprises sont à venir… <a href=\"/login\">inscris toi vite</a> !</p>",
+  "MORE_INFO_CONTENT": "<p>Les transports urbains nous concernent tous directement. Tu as certainement plein d’idées pour les améliorer: accessibilité, entretien, information… Les exemples quotidiens ne manquent pas ! HackLyon Alpha t’offre l’opportunité de venir développer une solution qui utilise l’Intelligence Artificielle et le Cloud, que tu sois porteur d’idée ou passionné d’IA.</p><p>Les coachs techniques et les supports de formation t’aideront à libérer la puissance du Cloud et à porter ta solution jusqu’en finale pour la présenter devant le public du <a href=\"https://webcomelyon.fr/\" target=\"_blank\">WebCome Day</a>, réuni à Lyon en clôture de la <a href=\"https://www2018.thewebconf.org/\" target=\"_blank\">Conférence du Web</a> organisée par l’IW3C2. De nombreuses surprises sont à venir… <a href=\"/login\">inscris toi vite</a>, <strong>tu as jusqu'au 10 Avril</strong>&nbsp;!</p>",
   "SPONSORS_TITLE": "Partenaires &amp; Sponsors",
   "SPONSORS_LOGO": "Vous voulez voir <span class=\"bold\">votre logo ici</span>?",
   "SPONSORS_CONTACT_BUTTON": "Contactez nous",
   "SPONSORS_MAIL": "Contactez nous par <a class=\"bold\" href=\"mailto:partnerships@hacklyon.com?subject=Partnership%20HackLyon\">email</a>.",
+  "SPONSORS_EQUALLY": "Ils nous soutiennent également",
   "FAQ_Q_WHAT_HL": "Qu'est-ce que “Alpha”&nbsp;?",
   "FAQ_A_WHAT_HL": "Alpha est un hackathon organisé dans les nouveaux locaux d'Epitech à Lyon les 27 et 28 avril 2018. Le hackathon est organisé par l’association étudiante <a href=\"https://asso.hacklyon.com\" target=\"_blank\">HackLyon</a>.",
   "FAQ_Q_WHAT": "Qu'est-ce qu'un hackathon&nbsp;?",
@@ -46,5 +47,6 @@
   "SHOW_MORE": "Montrer plus",
   "SHOW_LESS": "Montrer moins",
   "CONTACT_TITLE": "Contactez HackLyon",
-  "CONTACT_EMAIL": "N'hésitez pas à nous envoyer un message à <a href=\"mailto:hello@hacklyon.com\">hello@hacklyon.com</a> et à consulter nos profils sur les réseaux sociaux !"
+  "CONTACT_EMAIL": "N'hésitez pas à nous envoyer un message à <a href=\"mailto:hello@hacklyon.com\">hello@hacklyon.com</a> et à consulter nos profils sur les réseaux sociaux !",
+  "VENUE": "Lieu"
 }

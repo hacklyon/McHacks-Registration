@@ -10,11 +10,12 @@
   "HOME_HOURS": "Hours",
   "HOME_THEME": "WEB × AI × Urban Transports",
   "MORE_INFO_TITLE": "Towards a new mobility",
-  "MORE_INFO_CONTENT": "<p>Urban transport concerns us all directly. You certainly have many ideas to improve them: accessibility, maintenance, information… The daily examples are not lacking! HackLyon Alpha gives you the opportunity to come and develop a solution that uses Artificial Intelligence and the Cloud, whether you're an idea carrier or an AI enthusiast.</p><p>The technical coaches and training materials will help you unleash the power of the Cloud and bring your solution to the final to present it to the audience of the <a href=\"https://webcomelyon.fr/\" target=\"_blank\">WebCome Day</a>, meeting in Lyon at the end of <a href=\"https://www2018.thewebconf.org/\" target=\"_blank\">The Web Conference</a> organized by the IW3C2. Many surprises are coming… <a href=\"/login\">register now</a>!</p>",
+  "MORE_INFO_CONTENT": "<p>Urban transport concerns us all directly. You certainly have many ideas to improve them: accessibility, maintenance, information… The daily examples are not lacking! HackLyon Alpha gives you the opportunity to come and develop a solution that uses Artificial Intelligence and the Cloud, whether you're an idea carrier or an AI enthusiast.</p><p>The technical coaches and training materials will help you unleash the power of the Cloud and bring your solution to the final to present it to the audience of the <a href=\"https://webcomelyon.fr/\" target=\"_blank\">WebCome Day</a>, meeting in Lyon at the end of <a href=\"https://www2018.thewebconf.org/\" target=\"_blank\">The Web Conference</a> organized by the IW3C2. Many surprises are coming… <a href=\"/login\">register now</a>, <strong>you can do it until April 10th</strong>!</p>",
   "SPONSORS_TITLE": "Partners &amp; Sponsors",
   "SPONSORS_LOGO": "Do you want to see <span class=\"bold\">your logo here</span>?",
   "SPONSORS_CONTACT_BUTTON": "Contact us",
   "SPONSORS_MAIL": "Contact us by <a href=\"mailto:partnerships@hacklyon.com?subject=Partnership%20HackLyon\">email</a>.",
+  "SPONSORS_EQUALLY": "They also support us",
   "FAQ_Q_WHAT_HL": "What is Alpha?",
   "FAQ_A_WHAT_HL": "Alpha is a hackathon held at Epitech school in Lyon on April 27-28th. The hackathon is powered by <a href=\"https://asso.hacklyon.com\" target=\"_blank\">HackLyon</a>, a student-run NGO.",
   "FAQ_Q_WHAT": "What is a hackathon?",
@@ -46,5 +47,6 @@
   "SHOW_MORE": "Show More",
   "SHOW_LESS": "Show Less",
   "CONTACT_TITLE": "Contact HackLyon",
-  "CONTACT_EMAIL": "Feel free to drop us a line at <a href=\"mailto:hello@hacklyon.com\">hello@hacklyon.com</a> and check our social profiles!"
+  "CONTACT_EMAIL": "Feel free to drop us a line at <a href=\"mailto:hello@hacklyon.com\">hello@hacklyon.com</a> and check our social profiles!",
+  "VENUE": "Venue"
 }
