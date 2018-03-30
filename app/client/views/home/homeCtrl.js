@@ -18,44 +18,51 @@ angular.module('reg')
             let Settings = settings.data;
             $scope.regIsOpen = Utils.isRegOpen(Settings);
 
-            $scope.sponsors = [
-                {
-                    name: "Webcome Lyon",
-                    href: "https://webcomelyon.fr/events/hacker-les-transports/",
-                    logo: "/assets/images/logos/webcome.png",
+            $scope.sponsors = {
+                gold: [
+                    {
+                        name: "Webcome Lyon",
+                        href: "https://webcomelyon.fr/events/hacker-les-transports/",
+                        logo: "/assets/images/logos/webcome.png",
+                        show: true
+                    },
+                    {
+                        name: "IBM",
+                        logo: "/assets/images/logos/ibmpos_blurgb.jpg?v=new",
+                        href: "https://ibm.com/",
+                        show: true
+                    },
+                    {
+                        name: "Major League Hacking",
+                        href: "https://mlh.io/",
+                        logo: "/assets/images/logos/mlh.png",
+                        show: true
+                    },
+                    {
+                        name: "Epitech Lyon",
+                        logo: "/assets/images/logos/epitech.png",
+                        href: "http://lyon.epitech.eu/",
+                        show: true
+                    },
+                    {
+                        name: "ETIC INSA Technologies",
+                        href: "http://www.etic-insa.com/",
+                        logo: "/assets/images/logos/etic.png",
+                        show: false
+                    }
+                ],
+                equally: [{
+                    name: "Dreamhack",
+                    href: "https://www.dreamhack.es/valencia",
+                    logo: "/assets/images/logos/dreamhack.png",
                     show: true
-                },
-                {
-                    name: "IBM",
-                    logo: "/assets/images/logos/ibmpos_blurgb.jpg?v=new",
-                    href: "https://ibm.com/",
-                    show: true
-                },
-                {
-                    name: "Major League Hacking",
-                    href: "https://mlh.io/",
-                    logo: "/assets/images/logos/mlh.png",
-                    show: true
-                },
-                {
-                    name: "Epitech Lyon",
-                    logo: "/assets/images/logos/epitech.png",
-                    href: "http://lyon.epitech.eu/",
-                    show: true
-                },
-                {
-                    name: "ETIC INSA Technologies",
-                    href: "http://www.etic-insa.com/",
-                    logo: "/assets/images/logos/etic.png",
-                    show: false
-                },
-                {
+                }, {
                     name: "Heetch",
                     href: "https://www.heetch.com/fr/services/",
                     logo: "/assets/images/logos/heetch2.png",
-                    show: true
-                }
-            ];
+                    show: false
+                }]
+            };
 
             $scope.faqs = [
                 {
@@ -232,10 +239,11 @@ angular.module('reg')
 
                     // create points
                     points = [];
-                    for (var x = 0; x < width; x = x + width / 12) {
-                        for (let y = 0; y < height; y = y + height / 12) {
-                            let px = x + Math.random() * width / 12;
-                            let py = y + Math.random() * height / 12;
+                    let factor = 9/12*width/100 + 1;
+                    for (var x = 0; x < width; x = x + width / factor) {
+                        for (let y = 0; y < height; y = y + height / factor) {
+                            let px = x + Math.random() * width / factor;
+                            let py = y + Math.random() * height / factor;
                             let p = {x: px, originX: px, y: py, originY: py};
                             points.push(p);
                         }
@@ -394,6 +402,6 @@ angular.module('reg')
                         $("#faq-content").toggleClass("expanded");
                         $(".faq-show-more").toggle();
                     });
-                },1000);
+                }, 1000);
             });
         }]);

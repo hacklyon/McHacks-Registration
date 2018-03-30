@@ -127,28 +127,37 @@
             <div class="title" translate="SPONSORS_TITLE">
             </div>
             <br>
-            <div id="sponsors-list" class="ui grid">
-                <a ng-repeat="spo in sponsors" href="{{spo.href}}"
+            <div class="ui grid sponsors-list">
+                <a ng-repeat="spo in sponsors.gold" href="{{spo.href}}"
                    class="sixteen wide phone eight wide tablet four wide computer column"
                    target="_blank" ng-if="spo.show">
                     <img src="{{spo.logo}}" alt="{{ spo.name }}">
                 </a>
             </div>
             <br>
+            <div class="center callforsponsors" style="padding-top: 76px">
+                <span class="headline" translate="SPONSORS_EQUALLY"></span>
+            </div>
+            <br>
+            <div class="ui grid sponsors-list">
+                <a ng-repeat="spo in sponsors.equally" href="{{spo.href}}"
+                   class="eight wide phone four wide tablet three wide computer column"
+                   target="_blank" ng-if="spo.show">
+                    <img src="{{spo.logo}}" alt="{{ spo.name }}">
+                </a>
+            </div>
+            <br>
             <div id="callforsponsors" class="center" style="padding-top: 76px">
-                <span class="headline" translate="SPONSORS_LOGO">&nbsp;
-                </span>
+                <span class="headline" translate="SPONSORS_LOGO">&nbsp;</span>
                 <span>&nbsp;</span>
-                <span class="headline" translate="SPONSORS_MAIL">
-
-                </span>
+                <span class="headline" translate="SPONSORS_MAIL"></span>
             </div>
         </div>
     </section>
 
     <section id="map-section">
         <div id="address">
-            <p><span class="headline">Venue</span></p>
+            <p><span class="headline">{{ 'VENUE' | translate }}</span></p>
             <p>Locaux Epitech</p>
             <p>4 Rue du Professeur Charles Appleton, 69007 Lyon</p>
         </div>
