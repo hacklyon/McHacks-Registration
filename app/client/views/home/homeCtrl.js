@@ -69,6 +69,9 @@ angular.module('reg')
                     q: "FAQ_Q_WHAT_HL",
                     a: "FAQ_A_WHAT_HL"
                 }, {
+                    q: "FAQ_Q_REWARDS",
+                    a: "FAQ_A_REWARDS"
+                }, {
                     q: "FAQ_Q_NASA",
                     a: "FAQ_A_NASA"
                 }, {
@@ -104,6 +107,9 @@ angular.module('reg')
                 }, {
                     q: "FAQ_Q_TRAVEL_REIMBURSEMENTS",
                     a: "FAQ_A_TRAVEL_REIMBURSEMENTS"
+                }, {
+                    q: "FAQ_Q_QUESTIONS",
+                    a: "FAQ_A_QUESTIONS"
                 }
             ];
 
