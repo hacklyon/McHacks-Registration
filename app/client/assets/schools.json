@@ -44,6 +44,10 @@
         "school": "Epitech",
         "state": "France"
     },
+    "etu.emse.fr": {
+        "school": "École des Mines de Saint-Étienne",
+        "state": "France"
+    },
     "emory.edu": {
         "school": "Emory University",
         "state": "Georgia"
