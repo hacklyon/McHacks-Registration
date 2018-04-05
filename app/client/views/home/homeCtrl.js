@@ -18,36 +18,59 @@ angular.module('reg')
             let Settings = settings.data;
             $scope.regIsOpen = Utils.isRegOpen(Settings);
 
+            $scope.howManySponsors = function(list) {
+                let count = 0;
+                list.forEach(function (item, index) {
+                    if(item.show) count++;
+                });
+                return count;
+            };
+
             $scope.sponsors = {
-                gold: [
+                partners: [
                     {
                         name: "Webcome Lyon",
                         href: "https://webcomelyon.fr/events/hacker-les-transports/",
                         logo: "/assets/images/logos/webcome.png",
                         show: true
-                    },
-                    {
-                        name: "IBM",
-                        logo: "/assets/images/logos/ibmpos_blurgb.jpg?v=new",
-                        href: "https://ibm.com/",
-                        show: true
-                    },
-                    {
+                    },{
                         name: "Major League Hacking",
                         href: "https://mlh.io/",
                         logo: "/assets/images/logos/mlh.png",
                         show: true
-                    },
-                    {
+                    },{
                         name: "Epitech Lyon",
                         logo: "/assets/images/logos/epitech.png",
                         href: "http://lyon.epitech.eu/",
                         show: true
-                    },
+                    }
+                ],
+                gold: [
                     {
+                        name: "VOSSLOH",
+                        href: "https://www.vossloh.com/fr/",
+                        logo: "/assets/images/logos/vossloh.png",
+                        show: true
+                    },{
                         name: "ETIC INSA Technologies",
                         href: "http://www.etic-insa.com/",
                         logo: "/assets/images/logos/etic.png",
+                        show: false
+                    }
+                ],
+                silver: [
+                    {
+                        name: "IBM",
+                        logo: "/assets/images/logos/ibmpos_blu.png",
+                        href: "https://ibm.com/",
+                        show: true
+                    }
+                ],
+                bronze: [
+                    {
+                        name: "Devoteam G Cloud",
+                        logo: "/assets/images/logos/devoteam.png",
+                        href: "http://www.devoteamgcloud.com/",
                         show: false
                     }
                 ],
@@ -60,7 +83,12 @@ angular.module('reg')
                     name: "Heetch",
                     href: "https://www.heetch.com/fr/services/",
                     logo: "/assets/images/logos/heetch2.png",
-                    show: false
+                    show: true
+                }, {
+                    name: "Espressif",
+                    href: "https://www.espressif.com/",
+                    logo: "/assets/images/logos/espressif.png",
+                    show: true
                 }]
             };
 

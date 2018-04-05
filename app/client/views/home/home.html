@@ -1,6 +1,6 @@
 <div id="home">
     <div class="chatbot">
-        <img class="chatbot-logo" src="assets/images/chat-bot.png" >
+        <img class="chatbot-logo" src="assets/images/chat-bot.png">
         <div class="chat">
             <div class="header">
             <span class="chat-title">
@@ -12,7 +12,9 @@
 
             </div>
             <ul class="messages">
-                <li class="other">Je suis AlphaBot, le robot en stage chez HackLyon, je suis ici pour t'aider et répondre à tes questions concernant l'événement HackLyon Alpha.</li>
+                <li class="other">Je suis AlphaBot, le robot en stage chez HackLyon, je suis ici pour t'aider et
+                    répondre à tes questions concernant l'événement HackLyon Alpha.
+                </li>
             </ul>
             <div class="footer">
                 <div class="text-box" contenteditable="true" disabled="true"></div>
@@ -84,6 +86,22 @@
     </section>
 
     <section id="about" class="center">
+        <div class="ui basic modal ppt">
+            <div class="ui icon header" ng-if="false">
+                More info about Alpha
+            </div>
+            <div class="content center">
+                <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQI39Rpoa8vcx8wXqVKNWxzuh8cT0NknzOCNzf52w3RlAizZZcGi0NZs7HWGPDO1Kegaupj4F-wR7ze/embed?start=false&loop=false&delayms=5000"
+                        frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true"
+                        webkitallowfullscreen="true"></iframe>
+            </div>
+            <div class="actions">
+                <div class="ui basic ok inverted button">
+                    <i class="checkmark icon"></i>
+                    Ok
+                </div>
+            </div>
+        </div>
         <div id="about-content">
             <div class="title">
                 {{ "MORE_INFO_TITLE" | translate }}
@@ -99,7 +117,7 @@
             </div>
             <div id="faq-show-more" class="center">
                 <div class="faq-button-container">
-                    <a id="faq-show-more-btn" class="btn" >
+                    <a id="faq-show-more-btn" class="btn">
                         <span class="faq-show-more"><i class="fa fa-plus" aria-hidden="true"></i>{{ "SHOW_MORE" | translate }}</span>
                         <span class="faq-show-more" hidden><i class="fa fa-minus" aria-hidden="true"></i>{{ "SHOW_LESS" | translate }}</span>
                     </a>
@@ -128,20 +146,50 @@
         <div id="sponsors-content">
             <div class="title" translate="SPONSORS_TITLE">
             </div>
-            <br>
-            <div class="ui grid sponsors-list">
+            <div class="center callforsponsors" ng-if="howManySponsors(sponsors.gold) > 0" style="padding-top: 76px">
+                <span class="headline" translate="SPONSORS_GOLD"></span>
+            </div>
+            <div class="ui grid sponsors-list" ng-if="howManySponsors(sponsors.gold) > 0">
                 <a ng-repeat="spo in sponsors.gold" href="{{spo.href}}"
-                   class="sixteen wide phone eight wide tablet four wide computer column"
+                   class="sixteen wide phone eight wide tablet eight wide computer column"
                    target="_blank" ng-if="spo.show">
                     <img src="{{spo.logo}}" alt="{{ spo.name }}">
                 </a>
             </div>
-            <br>
+            <div class="center callforsponsors" ng-if="howManySponsors(sponsors.silver) > 0" style="padding-top: 76px">
+                <span class="headline" translate="SPONSORS_SILVER"></span>
+            </div>
+            <div class="ui grid sponsors-list" ng-if="howManySponsors(sponsors.silver) > 0">
+                <a ng-repeat="spo in sponsors.silver" href="{{spo.href}}"
+                   class="eight wide phone five wide tablet five wide computer column"
+                   target="_blank" ng-if="spo.show">
+                    <img src="{{spo.logo}}" alt="{{ spo.name }}">
+                </a>
+            </div>
+            <div class="center callforsponsors" ng-if="howManySponsors(sponsors.bronze) > 0" style="padding-top: 76px">
+                <span class="headline" translate="SPONSORS_BRONZE"></span>
+            </div>
+            <div class="ui grid sponsors-list" ng-if="howManySponsors(sponsors.bronze) > 0">
+                <a ng-repeat="spo in sponsors.bronze" href="{{spo.href}}"
+                   class="eight wide phone five wide tablet five wide computer column"
+                   target="_blank" ng-if="spo.show">
+                    <img src="{{spo.logo}}" alt="{{ spo.name }}">
+                </a>
+            </div>
             <div class="center callforsponsors" style="padding-top: 76px">
+                <span class="headline" translate="SPONSORS_PARTNERS"></span>
+            </div>
+            <div class="ui grid sponsors-list">
+                <a ng-repeat="spo in sponsors.partners" href="{{spo.href}}"
+                   class="sixteen wide phone four wide tablet three wide computer column"
+                   target="_blank" ng-if="spo.show">
+                    <img src="{{spo.logo}}" alt="{{ spo.name }}">
+                </a>
+            </div>
+            <div class="center callforsponsors" ng-if="howManySponsors(sponsors.equally) > 0" style="padding-top: 76px">
                 <span class="headline" translate="SPONSORS_EQUALLY"></span>
             </div>
-            <br>
-            <div class="ui grid sponsors-list">
+            <div class="ui grid sponsors-list" ng-if="howManySponsors(sponsors.equally) > 0">
                 <a ng-repeat="spo in sponsors.equally" href="{{spo.href}}"
                    class="eight wide phone four wide tablet three wide computer column"
                    target="_blank" ng-if="spo.show">
@@ -357,7 +405,7 @@
             // Custom Map Marker Icon - Customize the map-marker.png file to customize your icon
             let image = {
                 url: 'assets/images/map-marker.svg?v=pink',
-                size: new google.maps.Size(48,48)
+                size: new google.maps.Size(48, 48)
             };
             let myLatLng = new google.maps.LatLng(45.7459289, 4.8349169);
             let beachMarker = new google.maps.Marker({
