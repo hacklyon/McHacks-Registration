@@ -1,5 +1,6 @@
 var UserController = require('../controllers/UserController');
 var SettingsController = require('../controllers/SettingsController');
+var LessonController = require('../controllers/LessonController');
 var request = require('request');
 
 jwt = require('jsonwebtoken');
@@ -524,4 +525,27 @@ module.exports = function (router) {
         SettingsController.updateField('allowMinors', allowMinors, defaultResponse(req, res));
     });
 
+
+    router.get('/lessons', function (req, res) {
+        LessonController.getAll(defaultResponse(req, res));
+    });
+
+    router.post('/lessons', isAdmin, function (req, res) {
+        let title = req.body.title;
+        let description = req.body.description;
+        let link = req.body.link;
+        let order = req.body.order;
+        let lesson = req.body.lesson;
+        console.log(lesson);
+        LessonController.createLesson(lesson, defaultResponse(req,res));
+    });
+
+    router.put('/lessons/:id', isAdmin, function(req, res){
+        let lesson = req.body.lesson;
+        LessonController.updateLesson(lesson, defaultResponse(req, res));
+    });
+
+    router.put('/lessons/:id/completed', function (req, res) {
+
+    });
 };

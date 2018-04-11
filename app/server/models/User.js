@@ -1,305 +1,308 @@
-var mongoose   = require('mongoose'),
-    bcrypt     = require('bcrypt-nodejs'),
-    validator  = require('validator'),
-    jwt        = require('jsonwebtoken');
-    JWT_SECRET = process.env.JWT_SECRET;
+var mongoose = require('mongoose'),
+    bcrypt = require('bcrypt-nodejs'),
+    validator = require('validator'),
+    jwt = require('jsonwebtoken'),
+    LessonSchema = require('./Lesson');
+JWT_SECRET = process.env.JWT_SECRET;
 
-    mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 
 var profile = {
 
-  // Basic info
-  name: {
-    type: String,
-    min: 1,
-    max: 100,
-  },
+    // Basic info
+    name: {
+        type: String,
+        min: 1,
+        max: 100,
+    },
 
-  adult: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
+    adult: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
 
-  school: {
-    type: String,
-    min: 1,
-    max: 150,
-  },
+    school: {
+        type: String,
+        min: 1,
+        max: 150,
+    },
 
-  degree: {
-    type: String,
-    enum: {
-      values: 'HighSchool Bachelor Master Phd Other'.split(' '),
-    }
-  },
+    degree: {
+        type: String,
+        enum: {
+            values: 'HighSchool Bachelor Master Phd Other'.split(' '),
+        }
+    },
 
-  discipline: {
-    type: String,
-    min: 1,
-    max: 150,
-  },
+    discipline: {
+        type: String,
+        min: 1,
+        max: 150,
+    },
 
-  graduationYear: {
-    type: String,
-    enum: {
-      values: '2018 2019 2020 2021 2022 other'.split(' '),
-    }
-  },
+    graduationYear: {
+        type: String,
+        enum: {
+            values: '2018 2019 2020 2021 2022 other'.split(' '),
+        }
+    },
 
-  eduroam: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
+    eduroam: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
 
-  travel: {
-    type: String,
-    min: 0,
-    max: 300
-  },
+    travel: {
+        type: String,
+        min: 0,
+        max: 300
+    },
 
-  shirtSize: {
-    type: String,
-    enum: {
-      values: 'XS S M L XL XXL'.split(' ')
-    }
-  },
+    shirtSize: {
+        type: String,
+        enum: {
+            values: 'XS S M L XL XXL'.split(' ')
+        }
+    },
 
-  dietaryRestrictions: {
-    type: String,
-    enum: {
-      values: 'Vegetarian Vegan Hala Kosher Nut-Allergy 0'.split(' ')
-    }
-  },
+    dietaryRestrictions: {
+        type: String,
+        enum: {
+            values: 'Vegetarian Vegan Hala Kosher Nut-Allergy 0'.split(' ')
+        }
+    },
 
-  job: {
-    type: String,
-    enum: {
-      values: 'FullTime Internship N'.split(' ')
-    }
-  },
+    job: {
+        type: String,
+        enum: {
+            values: 'FullTime Internship N'.split(' ')
+        }
+    },
 
-  essay: {
-    type: String,
-    min: 0,
-    max: 300
-  },
+    essay: {
+        type: String,
+        min: 0,
+        max: 300
+    },
 
-  suggestion: {
-    type: String,
-    min: 0,
-    max: 300
-  },
+    suggestion: {
+        type: String,
+        min: 0,
+        max: 300
+    },
 
-  resume: {
-    type: String
-  },
+    resume: {
+        type: String
+    },
 
-  github: {
-    type: String,
-    min: 0,
-    max: 300
-  },
+    github: {
+        type: String,
+        min: 0,
+        max: 300
+    },
 
-  linkedin: {
-    type: String,
-    min: 0,
-    max: 300
-  },
+    linkedin: {
+        type: String,
+        min: 0,
+        max: 300
+    },
 
-  website: {
-    type: String,
-    min: 0,
-    max: 300
-  },
+    website: {
+        type: String,
+        min: 0,
+        max: 300
+    },
 
-  mlhshareinfo: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
-  mlhcodeconduct: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
+    mlhshareinfo: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    mlhcodeconduct: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
 
-  // Optional info for demographics
-  gender: {
-    type: String,
-    enum : {
-      values: 'M F O N'.split(' ')
-    }
-  },
+    // Optional info for demographics
+    gender: {
+        type: String,
+        enum: {
+            values: 'M F O N'.split(' ')
+        }
+    },
 
 };
 
 // Only after confirmed
 var confirmation = {
-  phoneNumber: String,
-  wantsHardware: Boolean,
-  hardware: String,
+    phoneNumber: String,
+    wantsHardware: Boolean,
+    hardware: String,
 
-  wantsBusFrom: String,
-  address: {
-    name: String,
-    line1: String,
-    line2: String,
-    city: String,
-    state: String,
-    zip: String,
-    country: String
-  },
-  receipt: String,
+    wantsBusFrom: String,
+    address: {
+        name: String,
+        line1: String,
+        line2: String,
+        city: String,
+        state: String,
+        zip: String,
+        country: String
+    },
+    receipt: String,
 
-  hostNeededFri: Boolean,
-  hostNeededSat: Boolean,
-  genderNeutral: Boolean,
-  catFriendly: Boolean,
-  smokingFriendly: Boolean,
-  hostNotes: String,
+    hostNeededFri: Boolean,
+    hostNeededSat: Boolean,
+    genderNeutral: Boolean,
+    catFriendly: Boolean,
+    smokingFriendly: Boolean,
+    hostNotes: String,
 
-  notes: String,
+    notes: String,
 
-  signatureLiability: String,
-  signaturePhotoRelease: String,
-  signatureCodeOfConduct: String,
-  
-  emergencyName: String,
-  emergencyPhoneNumber: String,
+    signatureLiability: String,
+    signaturePhotoRelease: String,
+    signatureCodeOfConduct: String,
+
+    emergencyName: String,
+    emergencyPhoneNumber: String,
 };
 
 var status = {
-  /**
-   * Whether or not the user's profile has been completed.
-   * @type {Object}
-   */
-  completedProfile: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
-  admitted: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
-  admittedBy: {
-    type: String,
-    validate: [
-      validator.isEmail,
-      'Invalid Email',
-    ],
-    select: false
-  },
-  confirmed: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
-  declined: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
-  checkedIn: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
-  checkInTime: {
-    type: Number,
-  },
-  confirmBy: {
-    type: Number
-  },
-  reimbursementGiven: {
-    type: Boolean,
-    default: false
-  }
+    /**
+     * Whether or not the user's profile has been completed.
+     * @type {Object}
+     */
+    completedProfile: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    admitted: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    admittedBy: {
+        type: String,
+        validate: [
+            validator.isEmail,
+            'Invalid Email',
+        ],
+        select: false
+    },
+    confirmed: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    declined: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    checkedIn: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    checkInTime: {
+        type: Number,
+    },
+    confirmBy: {
+        type: Number
+    },
+    reimbursementGiven: {
+        type: Boolean,
+        default: false
+    }
 };
 
 // define the schema for our admin model
 var schema = new mongoose.Schema({
 
-  email: {
-      type: String,
-      required: true,
-      validate: [
-        validator.isEmail,
-        'Invalid Email',
-      ]
-  },
+    email: {
+        type: String,
+        required: true,
+        validate: [
+            validator.isEmail,
+            'Invalid Email',
+        ]
+    },
 
-  password: {
-    type: String,
-    required: true,
-    select: false
-  },
+    password: {
+        type: String,
+        required: true,
+        select: false
+    },
 
-  admin: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
+    admin: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
 
-  timestamp: {
-    type: Number,
-    required: true,
-    default: Date.now(),
-  },
+    timestamp: {
+        type: Number,
+        required: true,
+        default: Date.now(),
+    },
 
-  lastUpdated: {
-    type: Number,
-    default: Date.now(),
-  },
+    lastUpdated: {
+        type: Number,
+        default: Date.now(),
+    },
 
-  teamCode: {
-    type: String,
-    min: 0,
-    max: 140,
-  },
+    teamCode: {
+        type: String,
+        min: 0,
+        max: 140,
+    },
 
-  verified: {
-    type: Boolean,
-    required: true,
-    default: false
-  },
+    verified: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
 
-  salt: {
-    type: Number,
-    required: true,
-    default: Date.now(),
-    select: false
-  },
+    salt: {
+        type: Number,
+        required: true,
+        default: Date.now(),
+        select: false
+    },
 
-  /**
-   * User Profile.
-   *
-   * This is the only part of the user that the user can edit.
-   *
-   * Profile validation will exist here.
-   */
-  profile: profile,
+    /**
+     * User Profile.
+     *
+     * This is the only part of the user that the user can edit.
+     *
+     * Profile validation will exist here.
+     */
+    profile: profile,
 
-  /**
-   * Confirmation information
-   *
-   * Extension of the user model, but can only be edited after acceptance.
-   */
-  confirmation: confirmation,
+    /**
+     * Confirmation information
+     *
+     * Extension of the user model, but can only be edited after acceptance.
+     */
+    confirmation: confirmation,
 
-  status: status,
+    status: status,
+
+    lessons: [ {type : mongoose.Schema.ObjectId, ref: 'Lesson'} ]
 
 });
 
 schema.set('toJSON', {
-  virtuals: true
+    virtuals: true
 });
 
 schema.set('toObject', {
-  virtuals: true
+    virtuals: true
 });
 
 //=========================================
@@ -307,17 +310,17 @@ schema.set('toObject', {
 //=========================================
 
 // checking if this password matches
-schema.methods.checkPassword = function(password) {
-  return bcrypt.compareSync(password, this.password);
+schema.methods.checkPassword = function (password) {
+    return bcrypt.compareSync(password, this.password);
 };
 
 // Token stuff
-schema.methods.generateEmailVerificationToken = function(){
-  return jwt.sign(this.email, JWT_SECRET);
+schema.methods.generateEmailVerificationToken = function () {
+    return jwt.sign(this.email, JWT_SECRET);
 };
 
-schema.methods.generateAuthToken = function(){
-  return jwt.sign(this._id, JWT_SECRET);
+schema.methods.generateAuthToken = function () {
+    return jwt.sign(this._id, JWT_SECRET);
 };
 
 /**
@@ -329,20 +332,20 @@ schema.methods.generateAuthToken = function(){
  *   exp: expiration ms
  * }
  */
-schema.methods.generateTempAuthToken = function(){
-  return jwt.sign({
-    id: this._id
-  }, JWT_SECRET, {
-    expiresInMinutes: 60,
-  });
+schema.methods.generateTempAuthToken = function () {
+    return jwt.sign({
+        id: this._id
+    }, JWT_SECRET, {
+        expiresInMinutes: 60,
+    });
 };
 
 //=========================================
 // Static Methods
 //=========================================
 
-schema.statics.generateHash = function(password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+schema.statics.generateHash = function (password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
 /**
@@ -350,10 +353,10 @@ schema.statics.generateHash = function(password) {
  * @param  {[type]}   token token
  * @param  {Function} cb    args(err, email)
  */
-schema.statics.verifyEmailVerificationToken = function(token, callback){
-  jwt.verify(token, JWT_SECRET, function(err, email){
-    return callback(err, email);
-  });
+schema.statics.verifyEmailVerificationToken = function (token, callback) {
+    jwt.verify(token, JWT_SECRET, function (err, email) {
+        return callback(err, email);
+    });
 };
 
 /**
@@ -361,27 +364,27 @@ schema.statics.verifyEmailVerificationToken = function(token, callback){
  * @param  {[type]}   token    temporary auth token
  * @param  {Function} callback args(err, id)
  */
-schema.statics.verifyTempAuthToken = function(token, callback){
-  jwt.verify(token, JWT_SECRET, function(err, payload){
+schema.statics.verifyTempAuthToken = function (token, callback) {
+    jwt.verify(token, JWT_SECRET, function (err, payload) {
 
-    if (err || !payload){
-      return callback(err);
-    }
+        if (err || !payload) {
+            return callback(err);
+        }
 
-    if (!payload.exp || Date.now() >= payload.exp * 1000){
-      return callback({
-        message: 'Token has expired.'
-      });
-    }
+        if (!payload.exp || Date.now() >= payload.exp * 1000) {
+            return callback({
+                message: 'Token has expired.'
+            });
+        }
 
-    return callback(null, payload.id);
-  });
+        return callback(null, payload.id);
+    });
 };
 
-schema.statics.findOneByEmail = function(email){
-  return this.findOne({
-    email: new RegExp('^' + email + '$', 'i')
-  });
+schema.statics.findOneByEmail = function (email) {
+    return this.findOne({
+        email: new RegExp('^' + email + '$', 'i')
+    });
 };
 
 /**
@@ -389,21 +392,21 @@ schema.statics.findOneByEmail = function(email){
  * @param  {String}   token    User's authentication token.
  * @param  {Function} callback args(err, user)
  */
-schema.statics.getByToken = function(token, callback){
-  jwt.verify(token, JWT_SECRET, function(err, id){
-    if (err) {
-      return callback(err);
-    }
-    this.findOne({_id: id}, callback);
-  }.bind(this));
+schema.statics.getByToken = function (token, callback) {
+    jwt.verify(token, JWT_SECRET, function (err, id) {
+        if (err) {
+            return callback(err);
+        }
+        this.findOne({_id: id}, callback);
+    }.bind(this));
 };
 
-schema.statics.validateProfile = function(profile, cb){
-  return cb(!(
-    profile.name.length > 0 &&
-    profile.school.length > 0 &&
-    ['2018', '2019', '2020', '2021','2022','other'].indexOf(profile.graduationYear) > -1 &&
-    ['M', 'F', 'O', 'N'].indexOf(profile.gender) > -1
+schema.statics.validateProfile = function (profile, cb) {
+    return cb(!(
+        profile.name.length > 0 &&
+        profile.school.length > 0 &&
+        ['2018', '2019', '2020', '2021', '2022', 'other'].indexOf(profile.graduationYear) > -1 &&
+        ['M', 'F', 'O', 'N'].indexOf(profile.gender) > -1
     ));
 };
 
@@ -415,33 +418,33 @@ schema.statics.validateProfile = function(profile, cb){
  * Has the user completed their profile?
  * This provides a verbose explanation of their furthest state.
  */
-schema.virtual('status.name').get(function(){
+schema.virtual('status.name').get(function () {
 
-  if (this.status.checkedIn) {
-    return 'checked in';
-  }
+    if (this.status.checkedIn) {
+        return 'checked in';
+    }
 
-  if (this.status.declined) {
-    return "declined";
-  }
+    if (this.status.declined) {
+        return "declined";
+    }
 
-  if (this.status.confirmed) {
-    return "confirmed";
-  }
+    if (this.status.confirmed) {
+        return "confirmed";
+    }
 
-  if (this.status.admitted) {
-    return "admitted";
-  }
+    if (this.status.admitted) {
+        return "admitted";
+    }
 
-  if (this.status.completedProfile){
-    return "submitted";
-  }
+    if (this.status.completedProfile) {
+        return "submitted";
+    }
 
-  if (!this.verified){
-    return "unverified";
-  }
+    if (!this.verified) {
+        return "unverified";
+    }
 
-  return "incomplete";
+    return "incomplete";
 
 });
 

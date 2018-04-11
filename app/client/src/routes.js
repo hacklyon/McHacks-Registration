@@ -156,6 +156,11 @@ angular.module('reg')
                     templateUrl: "views/admin/settings/settings.html",
                     controller: 'AdminSettingsCtrl',
                 })
+                .state('app.admin.lessons',{
+                    url: "/admin/lessons",
+                    templateUrl: "views/admin/lessons/lessons.html",
+                    controller: 'AdminLessonsCtrl'
+                })
                 .state('reset', {
                     url: "/reset/:token",
                     templateUrl: "views/reset/reset.html",
