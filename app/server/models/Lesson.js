@@ -16,6 +16,7 @@ let schema = new mongoose.Schema({
     title: String,
     description: String,
     link: String,
+    content: String,
     users: [ {type : mongoose.Schema.ObjectId, ref: 'User'} ],
     order: { type: Number, default: 99}
 });

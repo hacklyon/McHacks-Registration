@@ -207,9 +207,9 @@ angular.module('reg')
                 LessonsService
                     .createLesson(lesson)
                     .success(function (data) {
-                        _successModal();
-                        $scope.lesson = {};
                         console.log(data);
+                        $scope.lessons.push(data.lesson);
+                        $scope.lesson = {};
                     })
                     .error(function (res) {
                         sweetAlert("Uh oh!", "Something went wrong.", "error");

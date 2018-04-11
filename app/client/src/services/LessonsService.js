@@ -42,7 +42,7 @@ angular.module('reg')
                 },
 
                 createLesson: function(lesson){
-                    return $http.post(base, lesson);
+                    return $http.post(base, {lesson: lesson});
                 },
 
                 updateConfirmation: function(id, confirmation){
@@ -55,56 +55,8 @@ angular.module('reg')
                     return $http.post(base + id + '/decline');
                 },
 
-                // ------------------------
-                // Team
-                // ------------------------
-                joinOrCreateTeam: function(code){
-                    return $http.put(base + Session.getUserId() + '/team', {
-                        code: code
-                    });
-                },
 
-                leaveTeam: function(){
-                    return $http.delete(base + Session.getUserId() + '/team');
-                },
 
-                getMyTeammates: function(){
-                    return $http.get(base + Session.getUserId() + '/team');
-                },
-
-                // -------------------------
-                // Admin Only
-                // -------------------------
-
-                getStats: function(){
-                    return $http.get(base + 'stats');
-                },
-
-                admitUser: function(id){
-                    return $http.post(base + id + '/admit');
-                },
-
-                checkIn: function(id){
-                    return $http.post(base + id + '/checkin');
-                },
-
-                checkOut: function(id){
-                    return $http.post(base + id + '/checkout');
-                },
-                makeAdmin: function(id){
-                    return $http.post(base + id + '/makeadmin');
-                },
-
-                removeAdmin: function(id){
-                    return $http.post(base + id + '/removeadmin');
-                },
-
-                sendLaggerEmails: function() {
-                    return $http.post(base + 'sendlagemails');
-                },
-                sendAcceptEmails: function() {
-                    return $http.post(base + 'sendacceptemails');
-                },
             };
         }
     ]);

@@ -531,12 +531,7 @@ module.exports = function (router) {
     });
 
     router.post('/lessons', isAdmin, function (req, res) {
-        let title = req.body.title;
-        let description = req.body.description;
-        let link = req.body.link;
-        let order = req.body.order;
         let lesson = req.body.lesson;
-        console.log(lesson);
         LessonController.createLesson(lesson, defaultResponse(req,res));
     });
 

@@ -47,6 +47,14 @@
 </a>
 <a
         ui-sref-active="menu-item-active"
+        ui-sref="app.lessons"
+        ng-if="currentUser.verified && currentUser.status.confirmed && !currentUser.status.declined"
+        class="menu-item"
+        ng-click="onMenuClick()">
+    LESSONS
+</a>
+<a
+        ui-sref-active="menu-item-active"
         ui-sref="app.team"
         ng-if="false && currentUser.verified && !currentUser.status.declined"
         class="menu-item"
