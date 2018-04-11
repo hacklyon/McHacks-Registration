@@ -1,0 +1,191 @@
+<div class="ui segment">
+
+    <div class="ui stackable grid">
+        <div class="three wide column">
+            <div class="ui header">
+                Search
+            </div>
+            <div class="ui form">
+                <div class="field">
+                    <div class="ui icon fluid input">
+                        <input type="text" placeholder="Search..." ng-model="queryText"
+                               ng-model-options="{debounce: 300}">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="ui form">
+                <div class="grouped fields">
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input
+                                    type="checkbox"
+                                    name="completedProfile"
+                                    ng-model="statusFilters.completedProfile"
+                                    ng-change="applyStatusFilter()">
+                            <label>Completed Profile</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input
+                                    type="checkbox"
+                                    name="admitted"
+                                    ng-model="statusFilters.admitted"
+                                    ng-change="applyStatusFilter()">
+                            <label>Admitted</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input
+                                    type="checkbox"
+                                    name="confirmed"
+                                    ng-model="statusFilters.confirmed"
+                                    ng-change="applyStatusFilter()">
+                            <label>Confirmed</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input
+                                    type="checkbox"
+                                    name="declined"
+                                    ng-model="statusFilters.declined"
+                                    ng-change="applyStatusFilter()">
+                            <label>Declined</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input
+                                    type="checkbox"
+                                    name="checkedIn"
+                                    ng-model="statusFilters.checkedIn"
+                                    ng-change="applyStatusFilter()">
+                            <label>Checked In</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input
+                                    type="checkbox"
+                                    name="verified"
+                                    ng-model="statusFilters.verified"
+                                    ng-change="applyStatusFilter()">
+                            <label>Verified</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="ui divider"></div>
+
+            <button ng-repeat="page in pages" ng-class="page == currentPage ? 'active pink' : ''"
+                    ng-click="goToPage(page)" class="ui icon basic page button">
+                {{page}}
+            </button>
+
+        </div>
+        <div id="table-container" class="thirteen wide column">
+            <div class="ui header">
+                Lessons
+            </div>
+            <div class="ui long user modal">
+                <i class="close icon"></i>
+                <div class="header">
+                    {{selectedUser.profile.name ? selectedUser.profile.name : selectedUser.email}}
+                    <span ng-show="selectedUser.admin">
+            (Admin)
+          </span>
+                </div>
+                <div class="content">
+
+                    <div>
+                        <div class="ui header">
+                            Status:
+                            <div class="ui label">
+                                {{selectedUser.status.name.toUpperCase()}}
+                            </div>
+                        </div>
+                        <p>
+                            <strong> Admitted by: </strong> {{selectedUser.status.admittedBy ?
+                            selectedUser.status.admittedBy : 'N/A'}}
+                        </p>
+                    </div>
+
+                    <div ng-repeat="section in selectedUser.sections">
+                        <div class="ui divider"></div>
+
+                        <h3> {{section.title}} </h3>
+
+                        <p ng-repeat="field in section.fields">
+                            <strong> {{field.name}}: </strong>
+
+                            <span ng-show="field.type === 'boolean'">
+                <i class="red circle remove icon" ng-show="!field.value"></i>
+                <i class="green circle check icon" ng-show="field.value"></i>
+              </span>
+
+                            <span ng-if="field.type == null">
+                {{field.value}}
+              </span>
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="actions">
+                    <div class="ui positive right labeled icon button">
+                        Nothing
+                        <i class="checkmark icon"></i>
+                    </div>
+                </div>
+            </div>
+
+            <table class="ui celled selectable compact users table">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Link</th>
+                    <th>Order</th>
+                    <th>Save/Update</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-click="selectUser(user)" ng-repeat="lesson in lessons" ng-class="rowClass(user)">
+                    <td> <input type="text" id="lesson-title" ng-model="lesson.title" value="{{lesson.title}}">  </td>
+                    <td> <input type="textarea" id="lesson-desc" ng-model="lesson.description" value="{{lesson.description}}"></td>
+                    <td> <input type="text" id="lesson-link" ng-model="lesson.link" value="{{lesson.link}}"></td>
+                    <td> <input type="text" id="lesson-order" ng-model="lesson.order" value="{{lesson.order}}"></td>
+                    <td class="collapsing">
+                        <button class="accept ui circular mini basic green icon button"
+                                ng-click="updateLesson(lesson)" title="Accept Hacker">
+                            <i class="history icon"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <input type="text" id="new-lesson-title" ng-model="lesson.title"> </td>
+                    <td> <input type="textarea" id="new-lesson-desc" ng-model="lesson.description"></td>
+                    <td> <input type="text" id="new-lesson-link" ng-model="lesson.link"></td>
+                    <td> <input type="text" id="new-lesson-order" ng-model="lesson.order"></td>
+                    <td class="collapsing">
+                        <button class="accept ui circular mini basic green icon button"
+                                ng-click="createLesson(lesson)" title="Accept Hacker">
+                            <i class="plus icon"></i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>

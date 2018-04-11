@@ -100,6 +100,19 @@ angular.module('reg')
                         }
                     }
                 })
+                .state('app.lessons', {
+                    url: "/lessons",
+                    templateUrl: "views/lessons/lessons.html",
+                    controller: 'LessonsCtrl',
+                    data: {
+                        requireConfirmed: true
+                    },
+                    resolve: {
+                        currentUser: function (UserService) {
+                            return UserService.getCurrentUser();
+                        }
+                    }
+                })
                 .state('app.team', {
                     url: "/team",
                     templateUrl: "views/team/team.html",
@@ -155,6 +168,11 @@ angular.module('reg')
                     url: "/admin/settings",
                     templateUrl: "views/admin/settings/settings.html",
                     controller: 'AdminSettingsCtrl',
+                })
+                .state('app.admin.lessons',{
+                    url: "/admin/lessons",
+                    templateUrl: "views/admin/lessons/lessons.html",
+                    controller: 'AdminLessonsCtrl'
                 })
                 .state('reset', {
                     url: "/reset/:token",
@@ -214,6 +232,7 @@ angular.module('reg')
                 var requireVerified = toState.data.requireVerified;
                 var requireAdmitted = toState.data.requireAdmitted;
                 var requireOwner = toState.data.requireOwner;
+                var requireConfirmed = toState.data.requireConfirmed;
                 $rootScope.fromState = fromState;
 
                 if (toState.redirectTo) {
@@ -251,6 +270,11 @@ angular.module('reg')
                 }
 
                 if (requireAdmitted && !Session.getUser().status.admitted) {
+                    event.preventDefault();
+                    $state.go('app.dashboard');
+                }
+
+                if (requireConfirmed && !Session.getUser().status.confirmed) {
                     event.preventDefault();
                     $state.go('app.dashboard');
                 }

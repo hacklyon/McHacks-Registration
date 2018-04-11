@@ -1,205 +1,212 @@
 <div class="page">
-  <div class="divided title">
-    Confirmation
-  </div>
-
-  <div class="ui stackable page grid">
-    <div class="column">
-
-      <div class="ui form">
-
-        <div class="divided title">Basic Details</div>
-
-        <fieldset ng-disabled="pastConfirmation">
-
-          <div class="field">
-            <label> What's your phone number? (required) </label>
-            <p>
-              We need this in case we need to get ahold of you!
-            </p>
-            <input type="tel"
-                  name="phone"
-                  ng-model="user.confirmation.phoneNumber"
-                  placeholder="+33(0)6 12 34 56 78"
-                  required>
-          </div>
-
-          <!-- <div class="ui header">
-            Mailing Address
-          </div>
-          <div class="field">
-            <label>Full Name</label>
-            <input type="text"
-                  name="name"
-                  ng-model="user.confirmation.address.name">
-          </div>
-
-          <div class="field">
-            <label> Address Line 1 - Street address, P.O. box, company name, c/o </label>
-            <input
-              type="text"
-              name="addressLine1"
-              ng-model="user.confirmation.address.line1">
-          </div>
-
-          <div class="field">
-            <label> Address Line 2 - Apartment, suite, unit, building, floor, etc. </label>
-            <input
-              type="text"
-              name="addressLine2"
-              ng-model="user.confirmation.address.line2">
-          </div>
-
-          <div class="four fields">
-            <div class="field">
-              <label> City </label>
-              <input
-                type="text"
-                name="city"
-                ng-model="user.confirmation.address.city">
-            </div>
-            <div class="field">
-              <label> State/Province/Region </label>
-              <input
-                type="text"
-                name="state"
-                ng-model="user.confirmation.address.state">
-            </div>
-            <div class="field">
-              <label> Postal Code / ZIP </label>
-              <input
-                type="text"
-                name="zip"
-                ng-model="user.confirmation.address.zip">
-            </div>
-            <div class="field">
-              <label> Country </label>
-              <input
-                type="text"
-                name="country"
-                ng-model="user.confirmation.address.country">
-            </div>
-          </div> -->
-
-          <div class="field">
-            <label>
-              Will you be needing hardware?
-            </label>
-            <div class="ui checkbox">
-              <input type="checkbox" ng-model="user.confirmation.wantsHardware">
-              <label> Yes, I would like to use hardware in my hack. </label>
-            </div>
-          </div>
-
-          <br>
-          <br>
-
-          <div
-            class="field"
-            ng-show="user.confirmation.wantsHardware">
-
-            <label>
-              What kind of hardware would be useful for you?
-            </label>
-            <p>
-              We will have a hardware lab, and we'll try our best to provide things that would be useful to you - however, we can't guarantee everything. We will publish a list of available hardware closer to the day of the event.
-            </p>
-            <input type="text" ng-model="user.confirmation.hardware">
-          </div>
-
-          <br>
-          <br>
-
-          <!--<div class="divided title">Bus Travel</div>
-
-          <div class="field">
-            <p>
-              McHacks will be sending free buses to Waterloo, Toronto and Boston. Selecting that you'd like a spot on a bus does not guaranty a spot on the bus. We will contact you with details regarding the bus soon! 
-            </p>
-
-          </div>
-
-          <div class="field">
-            <label> Would you like a spot on a bus to McHacks V? </label>
-            <select name="wantsBus" ng-model="user.confirmation.wantsBusFrom" required>
-              <option value=""></option>
-              <option value="Waterloo">Waterloo</option>
-              <option value="Toronto">Toronto</option>
-              <option value="Boston">Boston</option>
-            </select>
-          </div>
-
-          <br>
-          <br>-->
-
-          <div class="divided title">Legal</div>
-
-          <div class="field">
-            <label> Liability Waiver </label>
-            <p>
-              <a
-                target="_blank"
-                href="https://mchacks.ca/waiver.pdf">
-                Liability Waiver & Photo Release </a>
-            </p>
-            <p>
-              For legal reasons, our university asks that you read and accept the terms of our liability waiver. If you are under the age of 18, please have your parent or guardian complete the following section. </strong>
-            </p>
-            <p>
-              By writing my name below, I affirm that I have read and accepted the terms of the liability waiver above, and will be either at least 18 years or older at the time of the event or am agreeing on behalf of a minor under the age of 18. 
-            </p>
-            <input type="text"
-                  name="signatureLiabilityWaiver"
-                  placeholder="Your Full Legal Name or Guardians Legal Name if under the age of 18"
-                  ng-model="user.confirmation.signatureLiability">
-          </div>
-
-          <br>
-          <br>
-          <div class="divided title">Emergency Contact</div>
-            <div class="field">
-              <label> Name </label>
-              <input type="tel"
-                     name="phone"
-                     ng-model="user.confirmation.emergencyName"
-                     required>
-            </div>
-            <div class="field">
-              <label> Phone Number </label>
-    
-              <input type="tel"
-                     name="phone"
-                     ng-model="user.confirmation.emergencyPhoneNumber"
-                     placeholder="+33(0)6 12 34 56 78"
-                     required>
-          </div>
-
-          <br>
-          <br>
-
-          <div class="divided title">everything else</div>
-
-          <div class="field">
-            <label>
-              Additional Notes
-            </label>
-            <p>
-              If there's anything else you need to let us know, tell us here!
-            </p>
-            <textarea
-              ng-model="user.confirmation.notes"></textarea>
-          </div>
-
-          <div class="field" ng-hide="regIsClosed">
-            <button type="submit"
-                    class="fluid ui teal button"
-                    ng-click="submitForm()">
-              Submit - I will attend HackLyon on March 24th and 25th 2018.
-            </button>
-          </div>
-
-        </fieldset>
-      </div>
+    <div class="divided title">
+        {{ 'CONFIRMATION' | translate }}
     </div>
-  </div>
+
+    <div class="ui stackable page grid">
+        <div class="column">
+
+            <div class="ui form">
+
+                <div class="divided title">Basic Details</div>
+
+                <fieldset ng-disabled="pastConfirmation">
+
+                    <div class="field">
+                        <label> What's your phone number? (required) </label>
+                        <p>
+                            We need this in case we need to get ahold of you!
+                        </p>
+                        <input type="tel"
+                               name="phone"
+                               ng-model="user.confirmation.phoneNumber"
+                               placeholder="+33(0)6 12 34 56 78"
+                               required>
+                    </div>
+
+                    <!-- <div class="ui header">
+                      Mailing Address
+                    </div>
+                    <div class="field">
+                      <label>Full Name</label>
+                      <input type="text"
+                            name="name"
+                            ng-model="user.confirmation.address.name">
+                    </div>
+
+                    <div class="field">
+                      <label> Address Line 1 - Street address, P.O. box, company name, c/o </label>
+                      <input
+                        type="text"
+                        name="addressLine1"
+                        ng-model="user.confirmation.address.line1">
+                    </div>
+
+                    <div class="field">
+                      <label> Address Line 2 - Apartment, suite, unit, building, floor, etc. </label>
+                      <input
+                        type="text"
+                        name="addressLine2"
+                        ng-model="user.confirmation.address.line2">
+                    </div>
+
+                    <div class="four fields">
+                      <div class="field">
+                        <label> City </label>
+                        <input
+                          type="text"
+                          name="city"
+                          ng-model="user.confirmation.address.city">
+                      </div>
+                      <div class="field">
+                        <label> State/Province/Region </label>
+                        <input
+                          type="text"
+                          name="state"
+                          ng-model="user.confirmation.address.state">
+                      </div>
+                      <div class="field">
+                        <label> Postal Code / ZIP </label>
+                        <input
+                          type="text"
+                          name="zip"
+                          ng-model="user.confirmation.address.zip">
+                      </div>
+                      <div class="field">
+                        <label> Country </label>
+                        <input
+                          type="text"
+                          name="country"
+                          ng-model="user.confirmation.address.country">
+                      </div>
+                    </div> -->
+
+                    <div class="field">
+                        <label>
+                            Will you be needing hardware?
+                        </label>
+                        <div class="ui checkbox">
+                            <input type="checkbox" ng-model="user.confirmation.wantsHardware">
+                            <label> Yes, I would like to use hardware in my hack. </label>
+                        </div>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div
+                            class="field"
+                            ng-show="user.confirmation.wantsHardware">
+
+                        <label>
+                            What kind of hardware would be useful for you?
+                        </label>
+                        <p>
+                            We will have a hardware lab, and we'll try our best to provide things that would be useful
+                            to you - however, we can't guarantee everything. We will publish a list of available
+                            hardware closer to the day of the event.
+                        </p>
+                        <input type="text" ng-model="user.confirmation.hardware">
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <!--<div class="divided title">Bus Travel</div>
+
+                    <div class="field">
+                      <p>
+                        McHacks will be sending free buses to Waterloo, Toronto and Boston. Selecting that you'd like a spot on a bus does not guaranty a spot on the bus. We will contact you with details regarding the bus soon!
+                      </p>
+
+                    </div>
+
+                    <div class="field">
+                      <label> Would you like a spot on a bus to McHacks V? </label>
+                      <select name="wantsBus" ng-model="user.confirmation.wantsBusFrom" required>
+                        <option value=""></option>
+                        <option value="Waterloo">Waterloo</option>
+                        <option value="Toronto">Toronto</option>
+                        <option value="Boston">Boston</option>
+                      </select>
+                    </div>
+
+                    <br>
+                    <br>-->
+
+                    <div class="divided title">Legal</div>
+
+                    <div class="field">
+                        <label> Liability Waiver </label>
+                        <p>
+                            <a
+                                    target="_blank"
+                                    href="https://mchacks.ca/waiver.pdf">
+                                Liability Waiver & Photo Release </a>
+                        </p>
+                        <p>
+                            For legal reasons, our university asks that you read and accept the terms of our liability
+                            waiver. If you are under the age of 18, please have your parent or guardian complete the
+                            following section. </strong>
+                        </p>
+                        <p>
+                            By writing my name below, I affirm that I have read and accepted the terms of the liability
+                            waiver above, and will be either at least 18 years or older at the time of the event or am
+                            agreeing on behalf of a minor under the age of 18.
+                        </p>
+                        <input type="text"
+                               name="signatureLiabilityWaiver"
+                               placeholder="Your Full Legal Name or Guardians Legal Name if under the age of 18"
+                               ng-model="user.confirmation.signatureLiability">
+                    </div>
+
+                    <br>
+                    <br>
+                    <div class="divided title">Emergency Contact</div>
+                    <div class="field">
+                        <label> Name </label>
+                        <input type="tel"
+                               name="phone"
+                               ng-model="user.confirmation.emergencyName"
+                               required>
+                    </div>
+                    <div class="field">
+                        <label> Phone Number </label>
+
+                        <input type="tel"
+                               name="phone"
+                               ng-model="user.confirmation.emergencyPhoneNumber"
+                               placeholder="+33(0)6 12 34 56 78"
+                               required>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div class="divided title">everything else</div>
+
+                    <div class="field">
+                        <label>
+                            Additional Notes
+                        </label>
+                        <p>
+                            If there's anything else you need to let us know, tell us here!
+                        </p>
+                        <textarea
+                                ng-model="user.confirmation.notes"></textarea>
+                    </div>
+
+                    <div class="field" ng-hide="regIsClosed">
+                        <button type="submit"
+                                class="fluid ui teal button"
+                                ng-click="submitForm()"
+                                translate="CONFIRM_BUTTON">
+
+                        </button>
+                    </div>
+
+                </fieldset>
+            </div>
+        </div>
+    </div>
 </div>
