@@ -12,6 +12,15 @@ LessonController.getAll = function (callback) {
 };
 
 /**
+ * Get a lesson by id.
+ * @param  {String}   id       Lesson id
+ * @param  {Function} callback args(err, user)
+ */
+LessonController.getById = function (id, callback) {
+    Lesson.findById(id, callback);
+};
+
+/**
  * Create a new lesson given a title, a description and a link.
  * @param  {String}   lesson Lesson object.
  * @param  {Function} callback args(err, user)

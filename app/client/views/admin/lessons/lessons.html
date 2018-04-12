@@ -1,96 +1,7 @@
 <div class="ui segment">
 
     <div class="ui stackable grid">
-        <div class="three wide column">
-            <div class="ui header">
-                Search
-            </div>
-            <div class="ui form">
-                <div class="field">
-                    <div class="ui icon fluid input">
-                        <input type="text" placeholder="Search..." ng-model="queryText"
-                               ng-model-options="{debounce: 300}">
-                        <i class="search icon"></i>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="ui form">
-                <div class="grouped fields">
-                    <div class="field">
-                        <div class="ui checkbox">
-                            <input
-                                    type="checkbox"
-                                    name="completedProfile"
-                                    ng-model="statusFilters.completedProfile"
-                                    ng-change="applyStatusFilter()">
-                            <label>Completed Profile</label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui checkbox">
-                            <input
-                                    type="checkbox"
-                                    name="admitted"
-                                    ng-model="statusFilters.admitted"
-                                    ng-change="applyStatusFilter()">
-                            <label>Admitted</label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui checkbox">
-                            <input
-                                    type="checkbox"
-                                    name="confirmed"
-                                    ng-model="statusFilters.confirmed"
-                                    ng-change="applyStatusFilter()">
-                            <label>Confirmed</label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui checkbox">
-                            <input
-                                    type="checkbox"
-                                    name="declined"
-                                    ng-model="statusFilters.declined"
-                                    ng-change="applyStatusFilter()">
-                            <label>Declined</label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui checkbox">
-                            <input
-                                    type="checkbox"
-                                    name="checkedIn"
-                                    ng-model="statusFilters.checkedIn"
-                                    ng-change="applyStatusFilter()">
-                            <label>Checked In</label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui checkbox">
-                            <input
-                                    type="checkbox"
-                                    name="verified"
-                                    ng-model="statusFilters.verified"
-                                    ng-change="applyStatusFilter()">
-                            <label>Verified</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="ui divider"></div>
-
-            <button ng-repeat="page in pages" ng-class="page == currentPage ? 'active pink' : ''"
-                    ng-click="goToPage(page)" class="ui icon basic page button">
-                {{page}}
-            </button>
-
-        </div>
-        <div id="table-container" class="thirteen wide column">
+        <div id="table-container" class="sixteen wide column">
             <div class="ui header">
                 Lessons
             </div>
@@ -147,11 +58,19 @@
                 </div>
             </div>
 
+            <p>
+                If there's no content for a Lesson, the browser will be redirected to the link directly.
+                We cannot make statistics on external links, so please make sure most of the lessons include some
+                content.<br>
+                <br>Basic <strong>Markdown is admitted</strong> for the content field.
+            </p>
+
             <table class="ui celled selectable compact users table">
                 <thead>
                 <tr>
                     <th>Title</th>
                     <th>Description</th>
+                    <th>Content</th>
                     <th>Link</th>
                     <th>Order</th>
                     <th>Save/Update</th>
@@ -159,10 +78,11 @@
                 </thead>
                 <tbody>
                 <tr ng-click="selectUser(user)" ng-repeat="lesson in lessons" ng-class="rowClass(user)">
-                    <td> <input type="text" id="lesson-title" ng-model="lesson.title" value="{{lesson.title}}">  </td>
-                    <td> <input type="textarea" id="lesson-desc" ng-model="lesson.description" value="{{lesson.description}}"></td>
-                    <td> <input type="text" id="lesson-link" ng-model="lesson.link" value="{{lesson.link}}"></td>
-                    <td> <input type="text" id="lesson-order" ng-model="lesson.order" value="{{lesson.order}}"></td>
+                    <td><input type="text" id="lesson-title" ng-model="lesson.title" value="{{lesson.title}}"></td>
+                    <td><textarea class="ui input" type="text" ng-model="lesson.description">{{lesson.description}}</textarea></td>
+                    <td><textarea class="ui input" type="text" ng-model="lesson.content">{{lesson.content}}</textarea></td>
+                    <td><input type="text" id="lesson-link" ng-model="lesson.link" value="{{lesson.link}}"></td>
+                    <td><input type="text" id="lesson-order" ng-model="lesson.order" value="{{lesson.order}}"></td>
                     <td class="collapsing">
                         <button class="accept ui circular mini basic green icon button"
                                 ng-click="updateLesson(lesson)" title="Accept Hacker">
@@ -171,10 +91,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td> <input type="text" id="new-lesson-title" ng-model="lesson.title"> </td>
-                    <td> <input type="textarea" id="new-lesson-desc" ng-model="lesson.description"></td>
-                    <td> <input type="text" id="new-lesson-link" ng-model="lesson.link"></td>
-                    <td> <input type="text" id="new-lesson-order" ng-model="lesson.order"></td>
+                    <td><input type="text" id="new-lesson-title" ng-model="lesson.title"></td>
+                    <td><input type="textarea" id="new-lesson-desc" ng-model="lesson.description"></td>
+                    <td><input type="textarea" id="new-lesson-cont" ng-model="lesson.content"></td>
+                    <td><input type="text" id="new-lesson-link" ng-model="lesson.link"></td>
+                    <td><input type="text" id="new-lesson-order" ng-model="lesson.order"></td>
                     <td class="collapsing">
                         <button class="accept ui circular mini basic green icon button"
                                 ng-click="createLesson(lesson)" title="Accept Hacker">

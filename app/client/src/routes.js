@@ -113,6 +113,19 @@ angular.module('reg')
                         }
                     }
                 })
+                .state('app.lesson', {
+                    url: "/lessons/:id",
+                    templateUrl: "views/lessons/lesson.html",
+                    controller: 'LessonCtrl',
+                    resolve: {
+                        Lesson: function ($stateParams, LessonsService) {
+                            return LessonsService.get($stateParams.id);
+                        },
+                        currentUser: function (UserService) {
+                            return UserService.getCurrentUser();
+                        }
+                    }
+                })
                 .state('app.team', {
                     url: "/team",
                     templateUrl: "views/team/team.html",

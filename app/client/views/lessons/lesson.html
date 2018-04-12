@@ -49,20 +49,20 @@
             <!-- Confirmation Date -->
             <div
                     ng-class="{'loading': loading}"
-                    class="ui orange segment">
+                    class="ui green segment">
                 <div class="ui form">
 
                     <div class="ui header">
-                        Lessons
+                        {{ lesson.title }}
                     </div>
-                    <div class="ui relaxed divided list">
-                        <div class="item" ng-repeat="lesson in lessons">
-                            <i class="large circle middle aligned icon"></i>
-                            <div class="content">
-                                <a class="header" ng-click="goLesson($event, lesson)">{{ lesson.title }}</a>
-                                <div class="description">{{ lesson.description }}</div>
-                            </div>
-                        </div>
+                    <div>
+                        {{ lesson.description }}
+                        <a href="{{ lesson.link }}">{{ lesson.link }}</a>
+                    </div>
+                    <hr>
+                    <div
+                            class="markdown"
+                            ng-bind-html="content">
                     </div>
                 </div>
             </div>
