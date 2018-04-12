@@ -535,6 +535,10 @@ module.exports = function (router) {
         LessonController.createLesson(lesson, defaultResponse(req,res));
     });
 
+    router.get('/lessons/:id', function (req, res) {
+        LessonController.getById(req.params.id, defaultResponse(req, res));
+    });
+
     router.put('/lessons/:id', isAdmin, function(req, res){
         let lesson = req.body.lesson;
         LessonController.updateLesson(lesson, defaultResponse(req, res));

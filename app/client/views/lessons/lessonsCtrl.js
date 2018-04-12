@@ -3,13 +3,14 @@ angular.module('reg')
         '$scope',
         '$rootScope',
         '$state',
+        '$window',
         'currentUser',
         'LessonsService',
         '$translate',
         '$translatePartialLoader',
         'Utils',
         'UserService',
-        function ($scope, $rootScope, $state, currentUser, LessonsService, $translate, $translatePartialLoader, Utils, UserService) {
+        function ($scope, $rootScope, $state, $window, currentUser, LessonsService, $translate, $translatePartialLoader, Utils, UserService) {
 
             $translatePartialLoader.addPart('lessons');
             $translate.refresh();
@@ -30,15 +31,27 @@ angular.module('reg')
 
             $scope.formatTime = Utils.formatTime;
 
-            $scope.isMale = function() {
+            $scope.isMale = function () {
                 return user.profile.gender === 'M';
             };
-            $scope.isFemale = function() {
+            $scope.isFemale = function () {
                 return user.profile.gender === 'F';
             };
-            $scope.isOther = function() {
+            $scope.isOther = function () {
                 return user.profile.gender !== 'M' && user.profile.gender !== 'F';
-            }
+            };
+
+            $scope.goLesson = function ($event, lesson) {
+                $event.stopPropagation();
+
+                if (!lesson.content) {
+                    $window.location.href = lesson.link;
+                } else {
+                    $state.go('app.lesson', {
+                        id: lesson._id
+                    });
+                }
+            };
 
 
         }]);
