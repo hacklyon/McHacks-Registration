@@ -105,7 +105,7 @@ angular.module('reg')
                     templateUrl: "views/lessons/lessons.html",
                     controller: 'LessonsCtrl',
                     data: {
-                        requireConfirmed: true
+                        requireConfirmedorAdmin: true
                     },
                     resolve: {
                         currentUser: function (UserService) {
@@ -117,6 +117,9 @@ angular.module('reg')
                     url: "/lessons/:id",
                     templateUrl: "views/lessons/lesson.html",
                     controller: 'LessonCtrl',
+                    data: {
+                        requireConfirmedorAdmin: true
+                    },
                     resolve: {
                         Lesson: function ($stateParams, LessonsService) {
                             return LessonsService.get($stateParams.id);
@@ -246,6 +249,7 @@ angular.module('reg')
                 var requireAdmitted = toState.data.requireAdmitted;
                 var requireOwner = toState.data.requireOwner;
                 var requireConfirmed = toState.data.requireConfirmed;
+                let requireConfirmedorAdmin = toState.data.requireConfirmedorAdmin;
                 $rootScope.fromState = fromState;
 
                 if (toState.redirectTo) {
@@ -288,6 +292,11 @@ angular.module('reg')
                 }
 
                 if (requireConfirmed && !Session.getUser().status.confirmed) {
+                    event.preventDefault();
+                    $state.go('app.dashboard');
+                }
+
+                if (requireConfirmedorAdmin && !Session.getUser().status.confirmed) {
                     event.preventDefault();
                     $state.go('app.dashboard');
                 }
