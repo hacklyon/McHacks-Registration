@@ -535,7 +535,7 @@ module.exports = function (router) {
         LessonController.createLesson(lesson, defaultResponse(req,res));
     });
 
-    router.get('/lessons/:id', isOwnerOrAdmin, function (req, res) {
+    router.get('/lessons/:id', function (req, res) {
         LessonController.getById(req.params.id, defaultResponse(req, res));
     });
 
