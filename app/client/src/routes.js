@@ -296,7 +296,7 @@ angular.module('reg')
                     $state.go('app.dashboard');
                 }
 
-                if (requireConfirmedorAdmin && (!Session.getUser().status.confirmed || !Session.getUser().admin)) {
+                if (!Session.getUser().admin || requireConfirmedorAdmin && (!Session.getUser().status.confirmed)) {
                     event.preventDefault();
                     $state.go('app.dashboard');
                 }
