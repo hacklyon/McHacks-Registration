@@ -4,45 +4,7 @@
     </div>
 
     <div class="ui stackable two column grid">
-        <div class="four wide column">
-
-            <!-- Reigstration Open/Close -->
-            <div
-                    ng-class="{'loading': loading}"
-                    class="ui red segment">
-
-                <div class="ui header">
-                    {{"PROFILE"|translate}}
-                </div>
-
-                <div class="ui centered card">
-                    <div class="image">
-                        <img ng-if="isMale()"
-                             src="https://semantic-ui.com/images/avatar2/large/matthew.png">
-                        <img ng-if="isFemale()"
-                             src="https://semantic-ui.com/images/avatar2/large/molly.png">
-                        <img ng-if="isOther()"
-                             src="https://semantic-ui.com/images/avatar2/large/elyse.png">
-                    </div>
-                    <div class="content">
-                        <a class="header">{{ user.profile.name }}</a>
-                        <div class="meta">
-                            <span class="date">{{ user.email }}</span>
-                        </div>
-                        <div class="description">
-                            {{ "RESUME" | translate:values }}
-
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        <a>
-                            <i class="user icon"></i>
-                            {{ user.lessons.length }} Lessons Completed
-                        </a>
-                    </div>
-                </div>
-            </div>
-
+        <div class="four wide column" ng-include="'views/lessons/profile.html'">
         </div>
         <div class="twelve wide column">
 

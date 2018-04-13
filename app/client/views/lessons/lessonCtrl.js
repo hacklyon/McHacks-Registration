@@ -14,11 +14,17 @@ angular.module('reg')
         function ($scope, $sce, $rootScope, $state, currentUser, Lesson, LessonsService, $translate, $translatePartialLoader, Utils, UserService) {
 
             $translatePartialLoader.addPart('lesson');
+            $translatePartialLoader.addPart('lessons');
             $translatePartialLoader.addPart('sidebar');
             $translate.refresh();
 
             // Set up the user
             let user = currentUser.data;
+            $scope.values = {
+                name: user.profile.name,
+                discipline: user.profile.discipline,
+                school: user.profile.school
+            };
             let lesson = Lesson.data;
             $scope.lesson = lesson;
             $scope.user = user;
