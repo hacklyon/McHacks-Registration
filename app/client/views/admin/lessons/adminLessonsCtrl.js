@@ -8,7 +8,7 @@ angular.module('reg')
 
             $scope.settings = {};
 
-            $scope.lessons = {};
+            $scope.lessons = [];
             $scope.lesson = {};
 
             LessonsService
