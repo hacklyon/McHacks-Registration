@@ -11,6 +11,7 @@ angular.module('reg')
             let token = $stateParams.token;
 
             $translatePartialLoader.addPart('home');
+            $translatePartialLoader.addPart('sidebar');
             $translate.refresh();
 
             $scope.loading = true;

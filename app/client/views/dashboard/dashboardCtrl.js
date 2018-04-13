@@ -25,6 +25,7 @@ angular.module('reg')
             };
 
             $translatePartialLoader.addPart('dashboard');
+            $translatePartialLoader.addPart('sidebar');
             $translate.refresh();
 
             $scope.DASHBOARD = DASHBOARD;

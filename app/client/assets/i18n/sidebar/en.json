@@ -1,9 +1,11 @@
 {
-  "SB_HOME": "Home",
-  "SB_DASHBOARD": "Dashboard",
-  "SB_APPLICATION": "Application",
-  "SB_TEAM": "Team",
-  "SB_ADMIN": "Admin",
-  "SB_LOGOUT": "Logout",
-  "SB_LOGIN_REGISTER": "Login / Register"
+  "SB_HOME": "HOME",
+  "SB_DASHBOARD": "DASHBOARD",
+  "SB_APPLICATION": "APPLICATION",
+  "SB_CONFIRMATION": "CONFIRMATION",
+  "SB_LEARNING": "LEARNING",
+  "SB_TEAM": "TEAM",
+  "SB_ADMIN": "ADMIN",
+  "SB_LOGOUT": "LOGOUT",
+  "SB_LOGIN_REGISTER": "LOGIN / REGISTER"
 }

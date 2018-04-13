@@ -36,6 +36,7 @@ angular.module('reg')
                 date: $scope.formatDate(Settings.data.timeStart)
             };
             $translatePartialLoader.addPart('application');
+            $translatePartialLoader.addPart('sidebar');
             $translate.refresh();
 
             var dropzoneConfig = {

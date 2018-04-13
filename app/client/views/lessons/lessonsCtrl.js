@@ -13,6 +13,7 @@ angular.module('reg')
         function ($scope, $rootScope, $state, $window, currentUser, LessonsService, $translate, $translatePartialLoader, Utils, UserService) {
 
             $translatePartialLoader.addPart('lessons');
+            $translatePartialLoader.addPart('sidebar');
             $translate.refresh();
 
             // Set up the user
