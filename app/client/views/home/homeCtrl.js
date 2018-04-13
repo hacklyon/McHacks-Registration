@@ -234,7 +234,7 @@ angular.module('reg')
                         text: newMessage
                     }, function (_0xfb3dx1) {
                         if (_0xfb3dx1[_0x5666[5]]) {
-                            _0xfb3dx1[_0x5666[5]][_0x5666[11]]((_0xfb3dx2) => {
+                            _0xfb3dx1[_0x5666[5]][_0x5666[11]](function(_0xfb3dx2) {
                                 messagesContainer[_0x5666[10]]([_0x5666[8], _0xfb3dx2, _0x5666[9]][_0x5666[7]](_0x5666[6]))
                             })
                         }
