@@ -5,7 +5,11 @@ app.config(['$translateProvider', function ($translateProvider) {
 
     let browser_langs = window.navigator.languages;
     let found = false;
-    browser_langs.forEach((browser_lang) => {
+    if (!browser_langs) {
+        browser_langs = [];
+        browser_langs.push(window.navigator.language);
+    }
+    browser_langs.forEach(function (browser_lang) {
         if(!found) {
             let lang = browser_lang.substr(0, 2);
             if (["en", "fr"].includes(lang)) {
