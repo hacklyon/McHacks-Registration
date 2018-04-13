@@ -1,6 +1,6 @@
 <div class="page">
     <div class="divided title">
-        Lessons
+        {{"LEARNING"|translate}}
     </div>
 
     <div class="ui stackable two column grid">
@@ -12,7 +12,7 @@
                     class="ui red segment">
 
                 <div class="ui header">
-                    Profile
+                    {{"PROFILE"|translate}}
                 </div>
 
                 <div class="ui centered card">
@@ -30,8 +30,8 @@
                             <span class="date">{{ user.email }}</span>
                         </div>
                         <div class="description">
-                            {{ user.profile.name }} is studying {{ user.profile.discipline }} at {{ user.profile.school
-                            }}.
+                            {{ "RESUME" | translate:values }}
+
                         </div>
                     </div>
                     <div class="extra content">
@@ -53,7 +53,7 @@
                 <div class="ui form">
 
                     <div class="ui header">
-                        Lessons
+                        {{"LESSONS"|translate}}
                     </div>
                     <div class="ui relaxed divided list">
                         <div class="item" ng-repeat="lesson in lessons">

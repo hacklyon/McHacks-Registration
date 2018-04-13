@@ -20,6 +20,12 @@ angular.module('reg')
             let user = currentUser.data;
             $scope.user = user;
 
+            $scope.values = {
+                name: user.profile.name,
+                discipline: user.profile.discipline,
+                school: user.profile.school
+            };
+
             $scope.lessons = {};
 
             LessonsService

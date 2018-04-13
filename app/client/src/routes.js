@@ -101,7 +101,7 @@ angular.module('reg')
                     }
                 })
                 .state('app.lessons', {
-                    url: "/lessons",
+                    url: "/learning",
                     templateUrl: "views/lessons/lessons.html",
                     controller: 'LessonsCtrl',
                     data: {
@@ -114,7 +114,7 @@ angular.module('reg')
                     }
                 })
                 .state('app.lesson', {
-                    url: "/lessons/:id",
+                    url: "/learning/:id",
                     templateUrl: "views/lessons/lesson.html",
                     controller: 'LessonCtrl',
                     data: {

@@ -1,3 +1,6 @@
 {
-  "LESSONS": "Lessons"
+  "LEARNING": "Learning",
+  "LESSONS": "Lessons",
+  "PROFILE": "Profile",
+  "RESUME": "{{ name }} is studying {{ discipline }} at {{ school }}."
 }
