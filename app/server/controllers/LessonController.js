@@ -26,11 +26,9 @@ LessonController.getById = function (id, callback) {
  * @param  {Function} callback args(err, user)
  */
 LessonController.createLesson = function (lesson, callback) {
-    console.log(lesson);
     let l = new Lesson();
     l.title = lesson.title;
     l.description = lesson.description;
-    l.link = lesson.link;
     l.content = lesson.content;
     l.order = lesson.order;
     l.save(function (err) {

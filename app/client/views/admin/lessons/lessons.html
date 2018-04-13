@@ -59,10 +59,7 @@
             </div>
 
             <p>
-                If there's no content for a Lesson, the browser will be redirected to the link directly.
-                We cannot make statistics on external links, so please make sure most of the lessons include some
-                content.<br>
-                <br>Basic <strong>Markdown is admitted</strong> for the content field.
+                Basic <strong>Markdown is admitted</strong> for the content field, as well as full-HTML. <em>BE CAREFUL.</em>
             </p>
 
             <table class="ui celled selectable compact users table">
@@ -71,7 +68,6 @@
                     <th>Title</th>
                     <th>Description</th>
                     <th>Content</th>
-                    <th>Link</th>
                     <th>Order</th>
                     <th>Save/Update</th>
                 </tr>
@@ -79,9 +75,10 @@
                 <tbody>
                 <tr ng-click="selectUser(user)" ng-repeat="lesson in lessons" ng-class="rowClass(user)">
                     <td><input type="text" id="lesson-title" ng-model="lesson.title" value="{{lesson.title}}"></td>
-                    <td><textarea class="ui input" type="text" ng-model="lesson.description">{{lesson.description}}</textarea></td>
-                    <td><textarea class="ui input" type="text" ng-model="lesson.content">{{lesson.content}}</textarea></td>
-                    <td><input type="text" id="lesson-link" ng-model="lesson.link" value="{{lesson.link}}"></td>
+                    <td><textarea class="ui input" type="text"
+                                  ng-model="lesson.description">{{lesson.description}}</textarea></td>
+                    <td><textarea class="ui input" type="text" ng-model="lesson.content">{{lesson.content}}</textarea>
+                    </td>
                     <td><input type="text" id="lesson-order" ng-model="lesson.order" value="{{lesson.order}}"></td>
                     <td class="collapsing">
                         <button class="accept ui circular mini basic green icon button"
@@ -94,7 +91,6 @@
                     <td><input type="text" id="new-lesson-title" ng-model="lesson.title"></td>
                     <td><textarea class="ui input" type="text" ng-model="lesson.description"></textarea></td>
                     <td><textarea class="ui input" type="text" ng-model="lesson.content"></textarea></td>
-                    <td><input type="text" id="new-lesson-link" ng-model="lesson.link"></td>
                     <td><input type="text" id="new-lesson-order" ng-model="lesson.order"></td>
                     <td class="collapsing">
                         <button class="accept ui circular mini basic green icon button"

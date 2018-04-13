@@ -51,13 +51,9 @@ angular.module('reg')
             $scope.goLesson = function ($event, lesson) {
                 $event.stopPropagation();
 
-                if (!lesson.content) {
-                    $window.location.href = lesson.link;
-                } else {
-                    $state.go('app.lesson', {
-                        id: lesson._id
-                    });
-                }
+                $state.go('app.lesson', {
+                    id: lesson._id
+                });
             };
 
 

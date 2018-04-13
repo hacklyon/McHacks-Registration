@@ -1,14 +1,10 @@
 <div class="page">
     <div class="divided title">
-        Lessons
+        {{"LEARNING"|translate}}
     </div>
 
     <div class="ui stackable two column grid">
-        <div class="four wide column" ng-include="'views/lessons/profile.html'">
-
-        </div>
         <div class="twelve wide column">
-
             <!-- Confirmation Date -->
             <div
                     ng-class="{'loading': loading}"
@@ -18,10 +14,6 @@
                     <div class="ui header">
                         {{ lesson.title }}
                     </div>
-                    <div>
-                        {{ lesson.description }}
-                        <a href="{{ lesson.link }}">{{ lesson.link }}</a>
-                    </div>
                     <hr>
                     <div
                             class="markdown"
@@ -29,7 +21,17 @@
                     </div>
                 </div>
             </div>
-
+            <div class="centered center">
+                <button ng-click="goPrev()" class="ui labeled icon button">
+                    <i class="left arrow icon"></i>
+                    <span ng-if="!prev.end">{{ "PREV_BTN"|translate }} - </span> {{ prev.lesson.title | translate }}
+                </button>
+                <button ng-click="goNext()" class="ui right labeled icon button">
+                    <i class="right arrow icon"></i>
+                    <span ng-if="!next.end">{{"NEXT_BTN"|translate}} - </span>{{ next.lesson.title | translate }}
+                </button>
+            </div>
         </div>
+        <div class="four wide column" ng-include="'views/lessons/profile.html'"></div>
     </div>
 </div>

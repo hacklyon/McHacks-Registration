@@ -28,6 +28,35 @@ angular.module('reg')
             let lesson = Lesson.data;
             $scope.lesson = lesson;
             $scope.user = user;
+            $scope.next = {end:false};
+            $scope.prev = {end:false};
+
+            $scope.lessons = {};
+
+            LessonsService
+                .getAll()
+                .success(function (lessons) {
+                    $scope.lessons = lessons;
+                    for(let i=0; i< lessons.length;i++) {
+                        if (lessons[i]._id === lesson._id) { // found
+                            if(i>0) {
+                                $scope.prev.lesson = lessons[i-1];
+                            } else {
+                                $scope.prev.end = true;
+                                $scope.prev.lesson = {title: "LESSONS"};
+                            }
+
+                            if(i<lessons.length-1) {
+                                $scope.next.lesson = lessons[i+1];
+                            } else {
+                                $scope.next.end = true;
+                                $scope.next.lesson = {title: "LESSONS"};
+                            }
+
+                            break;
+                        }
+                    }
+                });
 
             $scope.isMale = function () {
                 return user.profile.gender === 'M';
@@ -42,4 +71,23 @@ angular.module('reg')
             let converter = new showdown.Converter();
             $scope.content = $sce.trustAsHtml(converter.makeHtml(lesson.content));
 
+
+            $scope.goPrev = function($event) {
+                if($scope.prev.end) {
+                    $state.go('app.lessons', {});
+                } else {
+                    $state.go('app.lesson', {
+                        id: $scope.prev.lesson._id
+                    });
+                }
+            };
+            $scope.goNext = function ($event) {
+                if($scope.next.end) {
+                    $state.go('app.lessons', {});
+                } else {
+                    $state.go('app.lesson', {
+                        id: $scope.next.lesson._id
+                    });
+                }
+            };
         }]);
