@@ -82,6 +82,7 @@ angular.module('reg')
                 }
             };
             $scope.goNext = function ($event) {
+                LessonsService.markCompleted($scope.lesson._id);
                 if($scope.next.end) {
                     $state.go('app.lessons', {});
                 } else {

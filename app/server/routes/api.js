@@ -52,6 +52,32 @@ module.exports = function (router) {
     }
 
     /**
+     * Using the access token provided, check to make sure that
+     * you are, indeed, an admin.
+     */
+    function isUser(req, res, next) {
+
+        let token = getToken(req);
+
+        UserController.getByToken(token, function (err, user) {
+
+            if (err) {
+                return res.status(500).send(err);
+            }
+
+            if (user) {
+                req.user = user;
+                return next();
+            }
+
+            return res.status(401).send({
+                message: 'Get outta here, punk!'
+            });
+
+        });
+    }
+
+    /**
      * [Users API Only]
      *
      * Check that the id param matches the id encoded in the
@@ -532,19 +558,25 @@ module.exports = function (router) {
 
     router.post('/lessons', isAdmin, function (req, res) {
         let lesson = req.body.lesson;
-        LessonController.createLesson(lesson, defaultResponse(req,res));
+        LessonController.createLesson(lesson, defaultResponse(req, res));
     });
 
     router.get('/lessons/:id', function (req, res) {
         LessonController.getById(req.params.id, defaultResponse(req, res));
     });
 
-    router.put('/lessons/:id', isAdmin, function(req, res){
+    router.put('/lessons/:id', isAdmin, function (req, res) {
         let lesson = req.body.lesson;
         LessonController.updateLesson(lesson, defaultResponse(req, res));
     });
 
-    router.put('/lessons/:id/completed', function (req, res) {
+    router.put('/lessons/:id/completed', isUser, function (req, res) {
+        let user = req.user;
+        LessonController.markCompleted(req.params.id, user, defaultResponse(req, res));
+    });
 
+    router.put('/lessons/:id/uncompleted', isUser, function (req, res) {
+        let user = req.user;
+        LessonController.markUncompleted(req.params.id, user, defaultResponse(req, res));
     });
 };
