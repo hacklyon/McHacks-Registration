@@ -1,4 +1,18 @@
 {
+  "ADDITIONAL_NOTES": "Additional Notes",
+  "ANYTHING_ELSE": "If there's anything else you need to let us know, tell us here!",
+  "PHONE_NUMBER": "Phone Number",
+  "NAME": "Name",
+  "EMERGENCY_CONTACT": "Emergency Contact",
+  "LEGAL_NAME": "Your Full Legal Name or Guardians Legal Name if under the age of 18",
+  "LIABILITY_LINK": "Liability Waiver & Photo Release",
+  "LIABILITY_WHY": "For legal reasons, our university asks that you read and accept the terms of our liability waiver. If you are under the age of 18, please have your parent or guardian complete the following section.",
+  "WRITE_BELOW": "By writing my name below, I affirm that I have read and accepted the terms of the liability waiver above, and will be either at least 18 years or older at the time of the event or am agreeing on behalf of a minor under the age of 18.",
+  "LEGAL": "Legal",
+  "LIABILITY_WAIVER": "Liability Waiver",
+  "BASIC_DETAILS": "Basic détails",
   "CONFIRMATION": "Confirmation",
-  "CONFIRM_BUTTON": "Submit - I will attend HackLyon Alpha on April 27th and 28th 2018."
+  "CONFIRM_BUTTON": "Submit - I will attend HackLyon Alpha on April 27th and 28th 2018.",
+  "PHONE_NUM": "What's your phone number? (required)",
+  "PHONE_WHY": "We need this in case we need to get ahold of you!"
 }
