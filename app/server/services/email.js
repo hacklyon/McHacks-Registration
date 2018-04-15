@@ -117,7 +117,7 @@ controller.sendAcceptEmails = function (users, callback) {
 
         var locals = {
             name: user.name,
-            dashUrl: ROOT_URL
+            dashUrl: ROOT_URL + '/dashboard'
         };
 
         console.log('Sending accepted email to address ' + user.email);

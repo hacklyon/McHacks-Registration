@@ -1,58 +1,63 @@
 angular.module('reg')
-  .controller('LoginCtrl', [
-    '$scope',
-    '$http',
-    '$state',
-    'settings',
-    'Utils',
-    'AuthService',
-    function($scope, $http, $state, settings, Utils, AuthService){
+    .controller('LoginCtrl', [
+        '$scope',
+        '$http',
+        '$state',
+        '$translate',
+        '$translatePartialLoader',
+        'settings',
+        'Utils',
+        'AuthService',
+        function ($scope, $http, $state, $translate, $translatePartialLoader, settings, Utils, AuthService) {
 
-      // Is registration open?
-      var Settings = settings.data;
-      $scope.regIsOpen = Utils.isRegOpen(Settings);
+            // Is registration open?
+            var Settings = settings.data;
+            $scope.regIsOpen = Utils.isRegOpen(Settings);
 
-      // Start state for login
-      $scope.loginState = 'login';
+            $translatePartialLoader.addPart('sidebar');
+            $translate.refresh();
 
-      function onSuccess() {
-        $state.go('app.dashboard');
-      }
+            // Start state for login
+            $scope.loginState = 'login';
 
-      function onError(data){
-        $scope.error = data.message;
-      }
+            function onSuccess() {
+                $state.go('app.dashboard');
+            }
 
-      function resetError(){
-        $scope.error = null;
-      }
+            function onError(data) {
+                $scope.error = data.message;
+            }
 
-      $scope.login = function(){
-        resetError();
-        AuthService.loginWithPassword(
-          $scope.email, $scope.password, onSuccess, onError);
-      };
+            function resetError() {
+                $scope.error = null;
+            }
 
-      $scope.register = function(){
-        resetError();
-        AuthService.register(
-          $scope.email, $scope.password, onSuccess, onError);
-      };
+            $scope.login = function () {
+                resetError();
+                AuthService.loginWithPassword(
+                    $scope.email, $scope.password, onSuccess, onError);
+            };
 
-      $scope.setLoginState = function(state) {
-        $scope.loginState = state;
-      };
+            $scope.register = function () {
+                resetError();
+                AuthService.register(
+                    $scope.email, $scope.password, onSuccess, onError);
+            };
 
-      $scope.sendResetEmail = function() {
-        var email = $scope.email;
-        AuthService.sendResetEmail(email);
-        sweetAlert({
-          title: "Don't Sweat!",
-          text: "An email should be sent to you shortly.",
-          type: "success",
-          confirmButtonColor: "#e76482"
-        });
-      };
+            $scope.setLoginState = function (state) {
+                $scope.loginState = state;
+            };
 
-    }
-  ]);
+            $scope.sendResetEmail = function () {
+                var email = $scope.email;
+                AuthService.sendResetEmail(email);
+                sweetAlert({
+                    title: "Don't Sweat!",
+                    text: "An email should be sent to you shortly.",
+                    type: "success",
+                    confirmButtonColor: "#e76482"
+                });
+            };
+
+        }
+    ]);
