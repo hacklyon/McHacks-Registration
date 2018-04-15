@@ -4,7 +4,7 @@
     </div>
 
     <div class="ui stackable two column grid">
-        <div class="twelve wide column">
+        <div class="twelve wide column" id="content-lesson">
             <!-- Confirmation Date -->
             <div
                     ng-class="{'loading': loading}"
@@ -32,6 +32,8 @@
                 </button>
             </div>
         </div>
-        <div class="four wide column" ng-include="'views/lessons/profile.html'"></div>
+        <div class="ui rail four wide column">
+            <div class="ui sticky" ng-include="'views/lessons/profile.html'"></div>
+        </div>
     </div>
 </div>

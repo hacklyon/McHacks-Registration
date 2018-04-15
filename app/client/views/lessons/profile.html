@@ -30,6 +30,11 @@
                 <i class="user icon"></i>
                 {{ user.lessons.length }} Lessons Completed
             </a>
+            <div class="ui indicating progress" id="user_lessons_progress" data-value="{{ user.lessons.length }}" data-total="{{ lessons.length }}">
+                <div class="bar">
+                    <div class="progress"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

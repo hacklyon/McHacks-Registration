@@ -91,4 +91,23 @@ angular.module('reg')
                     });
                 }
             };
+
+            $scope.$on('$viewContentLoaded', function () {
+                setTimeout(function () {
+                    $("#user_lessons_progress").progress({
+                        label: 'ratio',
+                        text: {
+                            ratio: '{value} de {total}'
+                        }
+                    });
+
+                    /*$('.ui.sticky')
+                        .sticky({
+                            offset       : 110,
+                            bottomOffset: 110,
+                            context: '#content-lesson',
+                        })
+                    ;*/
+                }, 1000);
+            });
         }]);

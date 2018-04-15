@@ -32,6 +32,13 @@ angular.module('reg')
                 .getAll()
                 .success(function (lessons) {
                     $scope.lessons = lessons;
+                    $scope.lessons.forEach(function (lesson) {
+                        if($scope.user.lessons.includes(lesson._id)) {
+                            lesson.done = true;
+                        }
+                    });
+                    console.log($scope.lessons);
+                    console.log($scope.user.lessons);
                 });
 
             $scope.pastConfirmation = Date.now() > user.status.confirmBy;
@@ -56,5 +63,40 @@ angular.module('reg')
                 });
             };
 
+            $scope.markCompleted = function(lesson) {
+                LessonsService
+                    .markCompleted(lesson._id)
+                    .success(function (data) {
+                        lesson.done = true;
+                        $scope.user.lessons.push(lesson._id);
+                        updateProgress();
+                    });
+            };
+
+            $scope.markUncompleted = function(lesson) {
+                LessonsService
+                    .markUncompleted(lesson._id)
+                    .success(function (data) {
+                        lesson.done = false;
+                        $scope.user.lessons.pull(lesson._id);
+                        updateProgress();
+                    });
+            };
+
+            let updateProgress = function() {
+                $('#user_lessons_progress').progress({
+                    label: 'ratio',
+                    text: {
+                        ratio: '{value} de {total}'
+                    },
+                    percent: 100 * ($scope.user.lessons.length / $scope.lessons.length )
+                });
+            };
+
+            $scope.$on('$viewContentLoaded', function () {
+                setTimeout(function () {
+                    updateProgress();
+                }, 1000);
+            });
 
         }]);

@@ -19,7 +19,8 @@
                     </div>
                     <div class="ui relaxed divided list">
                         <div class="item" ng-repeat="lesson in lessons">
-                            <i class="large circle middle aligned icon"></i>
+                            <i ng-click="markCompleted(lesson)" ng-if="!lesson.done" class="large red toggle off middle aligned icon"></i>
+                            <i ng-click="markUncompleted(lesson)" ng-if="lesson.done" class="large green toggle on middle aligned icon"></i>
                             <div class="content">
                                 <a class="header" ng-click="goLesson($event, lesson)">{{ lesson.title }}</a>
                                 <div class="description">{{ lesson.description }}</div>

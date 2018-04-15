@@ -75,23 +75,40 @@ LessonController.markCompleted = function (id, user, callback) {
 };
 
 LessonController.markUncompleted = function (id, user, callback) {
-    Lesson.findByIdAndUpdate(id,
-        {$pull: {users: user}},
-        {safe: true, upsert: true},
-        function (err, doc) {
-            if (err) {
+
+    Lesson
+        .findById(id)
+        .exec(function (err, l) {
+            if(err) {
                 return callback({
                     message: "An error came up when marking the lesson uncompleted. :/"
                 });
-            } else {
-                User.findByIdAndUpdate(user._id,
-                    {$pull: {lessons: doc}},
-                    {sfe: true, upsert: true},
-                    callback
-                );
             }
-        }
-    );
+            console.log("error:");
+            console.log(err);
+            console.log("lesson:");
+            console.log(l);
+            l.users.pull(user._id);
+            l.save();
+        });
+
+    User
+        .findById(user._id)
+        .exec(function(err, u) {
+            if(err) {
+                return callback({
+                    message: "An error came up when marking the lesson uncompleted. :/"
+                });
+            }
+            console.log("error:");
+            console.log(err);
+            console.log("user:");
+            console.log(u);
+            u.lessons.pull(id);
+            u.save();
+        });
+
+    return callback(null, {message: "Marked uncompleted"});
 };
 
 module.exports = LessonController;

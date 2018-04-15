@@ -17,7 +17,8 @@ let schema = new mongoose.Schema({
     description: String,
     content: String,
     users: [ {type : mongoose.Schema.ObjectId, ref: 'User'} ],
-    order: { type: Number, default: 99}
+    order: { type: Number, default: 99},
+    done: { type: Boolean, default: false}
 });
 
 module.exports = mongoose.model('Lesson', schema);
