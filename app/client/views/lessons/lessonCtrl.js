@@ -92,6 +92,19 @@ angular.module('reg')
                 }
             };
 
+            $scope.goToUrl = function (short) {
+                console.log(short);
+                var link = document.createElementNS("http://www.w3.org/1999/xhtml", "a");
+                link.href = 'http://www.google.com';
+                link.target = '_blank';
+                var event = new MouseEvent('click', {
+                    'view': window,
+                    'bubbles': false,
+                    'cancelable': true
+                });
+                link.dispatchEvent(event);
+            };
+
             $scope.$on('$viewContentLoaded', function () {
                 setTimeout(function () {
                     $("#user_lessons_progress").progress({
@@ -101,13 +114,11 @@ angular.module('reg')
                         }
                     });
 
-                    /*$('.ui.sticky')
-                        .sticky({
-                            offset       : 110,
-                            bottomOffset: 110,
-                            context: '#content-lesson',
-                        })
-                    ;*/
+                    $("#content a").each(function (index, elem) {
+                        elem.target = "_blank";
+                        elem.href = elem.href + '?u=' + $scope.user._id;
+                        console.log(elem);
+                    })
                 }, 1000);
             });
         }]);

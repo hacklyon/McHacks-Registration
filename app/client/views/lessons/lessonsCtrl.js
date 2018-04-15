@@ -37,8 +37,6 @@ angular.module('reg')
                             lesson.done = true;
                         }
                     });
-                    console.log($scope.lessons);
-                    console.log($scope.user.lessons);
                 });
 
             $scope.pastConfirmation = Date.now() > user.status.confirmBy;
