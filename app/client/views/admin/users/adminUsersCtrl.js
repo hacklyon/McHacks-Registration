@@ -288,8 +288,8 @@ angular.module('reg')
                 name: 'Essay',
                 value: user.profile.essay
               },{
-                name: 'Team',
-                value: user.teamCode
+                name: 'Notes',
+                value: user.profile.suggestion
               }
             ]
           }
