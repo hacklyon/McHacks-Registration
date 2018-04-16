@@ -84,7 +84,7 @@ controller.sendLaggerEmails = function (users, callback) {
         var user = users[i];
         var options = {
             to: user.email,
-            subject: "[" + HACKATHON_NAME + "] - First round applications close soon!"
+            subject: "ERRATUM - [" + HACKATHON_NAME + "] - First round applications close soon!"
         };
 
         var locals = {
