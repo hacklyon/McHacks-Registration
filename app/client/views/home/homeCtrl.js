@@ -90,6 +90,11 @@ angular.module('reg')
                     href: "https://www.espressif.com/",
                     logo: "/assets/images/logos/espressif.png",
                     show: true
+                }, {
+                    name: "Grandlyon",
+                    href: "https://www.grandlyon.com/",
+                    logo: "/assets/images/logos/grandlyon.png",
+                    show: true
                 }]
             };
 
