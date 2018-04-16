@@ -20,5 +20,7 @@
   "RESEND": "Resend verification email",
   "REGISTRATION_DEADLINE": "Registration Deadline",
   "WELCOME_BACK": "Welcome back, {{ profile.name }}!",
-  "EDIT_APPLICATION": "Edit your application"
+  "EDIT_APPLICATION": "Edit your application",
+  "CONFIRM_BTN": "Confirmer ma place",
+  "INFIRM_BTN": "Désolé, je ne peux pas venir"
 }

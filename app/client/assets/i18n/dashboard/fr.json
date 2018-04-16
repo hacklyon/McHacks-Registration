@@ -19,5 +19,7 @@
   "RESEND": "Renvoie l'email de vérification",
   "REGISTRATION_DEADLINE": "Deadline d'inscription",
   "WELCOME_BACK": "Bienvenue, {{ profile.name }} !",
-  "EDIT_APPLICATION": "Modifie ton inscription"
+  "EDIT_APPLICATION": "Modifie ton inscription",
+  "CONFIRM_BTN": "Confirmer ma place",
+  "INFIRM_BTN": "Désolé, je ne peux pas venir"
 }
