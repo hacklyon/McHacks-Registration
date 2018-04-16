@@ -213,11 +213,11 @@
 
                     <div class="markdown">
                         <h4>
-                            {{ DASHBOARD.ADMITTED_AND_CANNOT_CONFIRM_TITLE }}
+                            {{ 'ADMITTED_AND_CANNOT_CONFIRM_TITLE' | translate }}
                         </h4>
 
                         <p>
-                            {{ DASHBOARD.ADMITTED_AND_CANNOT_CONFIRM }}
+                            {{ 'ADMITTED_AND_CANNOT_CONFIRM' | translate }}
                         </p>
                     </div>
 
@@ -241,7 +241,7 @@
                     </div>
 
                     <div>
-                        Show this QR code when you arrive at the event.
+                        {{ 'SHOW_QR' | translate }}
                         <br/>
                         <img src='https://chart.googleapis.com/chart?cht=qr&chl=hacklyon%3A%2F%2F{{ user._id }}&chs=180x180&choe=UTF-8&chld=L|2'
                              alt=''>
@@ -254,7 +254,7 @@
 
                     <div class="ui red button"
                          ng-click="declineAdmission()">
-                        Sorry, I can't make it
+                        {{ 'INFIRM_BTN' |translate }}
                     </div>
 
                 </div>

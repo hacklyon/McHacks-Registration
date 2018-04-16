@@ -21,5 +21,6 @@
   "WELCOME_BACK": "Bienvenue, {{ profile.name }} !",
   "EDIT_APPLICATION": "Modifie ton inscription",
   "CONFIRM_BTN": "Confirmer ma place",
-  "INFIRM_BTN": "Désolé, je ne peux pas venir"
+  "INFIRM_BTN": "Désolé, je ne peux pas venir",
+  "SHOW_QR": "Montre ce QR à ton arrivée au hackathon."
 }
