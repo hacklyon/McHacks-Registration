@@ -366,7 +366,7 @@ UserController.updateProfileById = function (id, profile, callback) {
                 callback(err);
             }
 
-            var now = Date.now();
+            let now = Date.now();
 
             if (now < times.timeOpen) {
                 return callback({
@@ -374,7 +374,8 @@ UserController.updateProfileById = function (id, profile, callback) {
                 });
             }
 
-            if (now > times.timeClose) {
+            // TODO : remove && false; I put it so that I can easily bypass DB writing
+            if (now > times.timeClose && false) {
                 return callback({
                     message: "Sorry, registration is closed."
                 });
