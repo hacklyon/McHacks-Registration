@@ -261,11 +261,14 @@ angular.module('reg')
                                 name: 'fullname',
                                 value: user.profile.name
                             }, {
+                                name: 'firstname',
+                                value: user.profile.firstName
+                            }, {
+                                name: 'lastname',
+                                value: user.profile.lastName
+                            }, {
                                 name: 'email',
                                 value: user.email
-                            }, {
-                                name: 'time',
-                                value: user.timestamp
                             }, {
                                 name: 'school',
                                 value: user.profile.school
@@ -288,9 +291,6 @@ angular.module('reg')
                                 name: 'over_18',
                                 value: user.profile.adult
                             }, {
-                                name: 'shirt',
-                                value: user.profile.shirtSize
-                            }, {
                                 name: 'essay',
                                 value: user.profile.essay
                             }, {
@@ -299,9 +299,6 @@ angular.module('reg')
                             }, {
                                 name: 'phone',
                                 value: user.confirmation.phoneNumber
-                            }, {
-                                name: 'signature',
-                                value: user.confirmation.signatureLiability
                             }
                         ]
                     }
