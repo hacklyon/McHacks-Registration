@@ -201,7 +201,8 @@ angular.module('reg')
                     .getAll()
                     .success(function (data) {
 
-                        var output = '"sep=;"\n"';
+                        //var output = '"sep=;"\n"';
+                        let output = '';
                         var titles = generateSections(data[0]);
                         for (var i = 0; i < titles.length; i++) {
                             for (var j = 0; j < titles[i].fields.length; j++) {
