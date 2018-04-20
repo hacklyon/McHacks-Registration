@@ -1,406 +1,418 @@
 <div class="ui top attached segment">
 
-  <div class="ui header">
-    {{selectedUser.profile.name ? selectedUser.profile.name : selectedUser.email}}
-    <span
-      ng-show="selectedUser.admin">
+    <div class="ui header">
+        {{selectedUser.profile.name ? selectedUser.profile.name : selectedUser.email}}
+        <span
+                ng-show="selectedUser.admin">
       (Admin)
     </span>
-  </div>
+    </div>
 
 </div>
 
 <div class="ui botom attached segment">
 
-  <div>
-    <p>
-      <strong> Status: </strong>
-      <span
-        class="ui label">
+    <div>
+        <p>
+            <strong> Status: </strong>
+            <span
+                    class="ui label">
         {{selectedUser.status.name.toUpperCase()}}
       </span>
-    </p>
-    <p>
-      <strong> Admitted by: </strong> {{selectedUser.status.admittedBy ? selectedUser.status.admittedBy : 'N/A'}}
-    </p>
-  </div>
+        </p>
+        <p>
+            <strong> Admitted by: </strong> {{selectedUser.status.admittedBy ? selectedUser.status.admittedBy : 'N/A'}}
+        </p>
+    </div>
 
-  <div class="ui divider"></div>
+    <div class="ui divider"></div>
 
-  <div class="ui form">
+    <div class="ui form">
 
-    <fieldset ng-disabled="false">
+        <fieldset ng-disabled="false">
 
-      <div class="ui header">
-        Basic Info
-      </div>
-
-      <div class="field">
-        <strong>
-          Created on:
-        </strong>
-        {{formatTime(selectedUser.timestamp)}}
-      </div>
-
-      <div class="field">
-        <strong>
-          Last Updated:
-        </strong>
-        {{formatTime(selectedUser.lastUpdated)}}
-      </div>
-
-
-      <div class="field">
-        <label> Email </label>
-        <input type="text" ng-model="selectedUser.email" />
-      </div>
-
-      <div class="field">
-        <label> Team </label>
-        <input type="text" ng-model="selectedUser.teamCode" />
-      </div>
-
-    </fieldset>
-
-  </div>
-
-  <div class="ui divider"></div>
-
-  <div class="ui form">
-
-    <fieldset ng-disabled="false">
-
-      <div class="ui header">
-       Profile
-      </div>
-
-      <div class="field">
-        <label> Full Name </label>
-        <input type="text" name="name" ng-model="selectedUser.profile.name">
-      </div>
-
-      <div class="fields">
-        <div class="eleven wide field">
-          <label>
-            Email
-            <span class="required">*</span>
-          </label>
-          <input type="email" name="email" ng-model="selectedUser.email" disabled>
-        </div>
-      
-        <div class="five wide field">
-          <label>
-            Gender
-            <span class="required">*</span>
-          </label>
-          <select name="gender" ng-model="selectedUser.profile.gender">
-            <option value=""></option>
-            <option value="M">Male</option>
-            <option value="F">Female</option>
-            <option value="O">I prefer to self identify</option>
-            <option value="N">I prefer not to answer.</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="field" ng-show="autoFilledSchool">
-        <label> School </label>
-        <input class="ui input"
-              disabled="disabled"
-              ng-show="autoFilledSchool"
-              ng-model="selectedUser.profile.school">
-      </div>
-
-      <div class=fields>
-        <div class="eleven wide field" ng-show="!autoFilledSchool">
-          <label> School </label>
-          <div id="school" class="ui search">
-            <div class="ui input">
-              <input class="prompt" type="text" placeholder="School" name="school" ng-model="selectedUser.profile.school">                
+            <div class="ui header">
+                Basic Info
             </div>
-            <div class="results">
+
+            <div class="field">
+                <strong>
+                    Created on:
+                </strong>
+                {{formatTime(selectedUser.timestamp)}}
             </div>
-          </div>
-        </div>
-        <div class="five wide field">
-          <label>Degree</label>
-          <select
-            name="degree"
-            ng-model="selectedUser.profile.degree">
-            <option value=""></option>
-            <option value="HighSchool">High School</option>
-            <option value="Bachelor">Bachelor</option>
-            <option value="Master">Master</option>
-            <option value="Phd">Phd</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-      </div>
 
-
-      <div class="fields">
-        <div class="eleven wide field">
-          <label> Major </label>
-          <div id="discipline" class="ui search">
-            <div class="ui input">
-              <input class="prompt" type="text" placeholder="Discipline" name="discipline" ng-model="selectedUser.profile.discipline">
+            <div class="field">
+                <strong>
+                    Last Updated:
+                </strong>
+                {{formatTime(selectedUser.lastUpdated)}}
             </div>
-            <div class="results"></div>
-          </div>
-        </div>
-        <div class="five wide field">
-          <label>Graduation Year</label>
-          <select name="graduationYear" ng-model="selectedUser.profile.graduationYear">
-            <option value=""></option>
-            <option value="2018">2018</option>
-            <option value="2019">2019</option>
-            <option value="2020">2020</option>
-            <option value="2021">2021</option>
-            <option value="2022">2022</option>
-            <option value="other">other</option>
-          </select>
-        </div>
-      </div>
-      
-      <div class="fields">
-        <div class="eight wide field">
-          <label>Travel Origin (If Different)</label>
-          <input type="text"
-                placeholder="Ontario, Boston, New York, Vancouver etc..."
-                ng-model="selectedUser.profile.travel">
-        </div>
-        <div class="eight wide field">
-          <label> Dietary Restrictions </label>
-          <input
-            type="text" ng-model="selectedUser.profile.dietaryRestrictions" />
-        </div>
 
-        <div class="eight wide field">
-          <label> Shirt Size </label>
-          <input type="text" ng-model="selectedUser.profile.shirtSize" />
-        </div>
-      </div>
 
-      <div class="fields">
-        <div class="eight wide field">
-          <label>
-            Resume (PDF)
-          </label>
-          <button class="ui small button" ng-click="openResume()">View Resume</button>
-        </div>
-        
-        <div class="eight wide field">
-          <label> Github </label>
-          <input type="url" ng-model="selectedUser.profile.github" />
-        </div>
-        
-        <div class="eight wide field">
-          <label> Website </label>
-          <input type="url" ng-model="selectedUser.profile.website" />
-        </div>
+            <div class="field">
+                <label> Email </label>
+                <input type="text" ng-model="selectedUser.email"/>
+            </div>
 
-        <div class="eight wide field">
-          <label> LinkedIn </label>
-          <input type="url" ng-model="selectedUser.profile.linkedin" />
-        </div>
-      </div>
+            <div class="field">
+                <label> Team </label>
+                <input type="text" ng-model="selectedUser.teamCode"/>
+            </div>
 
-      <div class="field">
-        <label>
-            Why HackLyon? (Max 300 chars)
-        </label>
-        <textarea ng-model="selectedUser.profile.essay">
+        </fieldset>
+
+    </div>
+
+    <div class="ui divider"></div>
+
+    <div class="ui form">
+
+        <fieldset ng-disabled="false">
+
+            <div class="ui header">
+                Profile
+            </div>
+
+            <div class="field">
+                <label> Full Name </label>
+                <input type="text" name="name" ng-model="selectedUser.profile.name">
+            </div>
+
+            <div class="field">
+                <label> First Name </label>
+                <input type="text" name="firstname" ng-model="selectedUser.profile.firstName">
+            </div>
+
+            <div class="field">
+                <label> Last Name </label>
+                <input type="text" name="lastname" ng-model="selectedUser.profile.lastName">
+            </div>
+
+            <div class="fields">
+                <div class="eleven wide field">
+                    <label>
+                        Email
+                        <span class="required">*</span>
+                    </label>
+                    <input type="email" name="email" ng-model="selectedUser.email" disabled>
+                </div>
+
+                <div class="five wide field">
+                    <label>
+                        Gender
+                        <span class="required">*</span>
+                    </label>
+                    <select name="gender" ng-model="selectedUser.profile.gender">
+                        <option value=""></option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                        <option value="O">I prefer to self identify</option>
+                        <option value="N">I prefer not to answer.</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="field" ng-show="autoFilledSchool">
+                <label> School </label>
+                <input class="ui input"
+                       disabled="disabled"
+                       ng-show="autoFilledSchool"
+                       ng-model="selectedUser.profile.school">
+            </div>
+
+            <div class=fields>
+                <div class="eleven wide field" ng-show="!autoFilledSchool">
+                    <label> School </label>
+                    <div id="school" class="ui search">
+                        <div class="ui input">
+                            <input class="prompt" type="text" placeholder="School" name="school"
+                                   ng-model="selectedUser.profile.school">
+                        </div>
+                        <div class="results">
+                        </div>
+                    </div>
+                </div>
+                <div class="five wide field">
+                    <label>Degree</label>
+                    <select
+                            name="degree"
+                            ng-model="selectedUser.profile.degree">
+                        <option value=""></option>
+                        <option value="HighSchool">High School</option>
+                        <option value="Bachelor">Bachelor</option>
+                        <option value="Master">Master</option>
+                        <option value="Phd">Phd</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="fields">
+                <div class="eleven wide field">
+                    <label> Major </label>
+                    <div id="discipline" class="ui search">
+                        <div class="ui input">
+                            <input class="prompt" type="text" placeholder="Discipline" name="discipline"
+                                   ng-model="selectedUser.profile.discipline">
+                        </div>
+                        <div class="results"></div>
+                    </div>
+                </div>
+                <div class="five wide field">
+                    <label>Graduation Year</label>
+                    <select name="graduationYear" ng-model="selectedUser.profile.graduationYear">
+                        <option value=""></option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="other">other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="fields">
+                <div class="eight wide field">
+                    <label>Travel Origin (If Different)</label>
+                    <input type="text"
+                           placeholder="Ontario, Boston, New York, Vancouver etc..."
+                           ng-model="selectedUser.profile.travel">
+                </div>
+                <div class="eight wide field">
+                    <label> Dietary Restrictions </label>
+                    <input
+                            type="text" ng-model="selectedUser.profile.dietaryRestrictions"/>
+                </div>
+
+                <div class="eight wide field">
+                    <label> Shirt Size </label>
+                    <input type="text" ng-model="selectedUser.profile.shirtSize"/>
+                </div>
+            </div>
+
+            <div class="fields">
+                <div class="eight wide field">
+                    <label>
+                        Resume (PDF)
+                    </label>
+                    <button class="ui small button" ng-click="openResume()">View Resume</button>
+                </div>
+
+                <div class="eight wide field">
+                    <label> Github </label>
+                    <input type="url" ng-model="selectedUser.profile.github"/>
+                </div>
+
+                <div class="eight wide field">
+                    <label> Website </label>
+                    <input type="url" ng-model="selectedUser.profile.website"/>
+                </div>
+
+                <div class="eight wide field">
+                    <label> LinkedIn </label>
+                    <input type="url" ng-model="selectedUser.profile.linkedin"/>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>
+                    Why HackLyon? (Max 300 chars)
+                </label>
+                <textarea ng-model="selectedUser.profile.essay">
         </textarea>
-      </div>
+            </div>
 
-      <div class="field">
-        <label>
-            Any suggestions? (Optional)
-        </label>
-        <textarea ng-model="selectedUser.profile.suggestion">
+            <div class="field">
+                <label>
+                    Any suggestions? (Optional)
+                </label>
+                <textarea ng-model="selectedUser.profile.suggestion">
         </textarea>
-      </div>
+            </div>
 
-      <div class="fields">
-        
-        <div class="field eight wide field">
-          <div class="ui checkbox">
-            <input type="checkbox" id="adult" ng-model="selectedUser.profile.adult">
-            <label for="adult">Over 18</label>
-          </div>
-        </div>
+            <div class="fields">
 
-        <div class="field eight wide field">
-          <div class="ui checkbox">
-          <input type="checkbox" id="mlhshareinfo" ng-model="selectedUser.profile.mlhshareinfo">
-            <label for="mlhshareinfo">
-              <p>
-                MLH Data Sharing
-              </p>
-            </label>
-          </div>
-        </div>
+                <div class="field eight wide field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="adult" ng-model="selectedUser.profile.adult">
+                        <label for="adult">Over 18</label>
+                    </div>
+                </div>
 
-        <div class="field eight wide field">
-          <div class="ui checkbox">
-            <input type="checkbox" id="mlhcodeconduct" ng-model="selectedUser.profile.mlhcodeconduct">
-            <label for="mlhcodeconduct">
-              <p>
-              Code of Conduct
-              </p>
-            </label>
-          </div>
-        </div>
-      </div>
+                <div class="field eight wide field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="mlhshareinfo" ng-model="selectedUser.profile.mlhshareinfo">
+                        <label for="mlhshareinfo">
+                            <p>
+                                MLH Data Sharing
+                            </p>
+                        </label>
+                    </div>
+                </div>
 
-      <div class="field">
-        <div
-          ng-click="updateProfile()"
-          class="ui positive right labeled icon button">
-          Update Profile
-          <i class="checkmark icon"></i>
-        </div>
-      </div>
+                <div class="field eight wide field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="mlhcodeconduct" ng-model="selectedUser.profile.mlhcodeconduct">
+                        <label for="mlhcodeconduct">
+                            <p>
+                                Code of Conduct
+                            </p>
+                        </label>
+                    </div>
+                </div>
+            </div>
 
-    </fieldset>
-  </div>
+            <div class="field">
+                <div
+                        ng-click="updateProfile()"
+                        class="ui positive right labeled icon button">
+                    Update Profile
+                    <i class="checkmark icon"></i>
+                </div>
+            </div>
 
-  <div class="ui divider"></div>
+        </fieldset>
+    </div>
 
-  <div class="ui form">
+    <div class="ui divider"></div>
 
-    <fieldset ng-disabled="false">
+    <div class="ui form">
 
-      <div class="ui header">
-        Confirmation
-      </div>
+        <fieldset ng-disabled="false">
 
-      <div class="field">
-        <label> Phone </label>
-        <input type="tel" ng-model="selectedUser.confirmation.phoneNumber" />
-      </div>
+            <div class="ui header">
+                Confirmation
+            </div>
 
-      <div class="ui divider"></div>
+            <div class="field">
+                <label> Phone </label>
+                <input type="tel" ng-model="selectedUser.confirmation.phoneNumber"/>
+            </div>
 
-      <div class="field">
-        <label>
-          Needs Hardware
-        </label>
-        <div class="ui checkbox">
-          <input type="checkbox" ng-model="selectedUser.confirmation.wantsHardware">
-          <label> Yup, I need hardware </label>
-        </div>
-      </div>
+            <div class="ui divider"></div>
 
-      <div class="field">
-        <label>
-        Hardware
-        </label>
-        <input type="text" ng-model="selectedUser.confirmation.hardware">
-      </div>
+            <div class="field">
+                <label>
+                    Needs Hardware
+                </label>
+                <div class="ui checkbox">
+                    <input type="checkbox" ng-model="selectedUser.confirmation.wantsHardware">
+                    <label> Yup, I need hardware </label>
+                </div>
+            </div>
 
-      <div class="ui divider"></div>
+            <div class="field">
+                <label>
+                    Hardware
+                </label>
+                <input type="text" ng-model="selectedUser.confirmation.hardware">
+            </div>
 
-      <div class="two fields">
-        <div class="field">
-          <label> Emergency name </label>
-          <input
-                  type="text"
-                  name="city"
-                  ng-model="selectedUser.confirmation.emergencyName">
-        </div>
-        <div class="field">
-          <label> Emergency number </label>
-          <input
-                  type="text"
-                  name="state"
-                  ng-model="selectedUser.confirmation.emergencyPhoneNumber">
-        </div>
-      </div>
+            <div class="ui divider"></div>
 
-      <div class="ui divider"></div>
+            <div class="two fields">
+                <div class="field">
+                    <label> Emergency name </label>
+                    <input
+                            type="text"
+                            name="city"
+                            ng-model="selectedUser.confirmation.emergencyName">
+                </div>
+                <div class="field">
+                    <label> Emergency number </label>
+                    <input
+                            type="text"
+                            name="state"
+                            ng-model="selectedUser.confirmation.emergencyPhoneNumber">
+                </div>
+            </div>
 
-      <div class="ui header">
-        Travel
-      </div>
+            <div class="ui divider"></div>
 
-      <!-- <div class="field">
-        <strong> Wants Bus</strong>
-        <i
-          ng-if="selectedUser.confirmation.wantsBusFrom"
-          class="green check circle icon">
-        </i>
-        <i
-          ng-if="!selectedUser.confirmation.needsReimbursement"
-          class="red remove circle icon">
-        </i>
-      </div> -->
+            <div class="ui header">
+                Travel
+            </div>
 
-      <div class="field">
-        <label>Full Name</label>
-        <input type="text"
-               name="name"
-               ng-model="selectedUser.confirmation.address.name">
-      </div>
+            <!-- <div class="field">
+              <strong> Wants Bus</strong>
+              <i
+                ng-if="selectedUser.confirmation.wantsBusFrom"
+                class="green check circle icon">
+              </i>
+              <i
+                ng-if="!selectedUser.confirmation.needsReimbursement"
+                class="red remove circle icon">
+              </i>
+            </div> -->
 
-      <div class="field">
-        <label> Address Line 1 - Street address, P.O. box, company name, c/o </label>
-        <input
-          type="text"
-          name="addressLine1"
-          ng-model="selectedUser.confirmation.address.line1">
-      </div>
+            <div class="field">
+                <label>Full Name</label>
+                <input type="text"
+                       name="name"
+                       ng-model="selectedUser.confirmation.address.name">
+            </div>
 
-      <div class="field">
-        <label> Address Line 2 - Apartment, suite, unit, building, floor, etc. </label>
-        <input
-          type="text"
-          name="addressLine2"
-          ng-model="selectedUser.confirmation.address.line2">
-      </div>
+            <div class="field">
+                <label> Address Line 1 - Street address, P.O. box, company name, c/o </label>
+                <input
+                        type="text"
+                        name="addressLine1"
+                        ng-model="selectedUser.confirmation.address.line1">
+            </div>
 
-      <div class="four fields">
-        <div class="field">
-          <label> City </label>
-          <input
-            type="text"
-            name="city"
-            ng-model="selectedUser.confirmation.address.city">
-        </div>
-        <div class="field">
-          <label> State/Province/Region </label>
-          <input
-            type="text"
-            name="state"
-            ng-model="selectedUser.confirmation.address.state">
-        </div>
-        <div class="field">
-          <label> ZIP </label>
-          <input
-            type="text"
-            name="zip"
-            ng-model="selectedUser.confirmation.address.zip">
-        </div>
-        <div class="field">
-          <label> Country </label>
-          <input
-            type="text"
-            name="country"
-            ng-model="selectedUser.confirmation.address.country">
-        </div>
-      </div>
+            <div class="field">
+                <label> Address Line 2 - Apartment, suite, unit, building, floor, etc. </label>
+                <input
+                        type="text"
+                        name="addressLine2"
+                        ng-model="selectedUser.confirmation.address.line2">
+            </div>
 
-      <div class="field">
-        <label> Receipt </label>
-        <input type="url" ng-model="selectedUser.confirmation.receipt" />
-      </div>
+            <div class="four fields">
+                <div class="field">
+                    <label> City </label>
+                    <input
+                            type="text"
+                            name="city"
+                            ng-model="selectedUser.confirmation.address.city">
+                </div>
+                <div class="field">
+                    <label> State/Province/Region </label>
+                    <input
+                            type="text"
+                            name="state"
+                            ng-model="selectedUser.confirmation.address.state">
+                </div>
+                <div class="field">
+                    <label> ZIP </label>
+                    <input
+                            type="text"
+                            name="zip"
+                            ng-model="selectedUser.confirmation.address.zip">
+                </div>
+                <div class="field">
+                    <label> Country </label>
+                    <input
+                            type="text"
+                            name="country"
+                            ng-model="selectedUser.confirmation.address.country">
+                </div>
+            </div>
 
-      <div class="field">
-        <label> Additional Notes </label>
-        <textarea ng-model="selectedUser.confirmation.notes"></textarea>
-      </div>
+            <div class="field">
+                <label> Receipt </label>
+                <input type="url" ng-model="selectedUser.confirmation.receipt"/>
+            </div>
 
-    </fieldset>
+            <div class="field">
+                <label> Additional Notes </label>
+                <textarea ng-model="selectedUser.confirmation.notes"></textarea>
+            </div>
 
-  </div>
+        </fieldset>
+
+    </div>
 </div>

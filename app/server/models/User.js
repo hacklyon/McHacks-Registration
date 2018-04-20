@@ -16,6 +16,9 @@ var profile = {
         max: 100,
     },
 
+    firstName: String,
+    lastName: String,
+
     adult: {
         type: Boolean,
         required: true,
