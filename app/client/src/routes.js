@@ -170,6 +170,11 @@ angular.module('reg')
                     templateUrl: "views/admin/users/users.html",
                     controller: 'AdminUsersCtrl'
                 })
+                .state('app.admin.checkin', {
+                    url: "/admin/checkin",
+                    templateUrl: "views/admin/checkin/checkin.html",
+                    controller: 'AdminCheckinCtrl'
+                })
                 .state('app.admin.user', {
                     url: "/admin/users/:id",
                     templateUrl: "views/admin/user/user.html",
@@ -185,7 +190,7 @@ angular.module('reg')
                     templateUrl: "views/admin/settings/settings.html",
                     controller: 'AdminSettingsCtrl',
                 })
-                .state('app.admin.lessons',{
+                .state('app.admin.lessons', {
                     url: "/admin/lessons",
                     templateUrl: "views/admin/lessons/lessons.html",
                     controller: 'AdminLessonsCtrl'
@@ -225,14 +230,14 @@ angular.module('reg')
         '$timeout',
         '$window',
         'Session',
-        function(
+        function (
             $rootScope,
             $state,
             $timeout,
             $window,
-            Session ){
+            Session) {
 
-            $rootScope.$on('$stateChangeSuccess', function() {
+            $rootScope.$on('$stateChangeSuccess', function () {
                 $rootScope.fadeOut = false;
                 document.body.scrollTop = document.documentElement.scrollTop = 0;
             });
@@ -260,7 +265,7 @@ angular.module('reg')
                     event.preventDefault();
                     $rootScope.fadeOut = true;
 
-                    $timeout(function() {
+                    $timeout(function () {
                         $state.go(toState.name, toParams);
                     }, 100);
                 }
