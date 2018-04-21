@@ -10,7 +10,7 @@
 
                 <div class="divided title">{{ 'BASIC_INFORMATION' | translate }}</div>
 
-                <fieldset ng-disabled="regIsClosed">
+                <fieldset ng-disabled="regIsClosed && !user.status.admitted">
 
                     <div class="two fields">
                         <div class="field">
@@ -283,7 +283,7 @@
                     </div>
                     <br>
 
-                    <div class="field" ng-hide="regIsClosed">
+                    <div class="field" ng-hide="regIsClosed && !user.status.admitted">
                         <button type="submit" class="fluid ui button" ng-click="submitForm()">
                             {{ 'SUBMIT_BTN' | translate }}
                         </button>
