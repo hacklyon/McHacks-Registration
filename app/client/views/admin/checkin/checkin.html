@@ -2,14 +2,14 @@
 
 <button class="ui small button" ng-click="openCamera()">Open Camera</button>
 
-<button class="ui small inverted green button" ng-click="toggleCheckIn($event)" ng-show="!selectedUser.status.checkedIn">CHECK IN</button>
+<button class="ui small inverted green button" ng-click="toggleCheckIn($event)" ng-show="loaded && !selectedUser.status.checkedIn">CHECK IN</button>
 <button class="ui small inverted red button" ng-click="toggleCheckIn($event)" ng-show="selectedUser.status.checkedIn">CHECK OUT</button>
 
 
 <video id="preview" style="height: 38px;"></video>
 
 
-<div class="ui top attached segment">
+<div class="ui top attached segment" ng-show="loaded">
 
     <div class="ui header">
         {{selectedUser.profile.name ? selectedUser.profile.name : selectedUser.email}}
@@ -24,7 +24,7 @@
 
 </div>
 
-<div class="ui botom attached segment">
+<div ng-show="loaded" class="ui botom attached segment">
 
     <div>
         <p>

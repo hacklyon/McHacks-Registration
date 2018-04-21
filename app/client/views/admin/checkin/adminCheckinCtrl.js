@@ -7,6 +7,8 @@ angular.module('reg')
         function ($scope, $http, $window, UserService) {
             $scope.selectedUser = {};
 
+            $scope.loaded = false;
+
             $scope.updateProfile = function () {
                 UserService
                     .updateProfile($scope.selectedUser._id, $scope.selectedUser.profile)
@@ -75,6 +77,7 @@ angular.module('reg')
                                         swal("Dat user does not exists on this DB.");
                                     }
                                     $scope.selectedUser = data;
+                                    $scope.loaded = true;
 
                                     scanner.stop();
                                 })
