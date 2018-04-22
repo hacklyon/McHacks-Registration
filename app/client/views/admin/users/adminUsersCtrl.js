@@ -4,7 +4,8 @@ angular.module('reg')
         '$state',
         '$stateParams',
         'UserService',
-        function ($scope, $state, $stateParams, UserService) {
+        'LOGOS',
+        function ($scope, $state, $stateParams, UserService, LOGOS) {
 
             $scope.pages = [];
             $scope.users = [];
@@ -192,9 +193,224 @@ angular.module('reg')
             function selectUser(user) {
                 $scope.selectedUser = user;
                 $scope.selectedUser.sections = generateSections(user);
-                $('.long.user.modal')
+                $('.selected-user.long.user.modal')
                     .modal('show');
             }
+
+            let scanner;
+
+            $scope.searchByQR = function () {
+                scanner = new Instascan.Scanner({video: document.getElementById('preview')});
+                $('.qr-cam')
+                    .modal({
+                        onHide: function () {
+                            scanner.stop();
+                            return true;
+                        }
+                    })
+                    .modal('show');
+                scanner.addListener('scan', function (content) {
+                    if (content.substr(0, 11) === 'hacklyon://') {
+                        let id = content.substr(11);
+                        UserService
+                            .get(id)
+                            .success(function (data) {
+                                if (!data) {
+                                    swal("Dat user does not exists on this DB.");
+                                    console.log(data);
+                                }
+                                scanner.stop();
+                                $('.qr-cam').modal('hide');
+                                $state.go('app.admin.user', {
+                                    id: data._id
+                                });
+                            })
+                            .error(function () {
+                                swal("Oops, you forgot something.");
+                            })
+                    } else {
+                        swal("Oops, invalid QR code.");
+                        console.log(content)
+                    }
+                });
+                Instascan.Camera.getCameras().then(function (cameras) {
+                    if (cameras.length > 0) {
+                        scanner.start(cameras[0]);
+                    } else {
+                        console.error('No cameras found.');
+                    }
+                }).catch(function (e) {
+                    console.error(e);
+                });
+            };
+            $scope.externalUsers = "first name; last name; 1";
+            $scope.openGenerator = function () {
+                $(".badge-modal")
+                    .modal({
+                        onApprove: function () {
+                            let users = $scope.externalUsers.split("\n");
+                            let badges = [];
+                            users.forEach(function (user) {
+                                let fields = user.split(";");
+                                let u = {
+                                    profile: {firstName: fields[0].trim(), lastName: fields[1].trim()},
+                                    type: parseInt(fields[2])
+                                };
+                                badges.push(u);
+                            });
+                            $scope.generateBadges(badges);
+                        }
+                    })
+                    .modal('show');
+            };
+
+            $scope.generateBadges = function (badges) {
+                UserService
+                    .getAll()
+                    .success(function (data) {
+                        let confirmed = badges;
+
+                        for (let i = 0; i < data.length; i++) {
+                            let user = data[i];
+                            //console.log(user.Status);
+                            if (user.status.name === 'confirmed' || user.status.name === 'admitted') {
+                                user.type = 1; //hacker
+                                confirmed.push(user);
+                            }
+                        }
+
+                        const doc = new jsPDF();
+
+                        function rgb(r, g, b) {
+                            this.r = r;
+                            this.g = g;
+                            this.b = b;
+                        }
+
+                        function Rect(user, index, phase) {
+                            this.x = 15;
+                            this.y = 55 * index + 8 + phase;
+                            this.user = user;
+                            this.fname = user.profile.firstName || "";
+                            this.lname = user.profile.lastName || "";
+                            this.id = user.id || "";
+                            this.draw = function () {
+                                if (this.id.length) {
+                                    const qr = new QRious({
+                                        value: 'hacklyon://' + this.id
+                                    });
+                                    let qrcode = qr.toDataURL();
+                                    doc.addImage(qrcode, 'PNG', this.x + 67.5, this.y + 5, 12.5, 12.5);
+                                }
+                                //doc.rect(this.x, this.y, 85, 55); doc.rect(this.x + 85, this.y, 85, 55);
+                                doc.line(this.x - 1, this.y, this.x + 1, this.y);
+                                doc.line(this.x, this.y - 1, this.x, this.y + 1);
+
+                                doc.line(this.x + 85 - 1, this.y, this.x + 85 + 1, this.y);
+                                doc.line(this.x + 85, this.y, this.x + 85, this.y + 1);
+
+                                doc.line(this.x + 170 - 1, this.y, this.x + 170 + 1, this.y);
+                                doc.line(this.x + 170, this.y - 1, this.x + 170, this.y + 1);
+
+                                doc.addImage(LOGOS.ALPHA, 'PNG', this.x + 5, this.y + 5, 24, 10);
+
+                                let color;
+                                let role;
+                                let role_phase = 0;
+
+                                switch (this.user.type) {
+                                    case 1:
+                                        color = new rgb(58, 102, 150);
+                                        role = "Hacker";
+                                        break;
+                                    case 2:
+                                        color = new rgb(66, 220, 163); // Green alpha
+                                        role = "Coach";
+                                        break;
+                                    case 3:
+                                        color = new rgb(66, 220, 163); // TODO : CHANGE
+                                        role = "Mentor";
+                                        break;
+                                    case 4:
+                                        color = new rgb(250, 189, 35); //Yellow
+                                        role = "Photographe";
+                                        role_phase = -12;
+                                        break;
+                                    case 5:
+                                        color = new rgb(66, 220, 163); // TODO : CHANGE
+                                        role = "Sponsor";
+                                        break;
+                                    case 6:
+                                        color = new rgb(217, 83, 26); // Red-orange
+                                        role = "Jury";
+                                        role_phase = 5;
+                                        break;
+                                    case 7:
+                                        color = new rgb(202, 188, 73); // Caqui
+                                        role = "Media";
+                                        role_phase = 5;
+                                        break;
+                                    case 8:
+                                        color = new rgb(128, 0, 52); // Fuchsia
+                                        role = "Audiovisuel";
+                                        role_phase = -10;
+                                        break;
+                                    default:
+                                        color = new rgb(0, 0, 0);
+                                        role = "";
+                                }
+
+                                doc.setFillColor(color.r, color.g, color.b);
+                                doc.rect(this.x, this.y + 42.5, 85, 12.5, 'F');
+                                doc.setTextColor(0, 0, 0);
+                                doc.setFontSize(28);
+                                doc.text(this.x + 5, this.y + 27, this.fname.toUpperCase());
+                                doc.setTextColor(color.r, color.g, color.b);
+                                doc.setFontSize(20);
+                                if (this.lname.length > 15)
+                                    doc.setFontSize(16.5);
+                                doc.text(this.x + 5, this.y + 35, this.lname.toUpperCase());
+                                doc.setTextColor(255, 255, 255);
+                                doc.setFontSize(13);
+                                doc.text(this.x + 65 + role_phase, this.y + 50.4, role);
+                                doc.addImage(LOGOS.HACKLYON, 'PNG', this.x + 5, this.y + 45, 24, 7);
+
+
+                                this.x = this.x + 85;
+                                // BACK
+                                doc.addImage(LOGOS.TWITTER, 'PNG', this.x + 5, this.y + 6.875, 5, 5);
+                                doc.addImage(LOGOS.INSTAGRAM, 'PNG', this.x + 5, this.y + 18.75, 5, 5);
+                                doc.addImage(LOGOS.FACEBOOK, 'PNG', this.x + 5, this.y + 30.625, 5, 5);
+                                doc.setTextColor(color.r, color.g, color.b);
+                                doc.text(this.x + 12, this.y + 4 + 6.875, "@hacklyon");
+                                doc.text(this.x + 12, this.y + 4 + 18.75, "hacklyon");
+                                doc.text(this.x + 12, this.y + 4 + 30.625, "fb.com/hacklyonfr");
+
+                                doc.setFillColor(color.r, color.g, color.b);
+                                doc.rect(this.x, this.y + 42.5, 85, 12.5, 'F');
+                                doc.setTextColor(255, 255, 255);
+                                doc.setFontSize(18);
+                                doc.text(this.x + 22, this.y + 51, "#hacklyon2018");
+                            }
+                        }
+
+                        for (let i = 0; i < confirmed.length; i++) {
+                            let user = confirmed[i];
+                            let index = i % 5;
+                            let phase = 0; //1.5
+                            let r = new Rect(user, index, index * phase);
+
+                            r.draw();
+
+                            if ((i + 1) % 5 === 0 && (i + 1) !== confirmed.length) {
+                                doc.addPage();
+                            }
+                        }
+
+                        doc.save("HackLyon Badges " + new Date().toDateString() + ".pdf");
+
+                    });
+            };
 
             $scope.exportCSV = function () {
                 UserService
@@ -203,10 +419,10 @@ angular.module('reg')
 
                         //var output = '"sep=;"\n"';
                         let output = '';
-                        var titles = generateSections(data[0]);
-                        for (var i = 0; i < titles.length; i++) {
-                            for (var j = 0; j < titles[i].fields.length; j++) {
-                                if (j == titles[i].fields.length) {
+                        let titles = generateSections(data[0]);
+                        for (let i = 0; i < titles.length; i++) {
+                            for (let j = 0; j < titles[i].fields.length; j++) {
+                                if (j === titles[i].fields.length) {
                                     output += titles[i].fields[j].name + '";';
                                 }
                                 else {
@@ -218,8 +434,8 @@ angular.module('reg')
 
                         for (var rows = 0; rows < data.length; rows++) {
                             row = generateSections(data[rows]);
-                            for (var i = 0; i < row.length; i++) {
-                                for (var j = 0; j < row[i].fields.length; j++) {
+                            for (i = 0; i < row.length; i++) {
+                                for (j = 0; j < row[i].fields.length; j++) {
                                     if (!row[i].fields[j].value) {
                                         output += ";";
                                         continue;
@@ -244,7 +460,7 @@ angular.module('reg')
                         document.body.removeChild(element);
 
                     });
-            }
+            };
 
             function generateSections(user) {
                 if (!user.confirmation) {
