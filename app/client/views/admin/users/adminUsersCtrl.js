@@ -243,28 +243,27 @@ angular.module('reg')
                     console.error(e);
                 });
             };
-            $scope.externalUsers = "first name; last name; 1";
+            $scope.externalUsers = "";
             $scope.openGenerator = function () {
                 $(".badge-modal")
-                    .modal({
-                        onApprove: function () {
-                            let users = $scope.externalUsers.split("\n");
-                            let badges = [];
-                            users.forEach(function (user) {
-                                let fields = user.split(";");
-                                let u = {
-                                    profile: {firstName: fields[0].trim(), lastName: fields[1].trim()},
-                                    type: parseInt(fields[2])
-                                };
-                                badges.push(u);
-                            });
-                            $scope.generateBadges(badges);
-                        }
-                    })
+                    .modal({onApprove: function () {$scope.generateBadges();}})
                     .modal('show');
-            };
+            }
+            ;
 
-            $scope.generateBadges = function (badges) {
+            $scope.generateBadges = function () {
+                let badges = [];
+                if ($scope.externalUsers.length) {
+                    let users = $scope.externalUsers.split("\n");
+                    users.forEach(function (user) {
+                        let fields = user.split(";");
+                        let u = {
+                            profile: {firstName: fields[0].trim(), lastName: fields[1].trim()},
+                            type: parseInt(fields[2])
+                        };
+                        badges.push(u);
+                    });
+                }
                 UserService
                     .getAll()
                     .success(function (data) {
@@ -523,4 +522,5 @@ angular.module('reg')
 
             $scope.selectUser = selectUser;
 
-        }]);
+        }])
+;
