@@ -344,7 +344,7 @@
             </div>
             <div class="ui grid sponsors-list">
                 <a ng-repeat="spo in sponsors.partners" href="{{spo.href}}"
-                   class="sixteen wide phone four wide tablet three wide computer column"
+                   class="sixteen wide phone four wide tablet four wide computer column"
                    target="_blank" ng-if="spo.show">
                     <img src="{{spo.logo}}" alt="{{ spo.name }}">
                 </a>
@@ -354,7 +354,7 @@
             </div>
             <div class="ui grid sponsors-list" ng-if="howManySponsors(sponsors.equally) > 0">
                 <a ng-repeat="spo in sponsors.equally" href="{{spo.href}}"
-                   class="eight wide phone four wide tablet three wide computer column"
+                   class="eight wide phone four wide tablet four wide computer column"
                    target="_blank" ng-if="spo.show">
                     <img src="{{spo.logo}}" alt="{{ spo.name }}">
                 </a>

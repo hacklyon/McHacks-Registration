@@ -95,6 +95,16 @@ angular.module('reg')
                     href: "https://www.grandlyon.com/",
                     logo: "/assets/images/logos/grandlyon.png",
                     show: true
+                }, {
+                    name: "Wavestone",
+                    href: "https://wavestone.com",
+                    logo: "/assets/images/logos/wavestone1.png",
+                    show: true
+                }, {
+                    name: "Lyon is AI",
+                    href: "https://www.lyonisai.fr/",
+                    logo: "/assets/images/logos/lyon-ai.png",
+                    show: true
                 }]
             };
 
