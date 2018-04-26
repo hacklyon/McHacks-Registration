@@ -257,9 +257,15 @@ angular.module('reg')
                     let users = $scope.externalUsers.split("\n");
                     users.forEach(function (user) {
                         let fields = user.split(";");
+                        let companyy = "";
+                        if (fields.length > 3) {
+                            companyy = fields[3].toUpperCase();
+                            console.log(companyy);
+                        }
                         let u = {
                             profile: {firstName: fields[0].trim(), lastName: fields[1].trim()},
-                            type: parseInt(fields[2])
+                            type: parseInt(fields[2]),
+                            company: companyy
                         };
                         badges.push(u);
                     });
@@ -274,6 +280,7 @@ angular.module('reg')
                             //console.log(user.Status);
                             if (user.status.name === 'confirmed' || user.status.name === 'admitted') {
                                 user.type = 1; //hacker
+                                user.company = "";
                                 confirmed.push(user);
                             }
                         }
@@ -327,11 +334,11 @@ angular.module('reg')
                                         role = "Coach";
                                         break;
                                     case 3:
-                                        color = new rgb(66, 220, 163); // TODO : CHANGE
+                                        color = new rgb(250, 189, 35); //Yellow
                                         role = "Mentor";
                                         break;
                                     case 4:
-                                        color = new rgb(250, 189, 35); //Yellow
+                                        color = new rgb(250, 189, 35); // TODO : CHANGE
                                         role = "Photographe";
                                         role_phase = -12;
                                         break;
@@ -364,6 +371,11 @@ angular.module('reg')
                                 doc.setTextColor(0, 0, 0);
                                 doc.setFontSize(28);
                                 doc.text(this.x + 5, this.y + 27, this.fname.toUpperCase());
+                                doc.setFontSize(16);
+                                let width_mm = this.user.company.length * 2.116666666667;
+                                let number_of_i = (this.user.company.split("I").length)-1;
+                                width_mm = width_mm - number_of_i * 2.116666666667;
+                                doc.text(this.x + 65 - width_mm, this.y + 12, this.user.company);
                                 doc.setTextColor(color.r, color.g, color.b);
                                 doc.setFontSize(20);
                                 if (this.lname.length > 15)
