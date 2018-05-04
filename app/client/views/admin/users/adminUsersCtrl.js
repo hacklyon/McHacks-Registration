@@ -258,14 +258,18 @@ angular.module('reg')
                     users.forEach(function (user) {
                         let fields = user.split(";");
                         let companyy = "";
+                        let idd = "";
                         if (fields.length > 3) {
                             companyy = fields[3].toUpperCase();
-                            console.log(companyy);
+                            if (fields.length > 4) {
+                                idd = fields[4];
+                            }
                         }
                         let u = {
                             profile: {firstName: fields[0].trim(), lastName: fields[1].trim()},
                             type: parseInt(fields[2]),
-                            company: companyy
+                            company: companyy,
+                            id: idd
                         };
                         badges.push(u);
                     });
