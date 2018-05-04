@@ -53,9 +53,13 @@
                         <i class="fa fa-rocket" aria-hidden="true"></i>
                         {{ "HOME_APPLY_BTN" | translate }}
                     </a>
-                    <a class="btn btn--coming-soon" ng-if="!regIsOpen">
+                    <a class="btn btn--coming-soon" ng-if="!regIsOpen && !isAfterEvent">
                         <i class="fa fa-rocket" aria-hidden="true"></i>
                         {{ "HOME_REG_CLOSED" | translate }}
+                    </a>
+                    <a ui-sref="app.thanks" class="btn btn--coming-soon" ng-if="isAfterEvent">
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        MERCI
                     </a>
                 </div>
             </div>
@@ -88,22 +92,6 @@
     </section>
 
     <section id="about" class="center">
-        <div class="ui basic modal ppt">
-            <div class="ui icon header" ng-if="false">
-                More info about Alpha
-            </div>
-            <div class="content center">
-                <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQI39Rpoa8vcx8wXqVKNWxzuh8cT0NknzOCNzf52w3RlAizZZcGi0NZs7HWGPDO1Kegaupj4F-wR7ze/embed?start=false&loop=false&delayms=5000"
-                        frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true"
-                        webkitallowfullscreen="true"></iframe>
-            </div>
-            <div class="actions">
-                <div class="ui basic ok inverted button">
-                    <i class="checkmark icon"></i>
-                    Ok
-                </div>
-            </div>
-        </div>
         <div id="about-content">
             <div class="title">
                 {{ "MORE_INFO_TITLE" | translate }}

@@ -18,6 +18,7 @@ angular.module('reg')
             // Is registration open?
             let Settings = settings.data;
             $scope.regIsOpen = Utils.isRegOpen(Settings);
+            $scope.isAfterEvent = Date.now() > Settings.timeEnd;
 
             $scope.howManySponsors = function(list) {
                 let count = 0;

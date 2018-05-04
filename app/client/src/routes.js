@@ -44,6 +44,14 @@ angular.module('reg')
                         }
                     }
                 })
+                .state('app.thanks', {
+                    url: "/merci",
+                    templateUrl: "views/thanks/thanks.html",
+                    controller: 'ThanksCtrl',
+                    data: {
+                        requireLogin: false
+                    }
+                })
                 .state('app.login', {
                     url: "/login",
                     templateUrl: "views/login/login.html",
